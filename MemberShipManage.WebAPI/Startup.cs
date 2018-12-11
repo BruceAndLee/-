@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(PersonalSite.WebAPI.Startup))]
+[assembly: OwinStartup(typeof(MemberShipManage.WebAPI.Startup))]
 
-namespace PersonalSite.WebAPI
+namespace MemberShipManage.WebAPI
 {
     public partial class Startup
     {
