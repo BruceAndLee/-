@@ -21,5 +21,6 @@ namespace MemberShipManage.Domain
         public Nullable<int> InUser { get; set; }
         public string Name { get; set; }
         public int ParentID { get; set; }
+        public string Password { get; set; }
     }
 }

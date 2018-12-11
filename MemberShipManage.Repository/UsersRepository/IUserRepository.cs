@@ -10,5 +10,6 @@ namespace MemberShipManage.Repository.UsersRepository
 {
     public interface IUserRepository : IRepository<Users>
     {
+       
     }
 }

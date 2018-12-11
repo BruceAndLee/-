@@ -1,6 +1,9 @@
 ﻿using Autofac;
+using MemberShipManage.Infrastructure.Factory.DataBase;
 using MemberShipManage.Infrastructure.UnitOfWork;
+using MemberShipManage.Repository.CustomerRepository;
 using MemberShipManage.Repository.UsersRepository;
+using MemberShipManage.Service.CustomerService;
 using System.Configuration;
 
 namespace MemberShipManage.Framework.DependencyManage
@@ -9,24 +12,24 @@ namespace MemberShipManage.Framework.DependencyManage
     {
         public virtual void Register(ContainerBuilder builder)
         {
-            //builder.RegisterType<DatabaseFactory>().As<IDataBaseFactory>().InstancePerLifetimeScope();
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().WithParameter("connectionString", ConfigurationManager.ConnectionStrings["DBConnString"].ConnectionString).InstancePerLifetimeScope();
+            builder.RegisterType<DatabaseFactory>().As<IDataBaseFactory>().InstancePerLifetimeScope();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().WithParameter("connectionString", ConfigurationManager.ConnectionStrings["DbConnectionString"].ConnectionString).InstancePerLifetimeScope();
             #region Repository
 
-            builder.RegisterType<UserRepository>().As<IArticleRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<CustomerRepository>().As<ICustomerRepository>().InstancePerLifetimeScope();
 
             #endregion
 
             #region Service
 
-            //builder.RegisterType<ArticleService>().As<IArticleService>().InstancePerLifetimeScope();
+            builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
 
             #endregion
         }
 
         public int Order
         {
-            get { return 2; }
+            get { return 1; }
         }
     }
 }

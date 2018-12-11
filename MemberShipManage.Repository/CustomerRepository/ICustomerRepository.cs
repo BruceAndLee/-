@@ -10,5 +10,6 @@ namespace MemberShipManage.Repository.CustomerRepository
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
+        Task<bool> CheckCustomerExists(string userNo, string password);
     }
 }

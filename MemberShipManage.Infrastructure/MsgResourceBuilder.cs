@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace MemberShipManage.Infrastructure
 {
-    public class MessageResourceBuilder
+    public class MsgResourceBuilder
     {
         private static Dictionary<string, string> messages;
 

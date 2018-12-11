@@ -1,5 +1,6 @@
 ﻿using MemberShipManage.Domain;
 using MemberShipManage.Infrastructure.UnitOfWork;
+using MemberShipManage.Utility;
 using PersonalSite.Repository;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,23 @@ namespace MemberShipManage.Repository.CustomerRepository
             : base(dbcontext)
         {
 
+        }
+
+        public async Task<bool> CheckCustomerExists(string userNo, string password)
+        {
+            var user = await Task.Run(() => { return dbSet.FirstOrDefault(); });
+            if (user == null)
+            {
+                return false;
+            }
+
+            var passwordDb = Cryptor.Decrypt(user.Password);
+            if (password != passwordDb)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

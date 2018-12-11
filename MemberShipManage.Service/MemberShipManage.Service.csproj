@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseService.cs" />
     <Compile Include="ConsumeService\ConsumeRecordService.cs" />
     <Compile Include="ConsumeService\IConsumeRecordService.cs" />
     <Compile Include="CustomerService\CustomerService.cs" />
@@ -51,6 +52,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MemberShipManage.Infrastructure\MemberShipManage.Infrastructure.csproj">
+      <Project>{ABAB0110-544B-4C6F-8868-091D963B7E7E}</Project>
+      <Name>MemberShipManage.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MemberShipManage.Repository\MemberShipManage.Repository.csproj">
       <Project>{1671cef9-e4f2-4973-a699-c17a65a50dd5}</Project>
       <Name>MemberShipManage.Repository</Name>

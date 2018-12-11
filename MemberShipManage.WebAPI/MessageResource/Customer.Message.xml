@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MessageResources>
+  <Message ResourceID="CM_001">
+    <![CDATA[用户名或密码不正确！]]>
+  </Message>
+</MessageResources>

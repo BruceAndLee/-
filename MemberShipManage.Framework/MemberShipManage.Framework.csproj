@@ -73,7 +73,6 @@
     <Compile Include="AppStartManager.cs" />
     <Compile Include="ContainerManager.cs" />
     <Compile Include="DependencyManage\DependencyRegister.cs" />
-    <Compile Include="DependencyManage\IArticleRepository.cs" />
     <Compile Include="DependencyManage\IDependencyRegister.cs" />
     <Compile Include="IAppStartManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

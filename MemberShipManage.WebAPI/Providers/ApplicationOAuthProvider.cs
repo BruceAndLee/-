@@ -8,6 +8,7 @@ using Microsoft.Owin.Security.OAuth;
 using MemberShipManage.Infrastructure;
 using MemberShipManage.Framework;
 using MemberShipManage.Service.UsersService;
+using MemberShipManage.Service.CustomerService;
 
 namespace MemberShipManage.WebAPI.Providers
 {
@@ -17,20 +18,15 @@ namespace MemberShipManage.WebAPI.Providers
 
         public ApplicationOAuthProvider(string publicClientId)
         {
-            if (publicClientId == null)
-            {
-                throw new ArgumentNullException("publicClientId");
-            }
-
-            _publicClientId = publicClientId;
+            _publicClientId = publicClientId ?? throw new ArgumentNullException("publicClientId");
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            IUserService service = Singleton<IAppStartManager>.Instance.ContainerManager.Resolve<IUserService>();
-            bool isUserExists = service.CheckAppUserExists(context.UserName, context.Password);
+            ICustomerService service = Singleton<IAppStartManager>.Instance.ContainerManager.Resolve<ICustomerService>();
+            var reponse = await service.CheckCustomerExists(context.UserName, context.Password);
 
-            if (!isUserExists)
+            if (!reponse.IsSuccess)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
