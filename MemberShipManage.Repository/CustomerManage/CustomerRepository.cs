@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MemberShipManage.Repository.CustomerRepository
+namespace MemberShipManage.Repository.CustomerManage
 {
     public class CustomerRepository : BaseRepository<Customer>, ICustomerRepository
     {
@@ -20,7 +20,8 @@ namespace MemberShipManage.Repository.CustomerRepository
 
         public async Task<bool> CheckCustomerExists(string userNo, string password)
         {
-            var user = await Task.Run(() => { return dbSet.FirstOrDefault(); });
+            var user = await GetCustomer(userNo);
+
             if (user == null)
             {
                 return false;
@@ -33,6 +34,30 @@ namespace MemberShipManage.Repository.CustomerRepository
             }
 
             return true;
+        }
+
+        public async Task<Customer> GetCustomer(string userNo)
+        {
+            return await Task.Run(() =>
+            {
+                return dbSet.FirstOrDefault(d => d.UserNo == userNo);
+            });
+        }
+
+        public async Task<decimal> GetCustomerBalance(string userNo)
+        {
+            return await Task.Run(() =>
+            {
+                var user = dbSet.FirstOrDefault(d => d.UserNo == userNo);
+                if (user != null
+                    && user.CustomerAmount != null
+                    && user.CustomerAmount.Count > 0)
+                {
+                    return user.CustomerAmount.First().Amount;
+                }
+
+                return 0;
+            });
         }
     }
 }

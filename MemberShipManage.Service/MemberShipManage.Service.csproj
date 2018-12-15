@@ -43,15 +43,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseService.cs" />
-    <Compile Include="ConsumeService\ConsumeRecordService.cs" />
-    <Compile Include="ConsumeService\IConsumeRecordService.cs" />
-    <Compile Include="CustomerService\CustomerService.cs" />
-    <Compile Include="CustomerService\ICustomerService.cs" />
-    <Compile Include="UsersService\UserService.cs" />
-    <Compile Include="UsersService\IUserService.cs" />
+    <Compile Include="Consume\ConsumeRecordService.cs" />
+    <Compile Include="Consume\IConsumeRecordService.cs" />
+    <Compile Include="CustomerManage\CustomerService.cs" />
+    <Compile Include="CustomerManage\ICustomerService.cs" />
+    <Compile Include="UserManage\UserService.cs" />
+    <Compile Include="UserManage\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MemberShipManage.Domain\MemberShipManage.Domain.csproj">
+      <Project>{29F7CEC6-71EA-4DC1-A5D5-2C9388BF0116}</Project>
+      <Name>MemberShipManage.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MemberShipManage.Infrastructure\MemberShipManage.Infrastructure.csproj">
       <Project>{ABAB0110-544B-4C6F-8868-091D963B7E7E}</Project>
       <Name>MemberShipManage.Infrastructure</Name>

@@ -1,11 +1,6 @@
-﻿using MemberShipManage.Repository.ConsumeRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MemberShipManage.Repository.Consume;
 
-namespace MemberShipManage.Service.ConsumeService
+namespace MemberShipManage.Service.Consume
 {
     public class ConsumeRecordService: IConsumeRecordService
     {

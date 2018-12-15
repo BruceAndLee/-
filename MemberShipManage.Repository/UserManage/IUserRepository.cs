@@ -6,9 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MemberShipManage.Repository.ConsumeRepository
+namespace MemberShipManage.Repository.UserManage
 {
-    public interface IConsumeRecordRepository : IRepository<ConsumeRecord>
+    public interface IUserRepository : IRepository<Users>
     {
+       
     }
 }

@@ -8,7 +8,9 @@
         <EntityTypeShape EntityType="MembershipManageModel.ConsumeRecord" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MembershipManageModel.Customer" Width="1.5" PointX="2.625" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MembershipManageModel.LoginRecord" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MembershipManageModel.Users" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManageModel.Users" Width="1.5" PointX="1.125" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManageModel.CustomerAmount" Width="1.5" PointX="5.5" PointY="3" />
+        <AssociationConnector Association="MembershipManageModel.CustomerCustomerAmount" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

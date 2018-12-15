@@ -57,6 +57,9 @@
     <Compile Include="Customer.cs">
       <DependentUpon>MembershipManage.tt</DependentUpon>
     </Compile>
+    <Compile Include="CustomerAmount.cs">
+      <DependentUpon>MembershipManage.tt</DependentUpon>
+    </Compile>
     <Compile Include="LoginRecord.cs">
       <DependentUpon>MembershipManage.tt</DependentUpon>
     </Compile>

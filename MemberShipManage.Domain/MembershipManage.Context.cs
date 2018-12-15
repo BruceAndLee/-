@@ -29,5 +29,6 @@ namespace MemberShipManage.Domain
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<LoginRecord> LoginRecord { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<CustomerAmount> CustomerAmount { get; set; }
     }
 }

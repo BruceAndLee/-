@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MemberShipManage.Repository.ConsumeRepository
+namespace MemberShipManage.Repository.UserManage
 {
-    public class ConsumeRecordRepository : BaseRepository<ConsumeRecord>, IConsumeRecordRepository
+    public class UserRepository : BaseRepository<Users>, IUserRepository
     {
-        public ConsumeRecordRepository(IUnitOfWork dbcontext)
-              : base(dbcontext)
+        public UserRepository(IUnitOfWork dbcontext)
+            : base(dbcontext)
         {
 
         }

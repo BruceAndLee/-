@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using MemberShipManage.Framework;
+using MemberShipManage.Infrastructure;
+using MemberShipManage.Service.CustomerManage;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
-using MemberShipManage.Infrastructure;
-using MemberShipManage.Framework;
-using MemberShipManage.Service.UsersService;
-using MemberShipManage.Service.CustomerService;
+using System;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace MemberShipManage.WebAPI.Providers
 {
@@ -24,9 +22,9 @@ namespace MemberShipManage.WebAPI.Providers
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             ICustomerService service = Singleton<IAppStartManager>.Instance.ContainerManager.Resolve<ICustomerService>();
-            var reponse = await service.CheckCustomerExists(context.UserName, context.Password);
+            var isUserExists = await service.CheckCustomerExists(context.UserName, context.Password);
 
-            if (!reponse.IsSuccess)
+            if (!isUserExists)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;

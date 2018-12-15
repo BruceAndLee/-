@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/BootStrap/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/BootStrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Login.css" />
+    <script type="text/javascript" src="~/Content/Scripts/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="~/Content/BootStrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function getValidateCode() {
+            $("#img_ValidateCode").attr("src", "/HttpHandler/ValidateCodeCreate.ashx?param=" + new Date().toTimeString());
+        }
+    </script>
+</head>
+<body>
+    <div id="main_layout">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <img src="~/Content/Images/userlogin.png" style="width: 25px; height: 25px" />
+                    <b>用户登录</b>
+                </h3>
+            </div>
+            @using (Ajax.BeginForm("LoginIn", null, new AjaxOptions
+            {
+                HttpMethod = "POST",
+                LoadingElementId = "div_login_process",
+                OnSuccess = "loginSuc",
+                OnBegin = "loginBegin",
+                OnComplete = "loginComplete"
+            }, new { autocomplete = "off" }))
+            {
+                <div class="div-panel-content">
+                    <div class="row">
+                        <div class="col-md-12 col-md-margin">
+                            <div class="input-group">
+                                <span class="input-group-addon bg_pwd">
+                                    <img src="~/Content/Images/useraccount.png" />
+                                </span>
+                                <input type="text" name="UserName" autofocus="autofocus" class="form-control" maxlength="50" placeholder="请输入管理员账号" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-md-margin">
+                            <div class="input-group">
+                                <span class="input-group-addon bg_pwd">
+                                    <img src="~/Content/Images/pwd.jpg" />
+                                </span>
+                                <input type="password" name="PassWord" class="form-control" maxlength="50" placeholder="请输入密码" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-margin">
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon bg_pwd">
+                                        <img src="~/Content/Images/validateCode.png" />
+                                    </span>
+                                    <input name="ValidateCode" type="text" class="form-control" placeholder="请输入验证码" maxlength="5">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <img id="img_ValidateCode" src="~/HttpHandler/ValidateCodeCreate.ashx" onclick="getValidateCode()" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-md-margin" style="text-align: center; margin-bottom: 10px">
+                            <button type="submit" id="btn_Login" class="btn btn-primary">登录</button>
+                            <button type="reset" class="btn btn-primary">取消</button>
+                        </div>
+                    </div>
+                    <div id="div_login_process" class="col-md-12 col-md-margin" style="text-align: center; display: none">
+                        <img src="~/Content/Images/loading.gif" />
+                        <label>正在登录，请稍候......</label>
+                    </div>
+                </div>
+            }
+        </div>
+        <script type="text/javascript">
+            function loginBegin() {
+                $("#div_login_process").show();
+            }
+
+            function loginComplete() {
+                $("#div_login_process").hide();
+            }
+
+            function loginSuc(data) {
+                if (data.IsSuc == 1) {
+                    window.location.replace("@Url.Action("Index")");
+                } else {
+                    alert(data.Msg);
+                    getValidateCode();
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>

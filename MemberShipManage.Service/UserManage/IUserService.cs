@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MemberShipManage.Service.UsersService
+namespace MemberShipManage.Service.UserManage
 {
     public interface IUserService
     {

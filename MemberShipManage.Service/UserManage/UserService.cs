@@ -1,11 +1,6 @@
-﻿using MemberShipManage.Repository.UsersRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MemberShipManage.Repository.UserManage;
 
-namespace MemberShipManage.Service.UsersService
+namespace MemberShipManage.Service.UserManage
 {
     public class UserService : IUserService
     {

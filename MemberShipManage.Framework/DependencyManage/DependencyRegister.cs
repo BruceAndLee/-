@@ -1,9 +1,8 @@
 ﻿using Autofac;
 using MemberShipManage.Infrastructure.Factory.DataBase;
 using MemberShipManage.Infrastructure.UnitOfWork;
-using MemberShipManage.Repository.CustomerRepository;
-using MemberShipManage.Repository.UsersRepository;
-using MemberShipManage.Service.CustomerService;
+using MemberShipManage.Repository.CustomerManage;
+using MemberShipManage.Service.CustomerManage;
 using System.Configuration;
 
 namespace MemberShipManage.Framework.DependencyManage

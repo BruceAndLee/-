@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\MemberShipManage.WebAPI.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -334,6 +335,14 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MemberShipManage\MemberShipManage.WebAPI.Framework\MemberShipManage.WebAPI.Framework.csproj">
+      <Project>{9FB23E9D-AA3A-455D-B8D7-66652EC78FA6}</Project>
+      <Name>MemberShipManage.WebAPI.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MemberShipManage.Domain\MemberShipManage.Domain.csproj">
+      <Project>{29F7CEC6-71EA-4DC1-A5D5-2C9388BF0116}</Project>
+      <Name>MemberShipManage.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MemberShipManage.Framework\MemberShipManage.Framework.csproj">
       <Project>{52fc410a-fab5-4aee-8c34-29a9c42a0e8f}</Project>
       <Name>MemberShipManage.Framework</Name>
