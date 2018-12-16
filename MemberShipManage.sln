@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28010.2036
+VisualStudioVersion = 15.8.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemberShipManage", "MemberShipManage\MemberShipManage.csproj", "{21301903-C380-4875-8FD8-B736663FD752}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemberShipManage.Repository", "MemberShipManage.Repository\MemberShipManage.Repository.csproj", "{1671CEF9-E4F2-4973-A699-C17A65A50DD5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemberShipManage.Domain", "MemberShipManage.Domain\MemberShipManage.Domain.csproj", "{29F7CEC6-71EA-4DC1-A5D5-2C9388BF0116}"
@@ -19,7 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemberShipManage.Infrastruc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemberShipManage.WebAPI", "MemberShipManage.WebAPI\MemberShipManage.WebAPI.csproj", "{4EA0CA29-722C-41EC-A2D7-C27F261AB190}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemberShipManage.WebAPI.Framework", "..\MemberShipManage\MemberShipManage.WebAPI.Framework\MemberShipManage.WebAPI.Framework.csproj", "{9FB23E9D-AA3A-455D-B8D7-66652EC78FA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemberShipManage.WebAPI.Framework", "MemberShipManage.WebAPI.Framework\MemberShipManage.WebAPI.Framework.csproj", "{9FB23E9D-AA3A-455D-B8D7-66652EC78FA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemberShipManage", "MemberShipManage\MemberShipManage.csproj", "{D9D9D094-E681-4165-8A6A-167D1F9D5520}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{21301903-C380-4875-8FD8-B736663FD752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21301903-C380-4875-8FD8-B736663FD752}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21301903-C380-4875-8FD8-B736663FD752}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21301903-C380-4875-8FD8-B736663FD752}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1671CEF9-E4F2-4973-A699-C17A65A50DD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1671CEF9-E4F2-4973-A699-C17A65A50DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1671CEF9-E4F2-4973-A699-C17A65A50DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,6 +59,10 @@ Global
 		{9FB23E9D-AA3A-455D-B8D7-66652EC78FA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FB23E9D-AA3A-455D-B8D7-66652EC78FA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FB23E9D-AA3A-455D-B8D7-66652EC78FA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9D9D094-E681-4165-8A6A-167D1F9D5520}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9D9D094-E681-4165-8A6A-167D1F9D5520}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9D9D094-E681-4165-8A6A-167D1F9D5520}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9D9D094-E681-4165-8A6A-167D1F9D5520}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

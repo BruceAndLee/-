@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MessageResources>
+  <Message ResourceID="UM_001">
+    <![CDATA[用户名或密码不正确！]]>
+  </Message>
+  <Message ResourceID="UM_002">
+    <![CDATA[验证码不正确！]]>
+  </Message>
+</MessageResources>

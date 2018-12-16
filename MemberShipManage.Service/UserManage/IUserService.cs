@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MemberShipManage.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace MemberShipManage.Service.UserManage
 {
     public interface IUserService
     {
-        bool CheckAppUserExists(string userID, string password);
+        Task<Users> GetUser(string userID);
     }
 }

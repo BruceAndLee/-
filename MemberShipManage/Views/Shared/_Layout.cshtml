@@ -1,43 +1,165 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
+    <title>51 Mordern网站后台管理</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @*<link rel="stylesheet" href="~/Content/BootStrap/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="~/Content/BootStrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/Site.css" />*@
+    @*<script type="text/javascript" src="~/Content/Scripts/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/jquery.form.js"></script>
+    <script type="text/javascript" src="~/Content/BootStrap/js/bootstrap.min.js"></script>*@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div>
+        <header>
+            <div class="col-md-12">
+                <div class="col-md-5" style="text-align: left">
+                    <img src="~/Content/Images/computer.png" width="40" height="40" />
+                    <label>51 Mordern网站后台管理</label>
+                </div>
+                <div id="logout" class="col-md-7" style="text-align: right; font-size: 24px">
+                    <span id="sp_currentTime">@DateTime.Now.ToString("HH:mm:ss")</span>
+                    欢迎您:@{
+                        var userEntity = Session["User"] as PersonalSite.Domain.Customer;
+                        if (userEntity != null)
+                        {
+                            <span style="color: #FFFF00;margin-right:10px">@userEntity.UserName</span>
+                        }
+                    }
+                    <a href="@Url.Action("LoginOut","Home")">注销</a>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
-                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
-                </ul>
+        </header>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="panel-group margin-top-10" id="accordion">
+                <div class="panel panel-primary" id="div_User" runat="server">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseOne">
+                                <b>功能列表</b>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <ul class="navigation-ul">
+                                <li class="span-nav">
+                                    <img src="~/Content/Images/publish.png" />
+                                    <a href="@Url.Action("PublishArticle", "Article")">发表博文</a>
+                                </li>
+                                <li class="span-nav">
+                                    <img src="~/Content/Images/teachexp.png" />
+                                    <a href="@Url.Action("TechArticleManage", "Article")">博文管理</a>
+                                </li>
+                                <li class="span-nav">
+                                    <img src="~/Content/Images/literary.jpg" />
+                                    <a href="@Url.Action("TechArticleReview","Article")">评论管理</a>
+                                </li>
+                                <li class="span-nav">
+                                    <img src="~/Content/Images/attach.png" />
+                                    <a href="@Url.Action("PublishAttach","Attachment")">新增资料</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-primary" id="div_SysMng" runat="server">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseSys">
+                                <b>系统管理</b>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseSys" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <ul class="navigation-ul">
+                                <li class="span-nav">
+                                    <img src="~/Content/Images/pwd.jpg" />
+                                    <a href="@Url.Action("PwdModify","Home")">修改密码</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="col-md-10">
+            @RenderSection("featured", required: false)
+            <section>
+                @RenderBody()
+            </section>
+        </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
-        </footer>
-    </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $(function () {
+            $('#collapseOne').collapse('show');
+            $('#collapseSys').collapse('show');
+
+            setInterval("setCurrentTime()", 1000);
+
+        });
+
+        function setCurrentTime() {
+            document.getElementById("sp_currentTime").innerText = Format(new Date(), 'hh:mm:ss');
+        }
+
+        function Format(now, mask) {
+            var d = now;
+            var zeroize = function (value, length) {
+                if (!length) length = 2;
+                value = String(value);
+                for (var i = 0, zeros = ''; i < (length - value.length); i++) {
+                    zeros += '0';
+                }
+                return zeros + value;
+            };
+
+            return mask.replace(/"[^"]*"|'[^']*'|\b(?:d{1,4}|m{1,4}|yy(?:yy)?|([hHMstT])\1?|[lLZ])\b/g, function ($0) {
+                switch ($0) {
+                    case 'd': return d.getDate();
+                    case 'dd': return zeroize(d.getDate());
+                    case 'ddd': return ['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'][d.getDay()];
+                    case 'dddd': return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][d.getDay()];
+                    case 'M': return d.getMonth() + 1;
+                    case 'MM': return zeroize(d.getMonth() + 1);
+                    case 'MMM': return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getMonth()];
+                    case 'MMMM': return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][d.getMonth()];
+                    case 'yy': return String(d.getFullYear()).substr(2);
+                    case 'yyyy': return d.getFullYear();
+                    case 'h': return d.getHours() % 12 || 12;
+                    case 'hh': return zeroize(d.getHours() % 12 || 12);
+                    case 'H': return d.getHours();
+                    case 'HH': return zeroize(d.getHours());
+                    case 'm': return d.getMinutes();
+                    case 'mm': return zeroize(d.getMinutes());
+                    case 's': return d.getSeconds();
+                    case 'ss': return zeroize(d.getSeconds());
+                    case 'l': return zeroize(d.getMilliseconds(), 3);
+                    case 'L': var m = d.getMilliseconds();
+                        if (m > 99) m = Math.round(m / 10);
+                        return zeroize(m);
+                    case 'tt': return d.getHours() < 12 ? 'am' : 'pm';
+                    case 'TT': return d.getHours() < 12 ? 'AM' : 'PM';
+                    case 'Z': return d.toUTCString().match(/[A-Z]+$/);
+                    // Return quoted strings with the surrounding quotes removed
+                    default: return $0.substr(1, $0.length - 2);
+                }
+            });
+        };
+    </script>
 </body>
 </html>

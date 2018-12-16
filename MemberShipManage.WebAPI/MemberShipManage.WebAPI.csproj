@@ -278,9 +278,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -335,10 +332,6 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MemberShipManage\MemberShipManage.WebAPI.Framework\MemberShipManage.WebAPI.Framework.csproj">
-      <Project>{9FB23E9D-AA3A-455D-B8D7-66652EC78FA6}</Project>
-      <Name>MemberShipManage.WebAPI.Framework</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MemberShipManage.Domain\MemberShipManage.Domain.csproj">
       <Project>{29F7CEC6-71EA-4DC1-A5D5-2C9388BF0116}</Project>
       <Name>MemberShipManage.Domain</Name>
@@ -358,6 +351,10 @@
     <ProjectReference Include="..\MemberShipManage.Utility\MemberShipManage.Utility.csproj">
       <Project>{9c3ee9ed-3303-4f9f-a3fa-f6ef607130f1}</Project>
       <Name>MemberShipManage.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MemberShipManage.WebAPI.Framework\MemberShipManage.WebAPI.Framework.csproj">
+      <Project>{9FB23E9D-AA3A-455D-B8D7-66652EC78FA6}</Project>
+      <Name>MemberShipManage.WebAPI.Framework</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

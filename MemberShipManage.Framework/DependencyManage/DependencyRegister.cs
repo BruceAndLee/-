@@ -2,7 +2,9 @@
 using MemberShipManage.Infrastructure.Factory.DataBase;
 using MemberShipManage.Infrastructure.UnitOfWork;
 using MemberShipManage.Repository.CustomerManage;
+using MemberShipManage.Repository.UserManage;
 using MemberShipManage.Service.CustomerManage;
+using MemberShipManage.Service.UserManage;
 using System.Configuration;
 
 namespace MemberShipManage.Framework.DependencyManage
@@ -16,12 +18,14 @@ namespace MemberShipManage.Framework.DependencyManage
             #region Repository
 
             builder.RegisterType<CustomerRepository>().As<ICustomerRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
 
             #endregion
 
             #region Service
 
             builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
+            builder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
 
             #endregion
         }

@@ -1,1 +1,1 @@
-﻿<%@ WebHandler Language="C#" CodeBehind="ValidateCodeCreate.ashx.cs" Class="PersonalSite.BackendManage.HttpHandler.ValidateCodeCreate" %>
+﻿<%@ WebHandler Language="C#" CodeBehind="ValidateCodeCreate.ashx.cs" Class="MemberShipManage.HttpHandler.ValidateCodeCreate" %>

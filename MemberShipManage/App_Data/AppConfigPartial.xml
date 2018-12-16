@@ -1,0 +1,4 @@
+﻿<appSettings>
+  <add key="MessageResourceFolder" value="MessageResource"/>
+</appSettings>
+

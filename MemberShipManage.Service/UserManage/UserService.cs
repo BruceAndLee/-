@@ -1,4 +1,6 @@
-﻿using MemberShipManage.Repository.UserManage;
+﻿using MemberShipManage.Domain;
+using MemberShipManage.Repository.UserManage;
+using System.Threading.Tasks;
 
 namespace MemberShipManage.Service.UserManage
 {
@@ -10,9 +12,9 @@ namespace MemberShipManage.Service.UserManage
             this.userRepository = userRepository;
         }
 
-        public bool CheckAppUserExists(string userID, string password)
+        public async Task<Users> GetUser(string userNo)
         {
-            return true;
+            return await userRepository.GetUser(userNo);
         }
     }
 }
