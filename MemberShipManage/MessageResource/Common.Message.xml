@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MessageResources>
+  <Message ResourceID="COM_001">
+    <![CDATA[您要修改的数据不存在！]]>
+  </Message>
+</MessageResources>

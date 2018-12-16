@@ -52,7 +52,13 @@ namespace MemberShipManage.Controllers
             }
 
             Session["User"] = user;
-            return Json(new { IsSuc = 1, User = user });
+            return SuccessJsonResult(response: user);
+        }
+
+        public ActionResult LoginOut()
+        {
+            Session["User"] = null;
+            return RedirectToAction("Login");
         }
     }
 }

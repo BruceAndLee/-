@@ -1,24 +1,247 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    width: 96%;
+    margin: 0px auto;
+    font-family: "微软雅黑";
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+header div {
+    background-image: url('Images/headback.jpg');
+    height: 60px;
+    line-height: 60px;
+    background-repeat: repeat;
+    text-align: center;
+    padding: 0px;
+    font-size: 26px;
+    color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+a {
+    text-decoration: none;
+    color: black;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+    a:hover {
+        text-decoration: none;
+    }
+
+ul li {
+    list-style: none;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
 }
+
+    ul li img {
+        width: 40px;
+        height: 40px;
+        margin-right: 3px;
+    }
+
+.img-title {
+    width: 50px;
+    height: 50px;
+}
+
+.label-title-top {
+    font-size: large;
+    margin-left: 10px;
+}
+
+.img-panel-title {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+}
+
+.img-table-column {
+    width: 26px;
+    height: 26px;
+    padding: 4px;
+}
+
+.navigation-ul {
+    padding: 0px;
+}
+
+.div-panel-content {
+    padding: 10px 10px 0px 0px;
+    height: 100%;
+    min-height: 485px;
+}
+
+.col-sm-5-pad {
+    padding-left: 2px;
+}
+
+.btn-form-width {
+    width: 80px;
+}
+
+.element-form-width {
+    width: 50%;
+}
+
+.pre-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+table.gridtable {
+    font-family: 微软雅黑,arial,sans-serif;
+    color: #333333;
+    border-width: 1px;
+    border-color: #666666;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    table.gridtable th {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #666666;
+        background-color: #dedede;
+    }
+
+    table.gridtable td {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #666666;
+        background-color: #ffffff;
+    }
+
+.pagesize-select {
+    width: 70px;
+}
+
+.btn-search {
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+.span-nav:hover {
+    background: #99CCFF;
+    border: 1px solid #99CCFF;
+    /*border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;*/
+    cursor: pointer;
+}
+
+.span-nav a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.a-list a:hover {
+    text-decoration: none;
+    color: #666666;
+}
+
+.span-grid:hover {
+    background: #CC3333;
+    color: white;
+}
+
+.modal-head {
+    background-color: #FFCC33;
+    border-bottom: solid 1px #333333;
+}
+
+.span-header {
+    color: #FFCC00;
+    margin-left: 2px;
+}
+
+.div-layout-linestyle {
+    line-height: 25px;
+    height: 25px;
+}
+
+.row-line {
+    line-height: 30px;
+}
+
+.label-title {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.line {
+    height: 1px;
+    border: 1px;
+    border-top: 1px solid;
+}
+
+.pagination a[disabled] {
+    color: #777;
+    cursor: not-allowed;
+    background-color: #fff;
+    border-color: #ddd;
+}
+
+.pagination span.active {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.margin-top-5 {
+    margin-top: 5px;
+}
+
+.clear {
+    clear: both;
+}
+
+.padding-5 {
+    padding: 5px;
+}
+
+.content {
+    width: 100%;
+}
+
+.round-image {
+    border-radius: 50%;
+    margin: 0px auto;
+    border: 1px solid white;
+    height: 40px;
+    width: 40px;
+}
+
+#logout a {
+    color: #FFCC00;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    #logout a:hover {
+        color: #FFFF00;
+        text-decoration: none;
+        cursor: pointer;
+    }

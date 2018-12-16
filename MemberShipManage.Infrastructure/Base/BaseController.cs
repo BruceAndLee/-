@@ -1,4 +1,5 @@
 ﻿using MemberShipManage.Infrastructure.Filter;
+using MemberShipManage.Infrastructure.RestAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,16 @@ namespace MemberShipManage.Infrastructure.Base
         protected JsonResult ErrorJsonResult(string message = "保存失败！", JsonRequestBehavior behavior = JsonRequestBehavior.AllowGet)
         {
             return Json(new { IsSuc = false, Msg = message });
+        }
+
+        protected JsonResult JsonResult(APIBaseResponse response)
+        {
+            if (!response.IsSuccess)
+            {
+                return ErrorJsonResult(GetMessage(response.ResponseCode));
+            }
+
+            return SuccessJsonResult();
         }
     }
 }

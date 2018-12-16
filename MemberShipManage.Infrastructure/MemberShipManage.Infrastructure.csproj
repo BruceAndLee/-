@@ -79,6 +79,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MemberShipManage.Domain\MemberShipManage.Domain.csproj">
+      <Project>{29F7CEC6-71EA-4DC1-A5D5-2C9388BF0116}</Project>
+      <Name>MemberShipManage.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MemberShipManage.Utility\MemberShipManage.Utility.csproj">
       <Project>{9C3EE9ED-3303-4F9F-A3FA-F6EF607130F1}</Project>
       <Name>MemberShipManage.Utility</Name>

@@ -64,6 +64,10 @@
       <Project>{1671cef9-e4f2-4973-a699-c17a65a50dd5}</Project>
       <Name>MemberShipManage.Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MemberShipManage.Utility\MemberShipManage.Utility.csproj">
+      <Project>{9C3EE9ED-3303-4F9F-A3FA-F6EF607130F1}</Project>
+      <Name>MemberShipManage.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

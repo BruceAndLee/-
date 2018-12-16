@@ -59,5 +59,10 @@ namespace MemberShipManage.Repository.CustomerManage
                 return 0;
             });
         }
+
+        //public async Task<int> CreateCustomer(Customer customer)
+        //{
+
+        //}
     }
 }

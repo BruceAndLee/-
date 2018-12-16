@@ -11,6 +11,6 @@ namespace MemberShipManage.Repository.Consume
 {
     public interface IConsumeRecordRepository : IRepository<ConsumeRecord>
     {
-        PagedList<ConsumeRecord> GetConsumeRecordList(int customerID, int pageIndex, int pageSize);
+        IPagedList<ConsumeRecord> GetConsumeRecordList(int customerID, int pageIndex, int pageSize);
     }
 }

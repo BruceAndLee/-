@@ -13,5 +13,8 @@ namespace MemberShipManage.Service.CustomerManage
         Task<bool> CheckCustomerExists(string userNo, string password);
         Task<Customer> GetCustomer(string userNo);
         Task<decimal> GetCustomerBalance(string userNo);
+        Task<APIBaseResponse> CreateCustomer(Customer customer);
+        Task<APIBaseResponse> UpdateCustomer(Customer customer);
+        Task<APIBaseResponse> UpdateCustomerPassword(string userNo, string password);
     }
 }

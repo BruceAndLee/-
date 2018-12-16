@@ -3,35 +3,36 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <title>51 Mordern网站后台管理</title>
+    <title>饭店会员管理系统</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
-    @*<link rel="stylesheet" href="~/Content/BootStrap/css/bootstrap-theme.min.css" />
-    <link rel="stylesheet" href="~/Content/BootStrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Content/Site.css" />*@
-    @*<script type="text/javascript" src="~/Content/Scripts/jquery-1.11.1.js"></script>
-    <script type="text/javascript" src="~/Content/Scripts/jquery.form.js"></script>
-    <script type="text/javascript" src="~/Content/BootStrap/js/bootstrap.min.js"></script>*@
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/BootStrap/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="~/Content/BootStrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <script type="text/javascript" src="~/Content/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/bootstrap.min.js"></script>
 </head>
 <body>
     <div>
         <header>
             <div class="col-md-12">
-                <div class="col-md-5" style="text-align: left">
-                    <img src="~/Content/Images/computer.png" width="40" height="40" />
-                    <label>51 Mordern网站后台管理</label>
+                <div class="col-md-5 website-title" style="text-align: left">
+                    <img src="~/Content/Images/member.png" width="50" height="50" />
+                    <a href="Index.aspx" style="color:white">饭店会员管理系统</a>
                 </div>
-                <div id="logout" class="col-md-7" style="text-align: right; font-size: 24px">
-                    <span id="sp_currentTime">@DateTime.Now.ToString("HH:mm:ss")</span>
-                    欢迎您:@{
-                        var userEntity = Session["User"] as PersonalSite.Domain.Customer;
-                        if (userEntity != null)
-                        {
-                            <span style="color: #FFFF00;margin-right:10px">@userEntity.UserName</span>
+                <div id="logout" class="col-md-7" style="text-align: right; font-size: large">
+
+                    <img id="img_UserPhoto" class="round-image" src="~/Content/Images/users.png" />
+                    <span style="margin-right: 10px">
+                        当前用户：@{
+                            var user = Session["User"] as MemberShipManage.Domain.Users;
+                            if (user != null)
+                            {
+                                <span style="color: white;margin-right:10px">@user.UserNo</span>
+                            }
                         }
-                    }
+                    </span>
+                    <span id="currentTime">@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</span>&nbsp;&nbsp;
                     <a href="@Url.Action("LoginOut","Home")">注销</a>
                 </div>
             </div>
@@ -45,7 +46,7 @@
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion"
                                href="#collapseOne">
-                                <b>功能列表</b>
+                                <b>会员信息</b>
                             </a>
                         </h4>
                     </div>
@@ -53,20 +54,36 @@
                         <div class="panel-body">
                             <ul class="navigation-ul">
                                 <li class="span-nav">
-                                    <img src="~/Content/Images/publish.png" />
-                                    <a href="@Url.Action("PublishArticle", "Article")">发表博文</a>
+                                    <img src="~/Content/Images/menu/member.png" />
+                                    <a href="@Url.Action("PublishArticle", "Article")">新增会员</a>
                                 </li>
                                 <li class="span-nav">
-                                    <img src="~/Content/Images/teachexp.png" />
-                                    <a href="@Url.Action("TechArticleManage", "Article")">博文管理</a>
+                                    <img src="~/Content/Images/menu/members.png" />
+                                    <a href="@Url.Action("Index", "Customer")">会员管理</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-primary" id="div_User" runat="server">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseOne">
+                                <b>消费充值</b>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <ul class="navigation-ul">
+                                <li class="span-nav">
+                                    <img src="~/Content/Images/menu/money.png" />
+                                    <a href="@Url.Action("PublishArticle", "Article")">充值记录</a>
                                 </li>
                                 <li class="span-nav">
-                                    <img src="~/Content/Images/literary.jpg" />
-                                    <a href="@Url.Action("TechArticleReview","Article")">评论管理</a>
-                                </li>
-                                <li class="span-nav">
-                                    <img src="~/Content/Images/attach.png" />
-                                    <a href="@Url.Action("PublishAttach","Attachment")">新增资料</a>
+                                    <img src="~/Content/Images/menu/cash.png" />
+                                    <a href="@Url.Action("TechArticleManage", "Article")">消费记录</a>
                                 </li>
                             </ul>
                         </div>
@@ -101,9 +118,6 @@
             </section>
         </div>
     </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
     <script type="text/javascript">
         $(function () {
             $('#collapseOne').collapse('show');
@@ -114,7 +128,7 @@
         });
 
         function setCurrentTime() {
-            document.getElementById("sp_currentTime").innerText = Format(new Date(), 'hh:mm:ss');
+            document.getElementById("currentTime").innerText = Format(new Date(), 'yyyy-mm-dd hh:mm:ss');
         }
 
         function Format(now, mask) {

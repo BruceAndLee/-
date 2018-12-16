@@ -25,9 +25,10 @@ namespace MemberShipManage.Repository.Consume
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public PagedList<ConsumeRecord> GetConsumeRecordList(int customerID, int pageIndex, int pageSize)
+        public IPagedList<ConsumeRecord> GetConsumeRecordList(int customerID, int pageIndex, int pageSize)
         {
             var query = dbSet.Where(d => d.CustomerID == customerID);
+            query = query.OrderByDescending(q => q.InDate);
             return new PagedList<ConsumeRecord>(query, pageIndex, pageSize);
         }
     }

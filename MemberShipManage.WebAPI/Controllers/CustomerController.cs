@@ -1,5 +1,7 @@
 ﻿using MemberShipManage.Domain;
+using MemberShipManage.Infrastructure.Pagination;
 using MemberShipManage.Infrastructure.RestAPI;
+using MemberShipManage.Service.Consume;
 using MemberShipManage.Service.CustomerManage;
 using System;
 using System.Collections.Generic;
@@ -18,10 +20,13 @@ namespace MemberShipManage.WebAPI.Controllers
     public class CustomerController : ApiController
     {
         ICustomerService customerService;
-
-        public CustomerController(ICustomerService customerService)
+        IConsumeRecordService consumeRecordService;
+        public CustomerController(
+            ICustomerService customerService
+            , IConsumeRecordService consumeRecordService)
         {
             this.customerService = customerService;
+            this.consumeRecordService = consumeRecordService;
         }
 
         /// <summary>
@@ -60,6 +65,21 @@ namespace MemberShipManage.WebAPI.Controllers
         public async Task<decimal> GetCustomerBalance(string userNo)
         {
             return await customerService.GetCustomerBalance(userNo);
+        }
+
+        /// <summary>
+        /// Get Customer consume record
+        /// </summary>
+        /// <param name="userNo"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        [Route("consume")]
+        public async Task<IPagedList<ConsumeRecord>> GetConsumeRecordList(string userNo, int pageIndex, int pageSize)
+        {
+            return await consumeRecordService.GetConsumeRecordList(userNo, pageIndex, pageSize);
         }
     }
 }
