@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Drawing.Drawing2D;
 using System.IO;
-namespace MemberShipManage.Utility
+namespace PersonalSite.Utility
 {
-    public class ValidateCode
+    public class ValidateCodeHelper
     {
-        public ValidateCode()
+        public ValidateCodeHelper()
         {
         }
         /// <summary>

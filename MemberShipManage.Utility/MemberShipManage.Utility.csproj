@@ -52,7 +52,7 @@
     <Compile Include="Cryptor.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValidateCode.cs" />
+    <Compile Include="ValidateCodeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
