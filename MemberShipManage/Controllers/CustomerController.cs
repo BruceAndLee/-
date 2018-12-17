@@ -30,6 +30,12 @@ namespace MemberShipManage.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ViewResult Create()
+        {
+            return View();
+        }
+
         /// <summary>
         /// Create customer info
         /// </summary>
