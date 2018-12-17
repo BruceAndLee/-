@@ -1,9 +1,10 @@
 ﻿using MemberShipManage.Domain;
+using MemberShipManage.Domain.Entity;
 using MemberShipManage.Infrastructure.RestAPI;
 using MemberShipManage.Infrastructure.UnitOfWork;
 using MemberShipManage.Repository.CustomerManage;
 using MemberShipManage.Utility;
-using System.Threading.Tasks;
+using Webdiyer.WebControls.Mvc;
 
 namespace MemberShipManage.Service.CustomerManage
 {
@@ -16,27 +17,28 @@ namespace MemberShipManage.Service.CustomerManage
             , IUnitOfWork unitOfWork)
         {
             this.customerRepository = customerRepository;
+            this.unitOfWork = unitOfWork;
         }
 
-        public async Task<bool> CheckCustomerExists(string userNo, string password)
+        public bool CheckCustomerExists(string userNo, string password)
         {
-            return await customerRepository.CheckCustomerExists(userNo, password);
+            return customerRepository.CheckCustomerExists(userNo, password);
         }
 
-        public async Task<Customer> GetCustomer(string userNo)
+        public Customer GetCustomer(string userNo)
         {
-            return await customerRepository.GetCustomer(userNo);
+            return customerRepository.GetCustomer(userNo);
         }
 
-        public async Task<decimal> GetCustomerBalance(string userNo)
+        public decimal GetCustomerBalance(string userNo)
         {
-            return await customerRepository.GetCustomerBalance(userNo);
+            return customerRepository.GetCustomerBalance(userNo);
         }
 
-        public async Task<APIBaseResponse> CreateCustomer(Customer customer)
+        public APIBaseResponse CreateCustomer(Customer customer)
         {
             var response = new APIBaseResponse { IsSuccess = true };
-            var customerDb = await customerRepository.GetCustomer(customer.UserNo);
+            var customerDb = customerRepository.GetCustomer(customer.UserNo);
             if (customerDb != null)
             {
                 response.IsSuccess = false;
@@ -49,10 +51,10 @@ namespace MemberShipManage.Service.CustomerManage
             return response;
         }
 
-        public async Task<APIBaseResponse> UpdateCustomer(Customer customer)
+        public APIBaseResponse UpdateCustomer(Customer customer)
         {
             var response = new APIBaseResponse { IsSuccess = true };
-            var customerDb = await customerRepository.GetCustomer(customer.UserNo);
+            var customerDb = customerRepository.GetCustomer(customer.UserNo);
             if (customerDb == null)
             {
                 response.IsSuccess = false;
@@ -68,10 +70,10 @@ namespace MemberShipManage.Service.CustomerManage
             return response;
         }
 
-        public async Task<APIBaseResponse> UpdateCustomerPassword(string userNo, string password)
+        public APIBaseResponse UpdateCustomerPassword(string userNo, string password)
         {
             var response = new APIBaseResponse { IsSuccess = true };
-            var customerDb = await customerRepository.GetCustomer(userNo);
+            var customerDb = customerRepository.GetCustomer(userNo);
             if (customerDb == null)
             {
                 response.IsSuccess = false;
@@ -81,6 +83,11 @@ namespace MemberShipManage.Service.CustomerManage
 
             customerDb.Password = Cryptor.Encrypt(password);
             return response;
+        }
+
+        public IPagedList<Customer> GetCustomerList(CustomerListRequest request)
+        {
+            return customerRepository.GetCustomerList(request);
         }
     }
 }

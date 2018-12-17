@@ -1,17 +1,20 @@
 ﻿using MemberShipManage.Domain;
+using MemberShipManage.Domain.Entity;
 using PersonalSite.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Webdiyer.WebControls.Mvc;
 
 namespace MemberShipManage.Repository.CustomerManage
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
-        Task<bool> CheckCustomerExists(string userNo, string password);
-        Task<Customer> GetCustomer(string userNo);
-        Task<decimal> GetCustomerBalance(string userNo);
+        bool CheckCustomerExists(string userNo, string password);
+        Customer GetCustomer(string userNo);
+        decimal GetCustomerBalance(string userNo);
+        IPagedList<Customer> GetCustomerList(CustomerListRequest request);
     }
 }

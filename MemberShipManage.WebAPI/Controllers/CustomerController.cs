@@ -37,9 +37,9 @@ namespace MemberShipManage.WebAPI.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpGet]
-        public async Task<bool> CheckCustomerExists(string userNo, string password)
+        public bool CheckCustomerExists(string userNo, string password)
         {
-            return await customerService.CheckCustomerExists(userNo, password);
+            return customerService.CheckCustomerExists(userNo, password);
         }
 
         /// <summary>
@@ -49,9 +49,9 @@ namespace MemberShipManage.WebAPI.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpGet]
-        public async Task<Customer> GetCustomer(string userNo)
+        public Customer GetCustomer(string userNo)
         {
-            return await customerService.GetCustomer(userNo);
+            return customerService.GetCustomer(userNo);
         }
 
         /// <summary>
@@ -62,9 +62,9 @@ namespace MemberShipManage.WebAPI.Controllers
         [Authorize]
         [HttpGet]
         [Route("balance")]
-        public async Task<decimal> GetCustomerBalance(string userNo)
+        public decimal GetCustomerBalance(string userNo)
         {
-            return await customerService.GetCustomerBalance(userNo);
+            return customerService.GetCustomerBalance(userNo);
         }
 
         /// <summary>
@@ -77,9 +77,9 @@ namespace MemberShipManage.WebAPI.Controllers
         [Authorize]
         [HttpGet]
         [Route("consume")]
-        public async Task<IPagedList<ConsumeRecord>> GetConsumeRecordList(string userNo, int pageIndex, int pageSize)
+        public IPagedList<ConsumeRecord> GetConsumeRecordList(string userNo, int pageIndex, int pageSize)
         {
-            return await consumeRecordService.GetConsumeRecordList(userNo, pageIndex, pageSize);
+            return consumeRecordService.GetConsumeRecordList(userNo, pageIndex, pageSize);
         }
     }
 }

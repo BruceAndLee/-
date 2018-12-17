@@ -65,7 +65,7 @@ ul li {
     padding: 0px;
 }
 
-.div-panel-content {
+.panel-content {
     padding: 10px 10px 0px 0px;
     height: 100%;
     min-height: 485px;
@@ -73,14 +73,6 @@ ul li {
 
 .col-sm-5-pad {
     padding-left: 2px;
-}
-
-.btn-form-width {
-    width: 80px;
-}
-
-.element-form-width {
-    width: 50%;
 }
 
 .pre-scroll {
@@ -176,6 +168,7 @@ table.gridtable {
     height: 1px;
     border: 1px;
     border-top: 1px solid;
+    border-color:#337ab7;
 }
 
 .pagination a[disabled] {
@@ -206,11 +199,11 @@ table.gridtable {
 }
 
 
-.margin-top-10 {
+.margin-t10 {
     margin-top: 10px;
 }
 
-.margin-top-5 {
+.margin-t5 {
     margin-top: 5px;
 }
 

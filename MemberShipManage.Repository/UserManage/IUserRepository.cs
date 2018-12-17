@@ -10,6 +10,6 @@ namespace MemberShipManage.Repository.UserManage
 {
     public interface IUserRepository : IRepository<Users>
     {
-        Task<Users> GetUser(string userNo);
+        Users GetUser(string userNo);
     }
 }

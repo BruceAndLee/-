@@ -1,4 +1,5 @@
 ﻿<appSettings>
   <add key="MessageResourceFolder" value="MessageResource"/>
+  <add key="DefaultPageSize" value="15"></add>
 </appSettings>
 

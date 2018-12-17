@@ -18,9 +18,9 @@ namespace MemberShipManage.Service.Consume
             this.customerRepository = customerRepository;
         }
 
-        public async Task<IPagedList<ConsumeRecord>> GetConsumeRecordList(string userNo, int pageIndex, int pageSize)
+        public IPagedList<ConsumeRecord> GetConsumeRecordList(string userNo, int pageIndex, int pageSize)
         {
-            var customer = await customerRepository.GetCustomer(userNo);
+            var customer = customerRepository.GetCustomer(userNo);
             return consumeRecordRepository.GetConsumeRecordList(customer.ID, pageIndex, pageSize);
         }
     }

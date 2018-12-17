@@ -60,6 +60,8 @@
     <Compile Include="CustomerAmount.cs">
       <DependentUpon>MembershipManage.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\CustomerListRequest.cs" />
+    <Compile Include="Entity\PagerEntity.cs" />
     <Compile Include="LoginRecord.cs">
       <DependentUpon>MembershipManage.tt</DependentUpon>
     </Compile>

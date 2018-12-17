@@ -10,6 +10,6 @@ namespace MemberShipManage.Service.Consume
 {
     public interface IConsumeRecordService
     {
-        Task<IPagedList<ConsumeRecord>> GetConsumeRecordList(string userNo, int pageIndex, int pageSize);
+        IPagedList<ConsumeRecord> GetConsumeRecordList(string userNo, int pageIndex, int pageSize);
     }
 }

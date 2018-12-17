@@ -84,6 +84,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Webdiyer.MvcPager, Version=3.0.2015.802, Culture=neutral, PublicKeyToken=f6872c5a09aed72c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Webdiyer.MvcPager.3.0.1.1\lib\Webdiyer.MvcPager.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -114,6 +117,7 @@
     <Content Include="Content\Images\account.png" />
     <Content Include="Content\Images\bg.png" />
     <Content Include="Content\Images\headback.jpg" />
+    <Content Include="Content\Images\house.png" />
     <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\Images\member.png" />
     <Content Include="Content\Images\menu\cash.png" />
@@ -158,6 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RechargeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -165,6 +170,7 @@
       <DependentUpon>ValidateCodeCreate.ashx</DependentUpon>
     </Compile>
     <Compile Include="Models\AutoMapperManager.cs" />
+    <Compile Include="Models\CustomerListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +189,9 @@
     <Content Include="Content\Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\List.cshtml" />
+    <Content Include="Views\Recharge\Index.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

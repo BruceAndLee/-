@@ -17,9 +17,9 @@ namespace MemberShipManage.Repository.UserManage
 
         }
 
-        public async Task<Users> GetUser(string userNo)
+        public Users GetUser(string userNo)
         {
-            return this.dbSet.FirstOrDefault(d => d.UserNo == userNo);
+            return dbSet.FirstOrDefault(d => d.UserNo == userNo);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace MemberShipManage.WebAPI.Providers
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             ICustomerService service = Singleton<IAppStartManager>.Instance.ContainerManager.Resolve<ICustomerService>();
-            var isUserExists = await service.CheckCustomerExists(context.UserName, context.Password);
+            var isUserExists = service.CheckCustomerExists(context.UserName, context.Password);
 
             if (!isUserExists)
             {

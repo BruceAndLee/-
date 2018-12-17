@@ -12,9 +12,9 @@ namespace MemberShipManage.Service.UserManage
             this.userRepository = userRepository;
         }
 
-        public async Task<Users> GetUser(string userNo)
+        public Users GetUser(string userNo)
         {
-            return await userRepository.GetUser(userNo);
+            return userRepository.GetUser(userNo);
         }
     }
 }

@@ -3,6 +3,70 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div id="customer" class="margin-t10">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <label>会员管理</label>
+            </h3>
+        </div>
+        <div class="panel-content padding-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="input-group bg-primary">
+                            <span class="input-group-addon">用户名：</span>
+                            <input type="text" id="userno" class="form-control" maxlength="20" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group bg-primary">
+                            <span class="input-group-addon">姓名：</span>
+                            <input type="text" id="name" class="form-control" maxlength="20" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group bg-primary">
+                            <span class="input-group-addon">性别：</span>
+                            <select class="form-control" id="sex">
+                                <option value="">---全部---</option>
+                                <option value="1">男</option>
+                                <option value="0">女</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <button id="search" type="button" class="btn btn-primary">查询</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="customerlist" class="margin-t10">
+                        @{Html.RenderAction("List", "Customer");}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        $('#search').click(function () {
+            var userNo = $('#userno').val();
+            var name = $('#name').val();
+            var sex = $('#sex').val();
 
-<h2>Index</h2>
+            var request = {
+                userNo: userNo && userNo.trim() ? userNo.trim() : null,
+                name: name && name.trim() ? name.trim() : null,
+                sex: sex
+            };
 
+            $.get("@Url.Action("List")", request
+                , function (data) {
+                $("#customerlist").html(data);
+            });
+        });
+    });
+</script>

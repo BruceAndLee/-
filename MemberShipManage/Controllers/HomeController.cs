@@ -1,14 +1,8 @@
 ﻿using MemberShipManage.Infrastructure.Base;
 using MemberShipManage.Infrastructure.Filter;
 using MemberShipManage.Service.UserManage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using MemberShipManage.Infrastructure;
 using MemberShipManage.Utility;
+using System.Web.Mvc;
 
 namespace MemberShipManage.Controllers
 {
@@ -32,9 +26,9 @@ namespace MemberShipManage.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> LoginIn(string userNo, string password, string validateCode)
+        public JsonResult LoginIn(string userNo, string password, string validateCode)
         {
-            var user = await userService.GetUser(userNo);
+            var user = userService.GetUser(userNo);
             if (user == null)
             {
                 return ErrorJsonResult(GetMessage("UM_001"));

@@ -9,6 +9,6 @@ namespace MemberShipManage.Service.UserManage
 {
     public interface IUserService
     {
-        Task<Users> GetUser(string userID);
+        Users GetUser(string userID);
     }
 }
