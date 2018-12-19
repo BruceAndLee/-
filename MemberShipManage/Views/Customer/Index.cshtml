@@ -50,6 +50,7 @@
         </div>
     </div>
 </div>
+@Html.Partial("~/Views/Customer/Update.cshtml")
 <script type="text/javascript">
     jQuery(document).ready(function () {
         $('#search').click(function () {
@@ -67,6 +68,17 @@
                 , function (data) {
                 $("#customerlist").html(data);
             });
+        });
+
+        $("#cutomerlist").on('click', '.btn-primary', function () {
+            var currentRow = $(this).closest("tr");
+            var userNo = currentRow.find("td:eq(0)").text(); 
+            var name = currentRow.find("td:eq(1)").text(); 
+            var sex = currentRow.find("td:eq(2)").text() == '男' ? '1' : '0'; 
+            $('#userName').val(userNo);
+            $('#name').val(name);
+            $('#userSex').val(sex);
+            $('#updateModal').modal('show');
         });
     });
 </script>

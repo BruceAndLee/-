@@ -152,6 +152,7 @@
     <Content Include="Content\Bootstrap\validator\js\language\vi_VN.js" />
     <Content Include="Content\Bootstrap\validator\js\language\zh_CN.js" />
     <Content Include="Content\Bootstrap\validator\js\language\zh_TW.js" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\account.png" />
     <Content Include="Content\Images\bg.png" />
     <Content Include="Content\Images\headback.jpg" />
@@ -168,12 +169,17 @@
     <Content Include="Content\Images\validate.png" />
     <Content Include="Content\Images\middle.png" />
     <Content Include="Content\Login.css" />
+    <Content Include="Content\Scripts\page\customer.create.js" />
+    <Content Include="Content\Scripts\page\customer.update.js" />
     <Content Include="Content\Scripts\page\login.js" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Scripts\bootstrap.js" />
     <Content Include="Content\Scripts\bootstrap.min.js" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Content\Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Content\Scripts\jquery-3.3.1.js" />
     <Content Include="Content\Scripts\jquery-3.3.1.min.js" />
@@ -230,6 +236,7 @@
     <Content Include="Views\Customer\List.cshtml" />
     <Content Include="Views\Recharge\Index.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Update.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
