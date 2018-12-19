@@ -1,9 +1,11 @@
 ﻿using MemberShipManage.Infrastructure.UnitOfWork;
 using System.Data.Entity;
+using MemberShipManage.Infrastructure.Extension;
+using System;
 
 namespace PersonalSite.Repository
 {
-    public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class, new()
     {
         private IUnitOfWork unitOfWork;
         protected DbSet<TEntity> dbSet;
@@ -16,11 +18,13 @@ namespace PersonalSite.Repository
 
         public void Insert(TEntity entity)
         {
+            entity.SetObjectValue("InDate", DateTime.Now);
             dbSet.Add(entity);
         }
 
         public void Update(TEntity entity)
         {
+            entity.SetObjectValue("LastEditDate", DateTime.Now);
             dbSet.Attach(entity);
             unitOfWork.Context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
         }

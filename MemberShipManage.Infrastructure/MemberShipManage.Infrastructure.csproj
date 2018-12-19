@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseController.cs" />
+    <Compile Include="Extension\ObjectExtension.cs" />
     <Compile Include="Filter\ApiTrackerFilter.cs" />
     <Compile Include="Filter\UserSessionFilter.cs" />
     <Compile Include="Pagination\IPagedList.cs" />
