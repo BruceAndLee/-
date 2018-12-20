@@ -40,10 +40,13 @@
                 },
                 name: {
                     validators: {
+                        notEmpty: {
+                            message: '姓名不能为空'
+                        },
                         stringLength: {
                             min: 1,
                             max: 10,
-                            message: ''
+                            message: '姓名长度必须在1到10之间'
                         }
                     }
                 }
@@ -51,10 +54,18 @@
         }).on('success.form.bv', function (e) {//点击提交之后
             e.preventDefault();
             var $form = $(e.target);
-            $.post($form.attr('action'), $form.serialize(), function (result) {
-                if (result.IsSuc) {
-                    alert("修改成功！");
-                    clearform();
+            $.ajax({
+                url: $form.attr('action'),
+                type: 'put',
+                data: $form.serialize(),
+                success: function (result) {
+                    if (result.IsSuc) {
+                        alert("修改成功！");
+                        clearform();
+                    }
+                    else {
+                        alert(data.Msg);
+                    }
                 }
             });
         });

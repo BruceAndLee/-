@@ -18,6 +18,18 @@
                     }
                 }
             },
+            name: {
+                validators: {
+                    notEmpty: {
+                        message: '姓名不能为空'
+                    },
+                    stringLength: {
+                        min: 1,
+                        max: 10,
+                        message: '姓名长度必须在1到10之间'
+                    }
+                }
+            },
             passWord: {
                 validators: {
                     notEmpty: {
@@ -62,15 +74,6 @@
                 validators: {
                     notEmpty: {
                         message: '请选择性别'
-                    }
-                }
-            },
-            name: {
-                validators: {
-                    stringLength: {
-                        min: 1,
-                        max: 10,
-                        message: ''
                     }
                 }
             }

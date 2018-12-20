@@ -1,4 +1,4 @@
-﻿<form id="customerupdate" action="@Url.Action("Update","User")" method="post">
+﻿<form id="customerupdate" action="@Url.Action("Update","Customer")" method="put">
     <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="width:450px;">
             <div class="modal-content" style="width:450px">
@@ -12,19 +12,19 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="form-group">
+                        <div class="form-group" style="height:35px">
                             <div class="col-md-3"><span class="text-danger">*</span>用户名：</div>
                             <div class="col-md-9">
                                 <input id="userName" name="userNo" type="text" class="form-control" maxlength="15" />
                             </div>
                         </div>
-                        <div class="form-group" style="padding-top:30px">
+                        <div class="form-group" style="height:35px">
                             <div class="col-md-3"><span class="text-danger">*</span>姓名：</div>
                             <div class="col-md-9">
                                 <input id="name" name="name" type="text" class="form-control" maxlength="10" />
                             </div>
                         </div>
-                        <div class="form-group" style="padding-top:30px">
+                        <div class="form-group" style="height:35px">
                             <div class="col-md-3"><span class="text-danger">*</span>性别：</div>
                             <div class="col-md-9">
                                 <select id="userSex" name="sex" class="form-control">
