@@ -9,6 +9,7 @@
             $('#userNo').val('');
             $('#userSex').val('');
             $('#name').val('');
+            $('#search').click();
         });
 
     function registerValidator() {
