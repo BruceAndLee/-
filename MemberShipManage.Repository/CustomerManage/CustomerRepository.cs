@@ -43,6 +43,11 @@ namespace MemberShipManage.Repository.CustomerManage
             return dbSet.FirstOrDefault(d => d.UserNo == userNo);
         }
 
+        public Customer GetCustomer(int customerID)
+        {
+            return dbSet.FirstOrDefault(d => d.ID == customerID);
+        }
+
         public decimal GetCustomerBalance(string userNo)
         {
             var user = dbSet.FirstOrDefault(d => d.UserNo == userNo);

@@ -14,6 +14,7 @@ namespace MemberShipManage.Service.CustomerManage
     {
         bool CheckCustomerExists(string userNo, string password);
         Customer GetCustomer(string userNo);
+        Customer GetCustomer(int customerID);
         decimal GetCustomerBalance(string userNo);
         APIBaseResponse CreateCustomer(Customer customer);
         APIBaseResponse UpdateCustomer(Customer customer);

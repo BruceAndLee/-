@@ -14,6 +14,7 @@ namespace MemberShipManage.Repository.CustomerManage
     {
         bool CheckCustomerExists(string userNo, string password);
         Customer GetCustomer(string userNo);
+        Customer GetCustomer(int customerID);
         decimal GetCustomerBalance(string userNo);
         IPagedList<Customer> GetCustomerList(CustomerListRequest request);
     }

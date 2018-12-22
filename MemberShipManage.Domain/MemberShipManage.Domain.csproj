@@ -81,6 +81,9 @@
       <DependentUpon>MembershipManage.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RechargeRecord.cs">
+      <DependentUpon>MembershipManage.tt</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>MembershipManage.tt</DependentUpon>
     </Compile>

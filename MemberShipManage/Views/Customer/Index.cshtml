@@ -51,6 +51,9 @@
     </div>
 </div>
 @Html.Partial("~/Views/Customer/Update.cshtml")
+<link rel="stylesheet" href="~/Content/bootStrap/validator/css/bootstrapValidator.min.css" />
+<script type="text/javascript" src="~/Content/bootStrap/validator/js/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="~/Content/Scripts/page/customer.update.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function () {
         registerEvent();
@@ -82,6 +85,10 @@
                 $('#userName').val(name);
                 $('#userSex').val(sex);
                 $('#updateModal').modal('show');
+            });
+
+            $("#cutomerlist").on('click', '.btn-success', function () {
+                $('#rechargeModal').modal('show');
             });
         }
     });

@@ -48,8 +48,12 @@
     <Compile Include="BaseService.cs" />
     <Compile Include="Consume\ConsumeRecordService.cs" />
     <Compile Include="Consume\IConsumeRecordService.cs" />
+    <Compile Include="CustomerManage\CustomerAmountService.cs" />
     <Compile Include="CustomerManage\CustomerService.cs" />
+    <Compile Include="CustomerManage\ICustomerAmountService.cs" />
     <Compile Include="CustomerManage\ICustomerService.cs" />
+    <Compile Include="Recharge\IRechargeRecordService.cs" />
+    <Compile Include="Recharge\RechargeRecordService.cs" />
     <Compile Include="UserManage\UserService.cs" />
     <Compile Include="UserManage\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

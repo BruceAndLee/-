@@ -11,14 +11,19 @@ namespace MemberShipManage.Service.CustomerManage
     public class CustomerService : BaseService, ICustomerService
     {
         ICustomerRepository customerRepository;
+        ICustomerAmountRepository customerAmountRepository;
         IUnitOfWork unitOfWork;
         public CustomerService(
             ICustomerRepository customerRepository
+            , ICustomerAmountRepository customerAmountRepository
             , IUnitOfWork unitOfWork)
         {
             this.customerRepository = customerRepository;
+            this.customerAmountRepository = customerAmountRepository;
             this.unitOfWork = unitOfWork;
         }
+
+        #region Customer
 
         public bool CheckCustomerExists(string userNo, string password)
         {
@@ -28,6 +33,11 @@ namespace MemberShipManage.Service.CustomerManage
         public Customer GetCustomer(string userNo)
         {
             return customerRepository.GetCustomer(userNo);
+        }
+
+        public Customer GetCustomer(int customerID)
+        {
+            return customerRepository.GetCustomer(customerID);
         }
 
         public decimal GetCustomerBalance(string userNo)
@@ -89,5 +99,7 @@ namespace MemberShipManage.Service.CustomerManage
         {
             return customerRepository.GetCustomerList(request);
         }
+
+        #endregion
     }
 }

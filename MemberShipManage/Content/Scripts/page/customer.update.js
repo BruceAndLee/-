@@ -63,6 +63,7 @@
                     if (result.IsSuc) {
                         alert("修改成功！");
                         clearform();
+                        $('#updateModal').modal('hide');
                     }
                     else {
                         alert(data.Msg);

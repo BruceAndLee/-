@@ -3,4 +3,10 @@
   <Message ResourceID="CM_001">
     <![CDATA[该手机号已注册！]]>
   </Message>
+  <Message ResourceID="CM_002">
+    <![CDATA[该会员信息不存在！]]>
+  </Message>
+  <Message ResourceID="CM_003">
+    <![CDATA[充值金额必须大于0！]]>
+  </Message>
 </MessageResources>

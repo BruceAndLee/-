@@ -48,6 +48,16 @@
           <Property Name="CustomerID" Type="int" Nullable="false" />
           <Property Name="InDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="RechargeRecord">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="InDate" Type="datetime" />
+          <Property Name="InUser" Type="varchar" MaxLength="25" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserNo" />
@@ -62,6 +72,7 @@
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerAmount" EntityType="Self.CustomerAmount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginRecord" EntityType="Self.LoginRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RechargeRecord" EntityType="Self.RechargeRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -87,11 +98,12 @@
           <Property Name="UserNo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Sex" Type="Int32" />
           <Property Name="InDate" Type="DateTime" Precision="3" />
-          <Property Name="InUser" Type="String" MaxLength="25" />
+          <Property Name="InUser" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="ParentID" Type="Int32" Nullable="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CustomerAmount" Relationship="MembershipManageModel.CustomerCustomerAmount" FromRole="Customer" ToRole="CustomerAmount" />
+          <NavigationProperty Name="RechargeRecord" Relationship="MembershipManageModel.CustomerRechargeRecord" FromRole="Customer" ToRole="RechargeRecord" />
         </EntityType>
         <EntityType Name="LoginRecord">
           <Key>
@@ -120,6 +132,11 @@
             <End Role="Customer" EntitySet="Customer" />
             <End Role="CustomerAmount" EntitySet="CustomerAmount" />
           </AssociationSet>
+          <EntitySet Name="RechargeRecord" EntityType="MembershipManageModel.RechargeRecord" />
+          <AssociationSet Name="CustomerRechargeRecord" Association="MembershipManageModel.CustomerRechargeRecord">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="RechargeRecord" EntitySet="RechargeRecord" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CustomerAmount">
           <Key>
@@ -141,6 +158,29 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="CustomerAmount">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RechargeRecord">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="InDate" Type="DateTime" Precision="3" />
+          <Property Name="InUser" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Customer" Relationship="MembershipManageModel.CustomerRechargeRecord" FromRole="RechargeRecord" ToRole="Customer" />
+        </EntityType>
+        <Association Name="CustomerRechargeRecord">
+          <End Type="MembershipManageModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="MembershipManageModel.RechargeRecord" Role="RechargeRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RechargeRecord">
               <PropertyRef Name="CustomerID" />
             </Dependent>
           </ReferentialConstraint>
@@ -201,6 +241,17 @@
               <MappingFragment StoreEntitySet="CustomerAmount">
                 <ScalarProperty Name="InUser" ColumnName="InUser" />
                 <ScalarProperty Name="LastEditDate" ColumnName="LastEditDate" />
+                <ScalarProperty Name="InDate" ColumnName="InDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RechargeRecord">
+            <EntityTypeMapping TypeName="MembershipManageModel.RechargeRecord">
+              <MappingFragment StoreEntitySet="RechargeRecord">
+                <ScalarProperty Name="InUser" ColumnName="InUser" />
                 <ScalarProperty Name="InDate" ColumnName="InDate" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
