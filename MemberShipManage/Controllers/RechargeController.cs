@@ -1,8 +1,11 @@
-﻿using MemberShipManage.Domain;
+﻿using AutoMapper;
+using MemberShipManage.Domain;
+using MemberShipManage.Domain.Entity;
 using MemberShipManage.Infrastructure.Base;
 using MemberShipManage.Infrastructure.Filter;
 using MemberShipManage.Infrastructure.RestAPI;
 using MemberShipManage.Infrastructure.UnitOfWork;
+using MemberShipManage.Models;
 using MemberShipManage.Service.CustomerManage;
 using MemberShipManage.Service.Recharge;
 using System;
@@ -29,6 +32,21 @@ namespace MemberShipManage.Controllers
             this.customerService = customerService;
         }
 
+        [HttpGet]
+        public ViewResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public PartialViewResult List(RechargeListRequest request)
+        {
+            var rechargeRecordList = rechargeRecordService.GetRechargeRecordList(request);
+            var viewModel = Mapper.Map<RechargeListModel>(request);
+            viewModel.RechargeRecordList = rechargeRecordList;
+            return PartialView(viewModel);
+        }
+
         [HttpPost]
         public JsonResult Create(RechargeRecord rechargeRecord)
         {
@@ -46,7 +64,8 @@ namespace MemberShipManage.Controllers
             var customerAmount = new CustomerAmount
             {
                 CustomerID = rechargeRecord.CustomerID,
-                Amount = rechargeRecord.Amount
+                Amount = rechargeRecord.Amount,
+                InUser = rechargeRecord.InUser
             };
 
             customerAmountService.CreateCustomerAmount(customerAmount);

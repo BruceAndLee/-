@@ -14,9 +14,7 @@ namespace MemberShipManage.Infrastructure.Extension
             var property = tEntity.GetType().GetProperty(propertyName);
             if (property != null
                 && property.CanWrite
-                && (property.PropertyType == typeof(DateTime?)
-                || property.PropertyType == typeof(DateTime)
-                ))
+                && property.GetValue(tEntity, null) == null)
             {
                 property.SetValue(tEntity, value);
             }

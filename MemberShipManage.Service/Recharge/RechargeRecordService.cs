@@ -1,4 +1,5 @@
 ﻿using MemberShipManage.Domain;
+using MemberShipManage.Domain.Entity;
 using MemberShipManage.Infrastructure.UnitOfWork;
 using MemberShipManage.Repository.Recharge;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Webdiyer.WebControls.Mvc;
 
 namespace MemberShipManage.Service.Recharge
 {
@@ -21,9 +23,14 @@ namespace MemberShipManage.Service.Recharge
             this.unitOfWork = unitOfWork;
         }
 
+        public IPagedList<RechargeRecord> GetRechargeRecordList(RechargeListRequest request)
+        {
+            return rechargeRecordRepository.GetRechargeRecordList(request);
+        }
+
         public void CreateRechargeRecord(RechargeRecord rechargeRecord)
         {
-            rechargeRecordRepository.CreateRechargeRecord(rechargeRecord);
+            rechargeRecordRepository.Insert(rechargeRecord);
             unitOfWork.Commit();
         }
     }

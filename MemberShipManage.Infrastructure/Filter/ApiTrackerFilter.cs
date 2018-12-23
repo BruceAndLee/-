@@ -3,6 +3,7 @@ using System;
 using System.Web.Mvc;
 using System.Linq;
 using MemberShipManage.Domain;
+using MemberShipManage.Infrastructure.Extension;
 
 namespace MemberShipManage.Infrastructure.Filter
 {
@@ -15,20 +16,23 @@ namespace MemberShipManage.Infrastructure.Filter
         private readonly string LASTEDITUSER = "LastEditUser";
         public override void OnActionExecuting(ActionExecutingContext actionContext)
         {
+            if (actionContext.HttpContext.Request.HttpMethod == "GET")
+            {
+                return;
+            }
+
             var actionParameters = actionContext.ActionParameters;
             if (actionParameters != null && actionParameters.Count > 0)
             {
-                var dateFields = actionParameters.Keys.Where(k => k == INDATE || k == LASTEDITDATE);
-                foreach (var dateField in dateFields)
-                {
-                    actionParameters[dateField] = DateTime.Now;
-                }
+                var actionValue = actionParameters.First().Value;
+                actionValue.SetObjectValue(INDATE, DateTime.Now);
+                actionValue.SetObjectValue(LASTEDITDATE, DateTime.Now);
 
-                var userFields = actionParameters.Keys.Where(k => k == INUSER || k == LASTEDITUSER);
                 var currentUser = (actionContext.HttpContext.Session["User"] as Users);
-                foreach (var userField in userFields)
+                if (currentUser != null)
                 {
-                    actionParameters[userField] = currentUser != null ? currentUser.UserNo : string.Empty;
+                    actionValue.SetObjectValue(INUSER, currentUser.UserNo);
+                    actionValue.SetObjectValue(LASTEDITUSER, currentUser.UserNo);
                 }
             }
         }

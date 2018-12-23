@@ -23,7 +23,7 @@ namespace MemberShipManage.Repository.CustomerManage
             if (customerAmountDb != null)
             {
                 customerAmountDb.Amount = Math.Round(customerAmountDb.Amount + customerAmount.Amount, 2);
-                Update(customerAmount);
+                Update(customerAmountDb);
             }
             else
             {

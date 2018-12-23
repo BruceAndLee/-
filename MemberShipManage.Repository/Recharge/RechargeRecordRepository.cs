@@ -13,29 +13,26 @@ namespace MemberShipManage.Repository.Recharge
             : base(dbcontext)
         { }
 
-        public IPagedList<RechargeRecord> GetRechargeRecordList(int? customerID, int pageIndex, int pageSize)
+        public IPagedList<RechargeRecord> GetRechargeRecordList(RechargeListRequest request)
         {
             IQueryable<RechargeRecord> query = this.dbSet;
-            if (customerID.HasValue)
+            if (request.CustomerID.HasValue)
             {
-                query = query.Where(q => q.CustomerID == customerID);
+                query = query.Where(q => q.CustomerID == request.CustomerID);
             }
 
-            return new PagedList<RechargeRecord>(query, pageIndex, pageSize);
-        }
+            if (!string.IsNullOrEmpty(request.UserNo))
+            {
+                query = query.Where(q => q.Customer.UserNo.Contains(request.UserNo));
+            }
 
-        public void CreateRechargeRecord(RechargeRecord rechargeRecord)
-        {
-            var rechargeRecordDb = dbSet.FirstOrDefault(d => d.CustomerID == rechargeRecord.CustomerID);
-            if (rechargeRecordDb != null)
+            if (!string.IsNullOrEmpty(request.Name))
             {
-                rechargeRecordDb.Amount = rechargeRecord.Amount;
-                Update(rechargeRecordDb);
+                query = query.Where(q => q.Customer.Name.Contains(request.Name));
             }
-            else
-            {
-                Insert(rechargeRecord);
-            }
+
+            query = query.OrderByDescending(q => q.InDate);
+            return new PagedList<RechargeRecord>(query, request.PageIndex, request.PageSize);
         }
     }
 }

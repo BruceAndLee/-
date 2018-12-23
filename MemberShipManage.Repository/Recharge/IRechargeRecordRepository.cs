@@ -1,4 +1,5 @@
 ﻿using MemberShipManage.Domain;
+using MemberShipManage.Domain.Entity;
 using PersonalSite.Repository;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,6 @@ namespace MemberShipManage.Repository.Recharge
 {
     public interface IRechargeRecordRepository : IRepository<RechargeRecord>
     {
-        IPagedList<RechargeRecord> GetRechargeRecordList(int? customerID, int pageIndex, int pageSize);
-        void CreateRechargeRecord(RechargeRecord rechargeRecord);
+        IPagedList<RechargeRecord> GetRechargeRecordList(RechargeListRequest request);
     }
 }

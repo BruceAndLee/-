@@ -6,10 +6,7 @@
             $('#customerupdate').data('bootstrapValidator', null);
             registerValidator();
 
-            $('#userNo').val('');
-            $('#userSex').val('');
-            $('#name').val('');
-            $('#search').click();
+            clearform();
         });
 
     function registerValidator() {
@@ -62,7 +59,6 @@
                 success: function (result) {
                     if (result.IsSuc) {
                         alert("修改成功！");
-                        clearform();
                         $('#updateModal').modal('hide');
                     }
                     else {

@@ -1,8 +1,8 @@
 ﻿using MemberShipManage.Domain;
-using MemberShipManage.Infrastructure.Pagination;
 using MemberShipManage.Repository.Consume;
 using MemberShipManage.Repository.CustomerManage;
 using System.Threading.Tasks;
+using Webdiyer.WebControls.Mvc;
 
 namespace MemberShipManage.Service.Consume
 {

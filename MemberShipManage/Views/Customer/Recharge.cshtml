@@ -1,37 +1,34 @@
-﻿<form id="customerupdate" action="@Url.Action("Update","Customer")" method="put">
-    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static" aria-labelledby="myModalLabel" aria-hidden="true">
+﻿<form id="rechargeform" action="@Url.Action("Create","Recharge")" method="put">
+    <div class="modal fade" id="rechargeModal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static" aria-labelledby="rechargeModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="width:450px;">
             <div class="modal-content" style="width:450px">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        <img src="~/Content/images/account.png" style="width:30px" />&nbsp;会员信息修改
+                    <h4 class="modal-title" id="rechargeModalLabel">
+                        <img src="~/Content/images/menu/money.png" style="width:30px" />&nbsp;充值
                     </h4>
                 </div>
                 <div class="modal-body">
+                    <input id="hfdCustomerId" name="customerId" type="hidden"/>
                     <div class="row">
                         <div class="form-group" style="height:35px">
                             <div class="col-md-3"><span class="text-danger">*</span>用户名：</div>
                             <div class="col-md-9">
-                                <input id="userNo" name="userNo" type="text" class="form-control" maxlength="15" />
+                                <input id="recharge_userNo" name="recharge_userNo" type="text" class="form-control" readonly formnovalidate maxlength="15" autocomplete="off" />
                             </div>
                         </div>
                         <div class="form-group" style="height:35px">
                             <div class="col-md-3"><span class="text-danger">*</span>姓名：</div>
                             <div class="col-md-9">
-                                <input id="userName" name="name" type="text" class="form-control" maxlength="10" />
+                                <input id="recharge_userName" name="recharge_name" type="text" class="form-control" readonly formnovalidate maxlength="10" autocomplete="off" />
                             </div>
                         </div>
                         <div class="form-group" style="height:35px">
-                            <div class="col-md-3"><span class="text-danger">*</span>性别：</div>
+                            <div class="col-md-3"><span class="text-danger">*</span>金额：</div>
                             <div class="col-md-9">
-                                <select id="userSex" name="sex" class="form-control">
-                                    <option value="">---请选择---</option>
-                                    <option value="1">男</option>
-                                    <option value="0">女</option>
-                                </select>
+                                <input id="amount" name="amount" type="number" class="form-control" maxlength="10" />
                             </div>
                         </div>
                     </div>

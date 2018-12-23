@@ -1,15 +1,8 @@
 ﻿using MemberShipManage.Domain;
-using MemberShipManage.Infrastructure.Pagination;
-using MemberShipManage.Infrastructure.RestAPI;
 using MemberShipManage.Service.Consume;
 using MemberShipManage.Service.CustomerManage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
+using Webdiyer.WebControls.Mvc;
 
 namespace MemberShipManage.WebAPI.Controllers
 {

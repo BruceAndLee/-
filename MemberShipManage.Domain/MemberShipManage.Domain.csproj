@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="Entity\CustomerListRequest.cs" />
     <Compile Include="Entity\PagerEntity.cs" />
+    <Compile Include="Entity\RechargeListRequest.cs" />
     <Compile Include="LoginRecord.cs">
       <DependentUpon>MembershipManage.tt</DependentUpon>
     </Compile>

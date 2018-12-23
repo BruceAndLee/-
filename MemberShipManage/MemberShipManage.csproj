@@ -114,6 +114,9 @@
     <Content Include="Content\Bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\Bootstrap\bootstrap.css" />
     <Content Include="Content\Bootstrap\bootstrap.min.css" />
+    <Content Include="Content\Bootstrap\datepicker\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\Bootstrap\datepicker\bootstrap-datetimepicker.min.js" />
+    <Content Include="Content\Bootstrap\datepicker\bootstrap-datetimepicker.zh-CN.js" />
     <Content Include="Content\Bootstrap\validator\css\bootstrapValidator.css" />
     <Content Include="Content\Bootstrap\validator\css\bootstrapValidator.min.css" />
     <Content Include="Content\Bootstrap\validator\js\bootstrapValidator.js" />
@@ -171,6 +174,7 @@
     <Content Include="Content\Login.css" />
     <Content Include="Content\Scripts\page\customer.create.js" />
     <Content Include="Content\Scripts\page\customer.update.js" />
+    <Content Include="Content\Scripts\page\customer.recharge.js" />
     <Content Include="Content\Scripts\page\login.js" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -204,6 +208,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ConsumeRecordController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RechargeController.cs" />
@@ -215,6 +220,7 @@
     </Compile>
     <Compile Include="Models\AutoMapperManager.cs" />
     <Compile Include="Models\CustomerListModel.cs" />
+    <Compile Include="Models\RechargeListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +244,8 @@
     <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Customer\Update.cshtml" />
     <Content Include="Views\Customer\Recharge.cshtml" />
+    <Content Include="Views\Recharge\List.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
