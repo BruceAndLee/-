@@ -87,7 +87,35 @@
                 clearform();
             }
         });
-        });
+    });
+
+    $("#parentCustomer").autocomplete({
+        autoFocus: true,
+        delay: 500,
+        minLength: 0,
+        source: function (request, response) {
+            $.get("/Customer/CustomerList", { "userNo": request.term }
+                , function (data) {
+                    response($.map(data, function (item) { // 此处是将返回数据转换为 JSON对象
+                        return {
+                            label: item.UserNo + ' (' + item.Name + ')',
+                            value: item.ID
+                        };
+                    }));
+                });
+        },
+        select: function (event, ui) {
+            $('#parentID').val(ui.item.value);
+            $('#parentCustomer').val(ui.item.label);
+            return false;
+        },
+        change: function (event, ui) {
+            if (!ui.item) {
+                $('#parentID').val('');
+                $('#parentCustomer').val('');
+            }
+        }
+    });
 
     function clearform() {
         $('#userNo').val('');

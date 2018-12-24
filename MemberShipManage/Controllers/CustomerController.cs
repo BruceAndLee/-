@@ -1,4 +1,5 @@
-﻿using MemberShipManage.Domain;
+﻿using AutoMapper;
+using MemberShipManage.Domain;
 using MemberShipManage.Domain.Entity;
 using MemberShipManage.Infrastructure;
 using MemberShipManage.Infrastructure.Base;
@@ -90,6 +91,15 @@ namespace MemberShipManage.Controllers
             };
 
             return View(viewModel);
+        }
+
+        [HttpGet]
+        [OutputCache(Duration = 10)]
+        public JsonResult CustomerList(CustomerListRequest request)
+        {
+            var customers = customerService.GetCustomerList(request).ToList();
+            var customerList = Mapper.Map<List<CustomerEntity>>(customers);
+            return Json(customerList, JsonRequestBehavior.AllowGet);
         }
     }
 }
