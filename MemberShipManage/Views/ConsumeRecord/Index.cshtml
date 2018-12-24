@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Webdiyer.WebControls.Mvc;
+<div id="recharge" class="margin-t10">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <label>消费记录</label>
+            </h3>
+        </div>
+        <div class="panel-content padding-5">
+            <div class="row">
+                <label class="col-md-1">用户名：</label>
+                <div class="col-md-3">
+                    <input type="text" id="userno" class="form-control" maxlength="20" autocomplete="off" />
+                </div>
+                <label class="col-md-1">姓名：</label>
+                <div class="col-md-3">
+                    <input type="text" id="name" class="form-control" maxlength="20" autocomplete="off" />
+                </div>
+            </div>
+            <div class="row" style="margin-top:5px">
+                <label class="col-md-1">开始：</label>
+                <div class="col-md-3">
+                    <div class="input-group date form_datetime">
+                        <input class="form-control" size="16" type="text" id="startDate" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                    </div>
+                </div>
+                <label class="col-md-1">结束：</label>
+                <div class="col-md-3">
+                    <div class="input-group date form_datetime">
+                        <input class="form-control" size="16" type="text" id="endDate" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <button id="search" type="button" class="btn btn-primary">查询</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="consumelist" class="margin-t10">
+                        @{Html.RenderAction("List", "Consume");}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="~/Content/Bootstrap/datepicker/bootstrap-datetimepicker.min.css" />
+<script type="text/javascript" src="~/Content/Bootstrap/datepicker/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="~/Content/Bootstrap/datepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+         @{ Ajax.LoadMvcPagerScript(); }
+        $('#search').click(function () {
+            var userNo = $('#userno').val();
+            var name = $('#name').val();
+            var startDate = $('#startDate').val();
+            var endDate = $('#endDate').val();
+
+            var request = {
+                userNo: userNo && userNo.trim() ? userNo.trim() : null,
+                name: name && name.trim() ? name.trim() : null,
+                startDate: startDate,
+                endDate: endDate
+            };
+
+            $.get("@Url.Action("List")", request
+                , function (data) {
+                    $("#consumelist").html(data);
+            });
+        });
+
+        $('.form_datetime').datetimepicker({
+            format: "yyyy-mm-dd",
+            language: 'zh-CN',
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 1,
+            showMeridian: true
+        });
+    });
+</script>

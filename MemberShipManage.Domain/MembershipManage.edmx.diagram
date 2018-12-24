@@ -6,13 +6,14 @@
     <edmx:Diagrams>
       <Diagram DiagramId="375b6ad234d64e929dd19496b4976922" Name="Diagram1">
         <EntityTypeShape EntityType="MembershipManageModel.ConsumeRecord" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MembershipManageModel.Customer" Width="1.5" PointX="2.625" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MembershipManageModel.LoginRecord" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MembershipManageModel.Users" Width="1.5" PointX="1.125" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MembershipManageModel.CustomerAmount" Width="1.875" PointX="5.5" PointY="3" />
+        <EntityTypeShape EntityType="MembershipManageModel.Customer" Width="1.5" PointX="3.875" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManageModel.LoginRecord" Width="1.5" PointX="6.875" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManageModel.Users" Width="1.5" PointX="0.625" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManageModel.CustomerAmount" Width="1.875" PointX="7.125" PointY="3.5" />
         <AssociationConnector Association="MembershipManageModel.CustomerCustomerAmount" />
-        <EntityTypeShape EntityType="MembershipManageModel.RechargeRecord" Width="1.5" PointX="3.375" PointY="4.625" />
+        <EntityTypeShape EntityType="MembershipManageModel.RechargeRecord" Width="1.5" PointX="3.875" PointY="4.625" />
         <AssociationConnector Association="MembershipManageModel.CustomerRechargeRecord" />
+        <AssociationConnector Association="MembershipManageModel.CustomerConsumeRecord" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

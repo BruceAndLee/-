@@ -1,6 +1,9 @@
-﻿using MemberShipManage.Domain;
+﻿using AutoMapper;
+using MemberShipManage.Domain;
+using MemberShipManage.Domain.Entity;
 using MemberShipManage.Infrastructure.Base;
 using MemberShipManage.Infrastructure.Filter;
+using MemberShipManage.Models;
 using MemberShipManage.Service.Consume;
 using System.Web.Mvc;
 using Webdiyer.WebControls.Mvc;
@@ -17,9 +20,24 @@ namespace MemberShipManage.Controllers
         }
 
         [HttpGet]
-        public IPagedList<ConsumeRecord> GetConsumeRecordList(string userNo, int pageIndex, int pageSize)
+        public ViewResult Index()
         {
-            return consumeRecordService.GetConsumeRecordList(userNo, pageIndex, pageSize);
+            return View();
+        }
+
+        [HttpGet]
+        public PartialViewResult List(ConsumeRecordListRequest request)
+        {
+            var consumeRecordList = consumeRecordService.GetConsumeRecordList(request);
+            var viewModel = Mapper.Map<ConsumeRecordListModel>(request);
+            viewModel.ConsumeRecordList = consumeRecordList;
+            return PartialView(viewModel);
+        }
+
+        [HttpGet]
+        public IPagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request)
+        {
+            return consumeRecordService.GetConsumeRecordList(request);
         }
     }
 }

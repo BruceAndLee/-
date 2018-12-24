@@ -1,4 +1,5 @@
 ﻿using MemberShipManage.Domain;
+using MemberShipManage.Domain.Entity;
 using MemberShipManage.Service.Consume;
 using MemberShipManage.Service.CustomerManage;
 using System.Web.Http;
@@ -63,16 +64,14 @@ namespace MemberShipManage.WebAPI.Controllers
         /// <summary>
         /// Get Customer consume record
         /// </summary>
-        /// <param name="userNo"></param>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageSize"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
         [Authorize]
         [HttpGet]
         [Route("consume")]
-        public IPagedList<ConsumeRecord> GetConsumeRecordList(string userNo, int pageIndex, int pageSize)
+        public IPagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request)
         {
-            return consumeRecordService.GetConsumeRecordList(userNo, pageIndex, pageSize);
+            return consumeRecordService.GetConsumeRecordList(request);
         }
     }
 }

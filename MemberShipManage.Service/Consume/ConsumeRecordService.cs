@@ -1,4 +1,5 @@
 ﻿using MemberShipManage.Domain;
+using MemberShipManage.Domain.Entity;
 using MemberShipManage.Repository.Consume;
 using MemberShipManage.Repository.CustomerManage;
 using System.Threading.Tasks;
@@ -18,10 +19,9 @@ namespace MemberShipManage.Service.Consume
             this.customerRepository = customerRepository;
         }
 
-        public IPagedList<ConsumeRecord> GetConsumeRecordList(string userNo, int pageIndex, int pageSize)
+        public IPagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request)
         {
-            var customer = customerRepository.GetCustomer(userNo);
-            return consumeRecordRepository.GetConsumeRecordList(customer.ID, pageIndex, pageSize);
+            return consumeRecordRepository.GetConsumeRecordList(request);
         }
     }
 }

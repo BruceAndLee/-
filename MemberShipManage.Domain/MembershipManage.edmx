@@ -89,6 +89,7 @@
           <Property Name="InDate" Type="DateTime" Precision="3" />
           <Property Name="InUser" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="MembershipManageModel.CustomerConsumeRecord" FromRole="ConsumeRecord" ToRole="Customer" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -104,6 +105,7 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CustomerAmount" Relationship="MembershipManageModel.CustomerCustomerAmount" FromRole="Customer" ToRole="CustomerAmount" />
           <NavigationProperty Name="RechargeRecord" Relationship="MembershipManageModel.CustomerRechargeRecord" FromRole="Customer" ToRole="RechargeRecord" />
+          <NavigationProperty Name="ConsumeRecord" Relationship="MembershipManageModel.CustomerConsumeRecord" FromRole="Customer" ToRole="ConsumeRecord" />
         </EntityType>
         <EntityType Name="LoginRecord">
           <Key>
@@ -136,6 +138,10 @@
           <AssociationSet Name="CustomerRechargeRecord" Association="MembershipManageModel.CustomerRechargeRecord">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="RechargeRecord" EntitySet="RechargeRecord" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerConsumeRecord" Association="MembershipManageModel.CustomerConsumeRecord">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="ConsumeRecord" EntitySet="ConsumeRecord" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="CustomerAmount">
@@ -181,6 +187,18 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="RechargeRecord">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CustomerConsumeRecord">
+          <End Type="MembershipManageModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="MembershipManageModel.ConsumeRecord" Role="ConsumeRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ConsumeRecord">
               <PropertyRef Name="CustomerID" />
             </Dependent>
           </ReferentialConstraint>

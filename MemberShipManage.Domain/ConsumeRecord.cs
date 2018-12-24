@@ -20,5 +20,7 @@ namespace MemberShipManage.Domain
         public Nullable<System.DateTime> InDate { get; set; }
         public string InUser { get; set; }
         public int CustomerID { get; set; }
+    
+        public virtual Customer Customer { get; set; }
     }
 }

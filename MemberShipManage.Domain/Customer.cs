@@ -19,6 +19,7 @@ namespace MemberShipManage.Domain
         {
             this.CustomerAmount = new HashSet<CustomerAmount>();
             this.RechargeRecord = new HashSet<RechargeRecord>();
+            this.ConsumeRecord = new HashSet<ConsumeRecord>();
         }
     
         public int ID { get; set; }
@@ -34,5 +35,7 @@ namespace MemberShipManage.Domain
         public virtual ICollection<CustomerAmount> CustomerAmount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RechargeRecord> RechargeRecord { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ConsumeRecord> ConsumeRecord { get; set; }
     }
 }

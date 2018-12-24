@@ -219,6 +219,7 @@
       <DependentUpon>ValidateCodeCreate.ashx</DependentUpon>
     </Compile>
     <Compile Include="Models\AutoMapperManager.cs" />
+    <Compile Include="Models\ConsumeRecordListModel.cs" />
     <Compile Include="Models\CustomerListModel.cs" />
     <Compile Include="Models\RechargeListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -246,6 +247,9 @@
     <Content Include="Views\Customer\Recharge.cshtml" />
     <Content Include="Views\Recharge\List.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <Content Include="Views\ConsumeRecord\Index.cshtml" />
+    <Content Include="Views\ConsumeRecord\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
