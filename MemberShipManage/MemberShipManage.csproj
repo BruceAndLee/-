@@ -214,6 +214,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RechargeController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -259,7 +260,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Users\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MemberShipManage.Domain\MemberShipManage.Domain.csproj">
       <Project>{29f7cec6-71ea-4dc1-a5d5-2c9388bf0116}</Project>

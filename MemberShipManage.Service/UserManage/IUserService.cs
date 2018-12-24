@@ -10,5 +10,6 @@ namespace MemberShipManage.Service.UserManage
     public interface IUserService
     {
         Users GetUser(string userID);
+        void UpdatePassword(Users user);
     }
 }

@@ -6,4 +6,7 @@
   <Message ResourceID="UM_002">
     <![CDATA[验证码不正确！]]>
   </Message>
+  <Message ResourceID="UM_003">
+    <![CDATA[您要修改的用户不存在！]]>
+  </Message>
 </MessageResources>
