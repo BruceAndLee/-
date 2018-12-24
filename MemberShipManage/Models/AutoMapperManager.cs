@@ -14,6 +14,7 @@ namespace MemberShipManage.Models
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<RechargeListRequest, RechargeListModel>();
+                cfg.CreateMap<ConsumeRecordListRequest, ConsumeRecordListModel>();
             });
         }
     }
