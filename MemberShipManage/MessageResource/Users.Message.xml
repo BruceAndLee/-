@@ -9,4 +9,10 @@
   <Message ResourceID="UM_003">
     <![CDATA[您要修改的用户不存在！]]>
   </Message>
+  <Message ResourceID="UM_004">
+    <![CDATA[登录信息过期，请重新登录修改密码！]]>
+  </Message>
+  <Message ResourceID="UM_005">
+    <![CDATA[原密码不正确！]]>
+  </Message>
 </MessageResources>

@@ -253,6 +253,7 @@
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <Content Include="Views\ConsumeRecord\Index.cshtml" />
     <Content Include="Views\ConsumeRecord\List.cshtml" />
+    <Content Include="Views\Users\Password.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -260,9 +261,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Users\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\MemberShipManage.Domain\MemberShipManage.Domain.csproj">
       <Project>{29f7cec6-71ea-4dc1-a5d5-2c9388bf0116}</Project>
