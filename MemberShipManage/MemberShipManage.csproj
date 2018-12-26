@@ -178,6 +178,7 @@
     <Content Include="Content\Scripts\page\customer.update.js" />
     <Content Include="Content\Scripts\page\customer.recharge.js" />
     <Content Include="Content\Scripts\page\login.js" />
+    <Content Include="Content\Scripts\page\user.password.js" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
