@@ -4,7 +4,9 @@ using MemberShipManage.Domain.Entity;
 using MemberShipManage.Infrastructure;
 using MemberShipManage.Infrastructure.Base;
 using MemberShipManage.Infrastructure.Filter;
+using MemberShipManage.Infrastructure.RestAPI;
 using MemberShipManage.Models;
+using MemberShipManage.Service.Consume;
 using MemberShipManage.Service.CustomerManage;
 using System;
 using System.Collections.Generic;
@@ -19,10 +21,16 @@ namespace MemberShipManage.Controllers
     public class CustomerController : BaseController
     {
         ICustomerService customerService;
+        ICustomerAmountService customerAmountService;
+        IConsumeRecordService consumeRecordService;
         public CustomerController(
-            ICustomerService customerService)
+            ICustomerService customerService
+            , ICustomerAmountService customerAmountService
+            , IConsumeRecordService consumeRecordService)
         {
             this.customerService = customerService;
+            this.customerAmountService = customerAmountService;
+            this.consumeRecordService = consumeRecordService;
         }
 
         [HttpGet]
@@ -93,6 +101,11 @@ namespace MemberShipManage.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// 获取客户
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpGet]
         [OutputCache(Duration = 10)]
         public JsonResult CustomerList(CustomerListRequest request)
@@ -100,6 +113,44 @@ namespace MemberShipManage.Controllers
             var customers = customerService.GetCustomerList(request).ToList();
             var customerList = Mapper.Map<List<CustomerEntity>>(customers);
             return Json(customerList, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ViewResult Consume()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult CreateConsume(ConsumeRequest request)
+        {
+            if (string.IsNullOrEmpty(request.UserNo))
+            {
+                return JsonResult(new APIBaseResponse(false, "CM_002"));
+            }
+
+            var customer = customerService.GetCustomer(request.UserNo);
+            if (customer == null)
+            {
+                return JsonResult(new APIBaseResponse(false, "CM_002"));
+            }
+
+            var customerAmount = customer.CustomerAmount.FirstOrDefault();
+            if (customerAmount == null || customerAmount.Amount < request.Amount)
+            {
+                return JsonResult(new APIBaseResponse(false, "CM_004"));
+            }
+
+            customerAmount.Amount = customerAmount.Amount - request.Amount;
+            customerAmountService.UpdateCustomerAmount(customerAmount);
+            consumeRecordService.CreateConsumeRecord(new ConsumeRecord
+            {
+                CustomerID = customer.ID,
+                Amount = request.Amount,
+                Detail = request.Detail
+            });
+
+            return SuccessJsonResult();
         }
     }
 }

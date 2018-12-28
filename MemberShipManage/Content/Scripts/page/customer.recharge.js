@@ -39,16 +39,18 @@
             }
         }).on('success.form.bv', function (e) {//点击提交之后
             e.preventDefault();
-            var $form = $(e.target);
-            $.post($form.attr('action'), $form.serialize(), function (result) {
-                if (result.IsSuc) {
-                    alert("充值成功！");
-                    $('#rechargeModal').modal('hide');
-                }
-                else {
-                    alert(result.Msg);
-                }
-            });
+            if (window.confirm('请确认充值金额，确认充值' + $('#amount').val() + "？")) {
+                var $form = $(e.target);
+                $.post($form.attr('action'), $form.serialize(), function (result) {
+                    if (result.IsSuc) {
+                        alert("充值成功！");
+                        $('#rechargeModal').modal('hide');
+                    }
+                    else {
+                        alert(result.Msg);
+                    }
+                });
+            }
         });
     }
 });

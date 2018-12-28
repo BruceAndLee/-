@@ -163,6 +163,7 @@
     <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\Images\member.png" />
     <Content Include="Content\Images\menu\cash.png" />
+    <Content Include="Content\Images\menu\consume.png" />
     <Content Include="Content\Images\menu\members.png" />
     <Content Include="Content\Images\menu\member.png" />
     <Content Include="Content\Images\menu\money.png" />
@@ -255,6 +256,7 @@
     <Content Include="Views\ConsumeRecord\Index.cshtml" />
     <Content Include="Views\ConsumeRecord\List.cshtml" />
     <Content Include="Views\Users\Password.cshtml" />
+    <Content Include="Views\Customer\Consume.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

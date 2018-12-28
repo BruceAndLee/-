@@ -26,5 +26,11 @@ namespace MemberShipManage.Service.CustomerManage
             customerAmountRepository.CreateCustomerAmount(customerAmount);
             unitOfWork.Commit();
         }
+
+        public void UpdateCustomerAmount(CustomerAmount customerAmount)
+        {
+            customerAmountRepository.Update(customerAmount);
+            unitOfWork.Commit();
+        }
     }
 }

@@ -9,4 +9,7 @@
   <Message ResourceID="CM_003">
     <![CDATA[充值金额必须大于0！]]>
   </Message>
+  <Message ResourceID="CM_004">
+    <![CDATA[余额不足，请充值！]]>
+  </Message>
 </MessageResources>

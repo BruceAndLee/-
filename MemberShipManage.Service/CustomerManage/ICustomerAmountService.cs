@@ -10,5 +10,6 @@ namespace MemberShipManage.Service.CustomerManage
     public interface ICustomerAmountService
     {
         void CreateCustomerAmount(CustomerAmount customerAmount);
+        void UpdateCustomerAmount(CustomerAmount customerAmount);
     }
 }
