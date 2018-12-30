@@ -18,7 +18,7 @@
             <tr>
                 <td style="width:180px">@(rechargeRecord.Customer != null ? rechargeRecord.Customer.UserNo : string.Empty)</td>
                 <td style="width:120px">@(rechargeRecord.Customer != null ? rechargeRecord.Customer.Name : string.Empty)</td>
-                <td style="width:150px">@rechargeRecord.Amount</td>
+                <td style="width:150px;color:blue;">@rechargeRecord.Amount</td>
                 <td style="width:120px">
                     @rechargeRecord.InDate.GetValueOrDefault(DateTime.Now).ToString("yyyy-MM-dd HH:mm")
                 </td>

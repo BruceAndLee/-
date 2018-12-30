@@ -59,6 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseController.cs" />
+    <Compile Include="DBScriptManager.cs" />
+    <Compile Include="Extension\ListExtension.cs" />
     <Compile Include="Extension\QueryExtension.cs" />
     <Compile Include="Extension\ObjectExtension.cs" />
     <Compile Include="Filter\ApiTrackerFilter.cs" />

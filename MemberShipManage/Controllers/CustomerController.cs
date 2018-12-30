@@ -111,8 +111,7 @@ namespace MemberShipManage.Controllers
         public JsonResult CustomerList(CustomerListRequest request)
         {
             var customers = customerService.GetCustomerList(request).ToList();
-            var customerList = Mapper.Map<List<CustomerEntity>>(customers);
-            return Json(customerList, JsonRequestBehavior.AllowGet);
+            return Json(customers, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -124,12 +123,12 @@ namespace MemberShipManage.Controllers
         [HttpPost]
         public JsonResult CreateConsume(ConsumeRequest request)
         {
-            if (string.IsNullOrEmpty(request.UserNo))
+            if (!request.CustomerID.HasValue)
             {
-                return JsonResult(new APIBaseResponse(false, "CM_002"));
+                return JsonResult(new APIBaseResponse(false, "CM_005"));
             }
 
-            var customer = customerService.GetCustomer(request.UserNo);
+            var customer = customerService.GetCustomer(request.CustomerID.Value);
             if (customer == null)
             {
                 return JsonResult(new APIBaseResponse(false, "CM_002"));
@@ -143,13 +142,8 @@ namespace MemberShipManage.Controllers
 
             customerAmount.Amount = customerAmount.Amount - request.Amount;
             customerAmountService.UpdateCustomerAmount(customerAmount);
-            consumeRecordService.CreateConsumeRecord(new ConsumeRecord
-            {
-                CustomerID = customer.ID,
-                Amount = request.Amount,
-                Detail = request.Detail
-            });
-
+            var consumeRecord = Mapper.Map<ConsumeRecord>(request);
+            consumeRecordService.CreateConsumeRecord(consumeRecord);
             return SuccessJsonResult();
         }
     }

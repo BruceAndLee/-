@@ -20,6 +20,7 @@ namespace MemberShipManage.Service.Consume
         {
             this.consumeRecordRepository = consumeRecordRepository;
             this.customerRepository = customerRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         public IPagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request)

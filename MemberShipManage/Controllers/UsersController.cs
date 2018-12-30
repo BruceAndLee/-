@@ -48,6 +48,11 @@ namespace MemberShipManage.Controllers
                 return JsonResult(new APIBaseResponse(false, "UM_005"));
             }
 
+            if (request.NewPassword.Equals(userDb.UserNo))
+            {
+                return JsonResult(new APIBaseResponse(false, "UM_006"));
+            }
+
             userDb.Password = Cryptor.Encrypt(request.NewPassword.Trim());
             userService.UpdatePassword(userDb);
             Session["User"] = null;

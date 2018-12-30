@@ -61,10 +61,6 @@
                                     <img src="~/Content/Images/menu/members.png" />
                                     <a href="@Url.Action("Index", "Customer")">会员管理</a>
                                 </li>
-                                <li class="span-nav">
-                                    <img src="~/Content/Images/menu/consume.png" />
-                                    <a href="@Url.Action("Consume","Customer")">消费结算</a>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -81,6 +77,10 @@
                     <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <ul class="navigation-ul">
+                                <li class="span-nav">
+                                    <img src="~/Content/Images/menu/consume.png" />
+                                    <a href="@Url.Action("Consume","Customer")">消费结算</a>
+                                </li>
                                 <li class="span-nav">
                                     <img src="~/Content/Images/menu/money.png" />
                                     <a href="@Url.Action("Index", "Recharge")">充值记录</a>

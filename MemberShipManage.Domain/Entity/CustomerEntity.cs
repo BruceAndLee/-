@@ -11,5 +11,11 @@ namespace MemberShipManage.Domain.Entity
         public int ID { get; set; }
         public string UserNo { get; set; }
         public string Name { get; set; }
+        public decimal? Amount { get; set; }
+        public int? Sex { get; set; }
+        public string ParentCustomerName { get; set; }
+        public int? ParentCustomerID { get; set; }
+        public string InUser { get; set; }
+        public DateTime? InDate { get; set; }
     }
 }

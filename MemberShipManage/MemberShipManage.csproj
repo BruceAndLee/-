@@ -175,6 +175,7 @@
     <Content Include="Content\Login.css" />
     <Content Include="Content\Scripts\autocomplete\jquery-ui.min.css" />
     <Content Include="Content\Scripts\autocomplete\jquery-ui.min.js" />
+    <Content Include="Content\Scripts\page\customer.consume.js" />
     <Content Include="Content\Scripts\page\customer.create.js" />
     <Content Include="Content\Scripts\page\customer.update.js" />
     <Content Include="Content\Scripts\page\customer.recharge.js" />

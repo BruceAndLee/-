@@ -15,4 +15,7 @@
   <Message ResourceID="UM_005">
     <![CDATA[原密码不正确！]]>
   </Message>
+  <Message ResourceID="UM_006">
+    <![CDATA[密码不能和用户名相同！]]>
+  </Message>
 </MessageResources>

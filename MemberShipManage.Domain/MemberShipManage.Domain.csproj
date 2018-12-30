@@ -107,6 +107,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DbScript\CustomerRepository.xml" />
     <Content Include="MembershipManage.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MembershipManage.Context.cs</LastGenOutput>

@@ -12,6 +12,7 @@ namespace MemberShipManage.Infrastructure
         #region webconfig
         public static readonly string MessageResourceFolder = ConfigurationManager.AppSettings["MessageResourceFolder"];
         public static readonly int DefaultPageSize = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultPageSize"]);
+        public static readonly string DbScriptXmlPath = ConfigurationManager.AppSettings["DbScriptXmlPath"];
         #endregion
 
         #region API

@@ -95,7 +95,7 @@ namespace MemberShipManage.Service.CustomerManage
             return response;
         }
 
-        public IPagedList<Customer> GetCustomerList(CustomerListRequest request)
+        public IPagedList<CustomerEntity> GetCustomerList(CustomerListRequest request)
         {
             return customerRepository.GetCustomerList(request);
         }

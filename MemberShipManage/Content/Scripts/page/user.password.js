@@ -33,6 +33,10 @@
                 validators: {
                     notEmpty: {
                         message: '重复密码不能为空'
+                    },
+                    identical: {//相同
+                        field: 'newPassword',
+                        message: '两次密码不一致'
                     }
                 }
             }
