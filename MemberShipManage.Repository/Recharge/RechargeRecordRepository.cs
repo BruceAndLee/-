@@ -23,7 +23,7 @@ namespace MemberShipManage.Repository.Recharge
             query = query.WhereIf(request.StartDate.HasValue, q => q.InDate >= request.StartDate);
             query = query.WhereIf(request.EndDate.HasValue, q => q.InDate <= request.EndDate);
             query = query.OrderByDescending(q => q.InDate);
-            return new PagedList<RechargeRecord>(query, request.PageIndex - 1, request.PageSize);
+            return new PagedList<RechargeRecord>(query, request.PageIndex, request.PageSize);
         }
     }
 }
