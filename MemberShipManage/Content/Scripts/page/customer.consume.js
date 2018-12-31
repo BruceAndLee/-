@@ -25,6 +25,7 @@
             if (data) {
                 if (data.IsSuc) {
                     alert('结算成功，消费金额：' + amount + '元');
+                    clearForm();
                 }
                 else {
                     alert(data.Msg);
@@ -60,7 +61,6 @@
                 });
         },
         select: function (event, ui) {
-            console.log(ui);
             $('#hfdCustomerId').val(ui.item.value);
             $('#customerId').val(ui.item.label);
             $('#customerName').val(ui.item.display);
@@ -69,9 +69,21 @@
         },
         change: function (event, ui) {
             if (!ui.item) {
-                $('#hfdCustomerId').val('');
-                $('#customerId').val('');
+                clearForm();
             }
         }
     });
+
+    $('#btnCance').click(function () {
+        clearForm();
+    });
+
+    function clearForm() {
+        $('#hfdCustomerId').val('');
+        $('#customerId').val('');
+        $('#customerName').val('');
+        $('#amount').val(null);
+        $('#balanceAmount').val(null);
+        $('#detail').val('');
+    }
 });

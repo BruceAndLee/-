@@ -17,7 +17,7 @@ FROM MembershipManage.dbo.Customer A WITH(NOLOCK)
 WHERE (@UserNo = '' OR A.UserNo LIKE '%'+ @UserNo +'%')
 	AND (@Name = '' OR A.Name LIKE '%'+ @Name +'%')
 	AND (@Sex IS NULL OR A.Sex = @Sex)
-ORDER  BY A.InDate DESC
+ORDER BY A.InDate DESC
 
 SELECT @TotalCount = @@ROWCOUNT
 
@@ -27,7 +27,6 @@ SELECT @TotalCount = @@ROWCOUNT
 	WHERE TransactionNumber > @PageIndex * @PageSize 
 		AND TransactionNumber <= (@PageIndex + 1) * @PageSize
 )
-
 
 SELECT A.ID
   ,B.UserNo
@@ -46,7 +45,85 @@ INNER JOIN [MembershipManage].[dbo].[Customer] B WITH(NOLOCK)
 LEFT JOIN [MembershipManage].[dbo].CustomerAmount C WITH(NOLOCK)
 	ON A.ID = C.CustomerID
 LEFT JOIN [MembershipManage].[dbo].[Customer] D WITH(NOLOCK)
-	ON D.ParentID = B.ID
+	ON D.ID = B.ParentID
+    ]]>
+  </Script>
+  <Script Key="CreateCustomeConsume">
+    <![CDATA[
+DECLARE @TempAmount DECIMAL(18,2)
+DECLARE @ParentLevel INT
+DECLARE @ParentCustomerID INT
+DECLARE @Level INT = 50
+
+SET @Amount = @Amount * @DiscountRatio
+SELECT TOP(1)
+	@TempAmount = ISNULL(Amount,0.0)
+FROM MembershipManage.dbo.CustomerAmount A WITH(NOLOCK)
+INNER JOIN MembershipManage.dbo.Customer B WITH(NOLOCK)
+	ON A.CustomerID = B.ID
+WHERE A.CustomerID = @CustomerID
+
+IF @TempAmount < @Amount
+BEGIN
+	SET @ErrorMessage = '余额不足，请充值'
+	RETURN
+END
+
+UPDATE TOP(1) MembershipManage.dbo.CustomerAmount
+SET Amount = Amount - @Amount,
+	LastEditUser = @UserID,
+	LastEditDate = GETDATE()
+WHERE CustomerID = @CustomerID
+
+INSERT INTO MembershipManage.dbo.ConsumeRecord
+(
+	CustomerID,
+	Amount,
+	Detail,
+	InDate,
+	InUser
+)
+VALUES
+(
+	@CustomerID,
+	@Amount,
+	@Detail,
+	GETDATE(),
+	@UserID
+)
+
+;WITH cte_parent(ID,Name,ParentID,Level)
+AS
+(
+    SELECT ID,Name,ParentID,0 AS Level
+    FROM MembershipManage.dbo.Customer WITH(NOLOCK)
+    WHERE ID IN
+    (
+        SELECT ID 
+        FROM MembershipManage.dbo.Customer 
+        WHERE ParentID = 0
+    )
+    UNION ALL
+    SELECT b.ID,b.Name,b.ParentID,a.Level + 1 AS Level
+    FROM MembershipManage.dbo.Customer b
+    INNER JOIN cte_parent a
+		ON a.ID = b.ParentID
+)
+  
+SELECT TOP(1)
+    @ParentLevel = Level,
+    @ParentCustomerID = ParentID
+FROM cte_parent 
+WHERE ID = @CustomerID AND Level <= @Level
+
+IF @ParentLevel > 0
+BEGIN
+	UPDATE TOP(1) MembershipManage.dbo.CustomerAmount
+	SET Amount = Amount + @Amount * (@KickbackRatio / POWER(2,@ParentLevel - 1)),
+		LastEditUser = @UserID,
+		LastEditDate = GETDATE()
+	WHERE CustomerID = @CustomerID	
+END
     ]]>
   </Script>
 </Scripts>

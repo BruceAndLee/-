@@ -25,5 +25,8 @@ namespace MemberShipManage.Domain.Entity
 
         public string Detail { get; set; }
         public string InUser { get; set; }
+        public decimal DiscountRatio { get; set; }
+        public decimal KickbackRatio { get; set; }
+        public string UserID { get; set; }
     }
 }

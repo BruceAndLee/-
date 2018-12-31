@@ -135,15 +135,17 @@ namespace MemberShipManage.Controllers
             }
 
             var customerAmount = customer.CustomerAmount.FirstOrDefault();
-            if (customerAmount == null || customerAmount.Amount < request.Amount)
+            if (customerAmount == null || customerAmount.Amount < request.Amount * GlobalConfig.DiscountRatio)
             {
                 return JsonResult(new APIBaseResponse(false, "CM_004"));
             }
 
-            customerAmount.Amount = customerAmount.Amount - request.Amount;
-            customerAmountService.UpdateCustomerAmount(customerAmount);
-            var consumeRecord = Mapper.Map<ConsumeRecord>(request);
-            consumeRecordService.CreateConsumeRecord(consumeRecord);
+            string errorMessage = consumeRecordService.CreateCustomeConsume(request);
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                return Json(new APIBaseResponse(false, null, errorMessage));
+            }
+
             return SuccessJsonResult();
         }
     }
