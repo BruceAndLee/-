@@ -30,7 +30,8 @@ namespace MemberShipManage.WebAPI.Controllers
         /// <param name="password"></param>
         /// <returns></returns>
         [Authorize]
-        [HttpGet]
+        [HttpGet()]
+        [Route("exist")]
         public bool CheckCustomerExists(string userNo, string password)
         {
             return customerService.CheckCustomerExists(userNo, password);
@@ -43,6 +44,7 @@ namespace MemberShipManage.WebAPI.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpGet]
+        [Route("{userno}")]
         public Customer GetCustomer(string userNo)
         {
             return customerService.GetCustomer(userNo);

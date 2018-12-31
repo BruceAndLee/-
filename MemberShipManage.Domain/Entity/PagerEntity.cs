@@ -28,7 +28,7 @@ namespace MemberShipManage.Domain.Entity
             {
                 if (pageSize <= 0)
                 {
-                    return 10;
+                    return 15;
                 }
 
                 return pageSize;

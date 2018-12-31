@@ -17,11 +17,11 @@
         foreach (var consumeRecord in Model.ConsumeRecordList)
         {
             <tr>
-                <td style="width:180px">@(consumeRecord.Customer != null ? consumeRecord.Customer.UserNo : string.Empty)</td>
-                <td style="width:120px">@(consumeRecord.Customer != null ? consumeRecord.Customer.Name : string.Empty)</td>
-                <td style="width:150px;color:red">@consumeRecord.Amount</td>
+                <td style="width:150px">@(consumeRecord.Customer != null ? consumeRecord.Customer.UserNo : string.Empty)</td>
+                <td style="width:100px">@(consumeRecord.Customer != null ? consumeRecord.Customer.Name : string.Empty)</td>
+                <td style="width:120px;color:red">@consumeRecord.Amount</td>
                 <td>@(consumeRecord.Detail ?? string.Empty)</td>
-                <td style="width:120px">
+                <td style="width:150px">
                     @consumeRecord.InDate.GetValueOrDefault(DateTime.Now).ToString("yyyy-MM-dd HH:mm")
                 </td>
             </tr>

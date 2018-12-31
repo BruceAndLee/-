@@ -17,7 +17,7 @@ namespace MemberShipManage.Infrastructure
 
         #region API
 
-        public static readonly string AppID = ConfigurationManager.AppSettings["appID"];
+        public static readonly string AppID = ConfigurationManager.AppSettings["AppID"];
 
         #endregion
     }

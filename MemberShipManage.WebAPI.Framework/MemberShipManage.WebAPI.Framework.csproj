@@ -55,8 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DependencyManage\DependencyRegister.cs" />
-    <Compile Include="DependencyManage\IDependencyRegister.cs" />
     <Compile Include="Filters\ValidateResponseFilterAttribute.cs" />
     <Compile Include="Filters\ValidattionFilterAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
