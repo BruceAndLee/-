@@ -9,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Webdiyer.WebControls.Mvc;
 using MemberShipManage.Infrastructure.Extension;
+using MemberShipManage.Infrastructure;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace MemberShipManage.Repository.Consume
 {
@@ -17,7 +20,6 @@ namespace MemberShipManage.Repository.Consume
         public ConsumeRecordRepository(IUnitOfWork dbcontext)
               : base(dbcontext)
         {
-
         }
 
         /// <summary>
@@ -37,6 +39,46 @@ namespace MemberShipManage.Repository.Consume
             query = query.WhereIf(request.EndDate.HasValue, q => q.InDate <= request.EndDate);
             query = query.OrderByDescending(q => q.InDate);
             return new PagedList<ConsumeRecord>(query, request.PageIndex, request.PageSize);
+        }
+
+        public string CreateCustomeConsume(ConsumeRequest request)
+        {
+            var sqlScript = DBScriptManager.GetScript(this.GetType(), "CreateCustomeConsume");
+
+            var paramErrorMsg = new SqlParameter("@ErrorMessage", SqlDbType.NVarChar, 1000);
+            paramErrorMsg.Direction = ParameterDirection.Output;
+
+            var paramCustomerID = new SqlParameter("@CustomerID", SqlDbType.Int);
+            paramCustomerID.Value = request.CustomerID;
+
+            var paramAmount = new SqlParameter("@Amount", SqlDbType.Decimal);
+            paramAmount.Value = request.Amount;
+
+            var paramDetail = new SqlParameter("@Detail", SqlDbType.NVarChar, 1000);
+            paramDetail.Value = request.Detail;
+
+            var paramUserID = new SqlParameter("@UserID", SqlDbType.VarChar, 25);
+            paramUserID.Value = request.UserID;
+
+            var paramDiscountRatio = new SqlParameter("@DiscountRatio", SqlDbType.Decimal);
+            paramDiscountRatio.Value = request.DiscountRatio;
+
+            var paramKickbackRatio = new SqlParameter("@KickbackRatio", SqlDbType.Decimal);
+            paramKickbackRatio.Value = request.KickbackRatio;
+
+            unitOfWork.Context.Database.ExecuteSqlCommand(sqlScript,
+                new SqlParameter[]
+                {
+                    paramCustomerID,
+                    paramAmount,
+                    paramDetail,
+                    paramUserID,
+                    paramDiscountRatio,
+                    paramKickbackRatio,
+                    paramErrorMsg
+                });
+
+            return Convert.ToString(paramErrorMsg.Value);
         }
     }
 }

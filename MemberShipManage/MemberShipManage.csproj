@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\AppConfigPartial.xml" />
+    <Content Include="App_Data\RatioConfig.xml" />
     <Content Include="Content\Bootstrap\bootstrap-theme.css" />
     <Content Include="Content\Bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\Bootstrap\bootstrap.css" />
@@ -175,6 +176,7 @@
     <Content Include="Content\Login.css" />
     <Content Include="Content\Scripts\autocomplete\jquery-ui.min.css" />
     <Content Include="Content\Scripts\autocomplete\jquery-ui.min.js" />
+    <Content Include="Content\Scripts\page\customer.consume.js" />
     <Content Include="Content\Scripts\page\customer.create.js" />
     <Content Include="Content\Scripts\page\customer.update.js" />
     <Content Include="Content\Scripts\page\customer.recharge.js" />
@@ -318,6 +320,10 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

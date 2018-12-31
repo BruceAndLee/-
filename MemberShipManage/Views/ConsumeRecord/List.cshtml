@@ -19,7 +19,7 @@
             <tr>
                 <td style="width:180px">@(consumeRecord.Customer != null ? consumeRecord.Customer.UserNo : string.Empty)</td>
                 <td style="width:120px">@(consumeRecord.Customer != null ? consumeRecord.Customer.Name : string.Empty)</td>
-                <td style="width:150px">@consumeRecord.Amount</td>
+                <td style="width:150px;color:red">@consumeRecord.Amount</td>
                 <td>@(consumeRecord.Detail ?? string.Empty)</td>
                 <td style="width:120px">
                     @consumeRecord.InDate.GetValueOrDefault(DateTime.Now).ToString("yyyy-MM-dd HH:mm")

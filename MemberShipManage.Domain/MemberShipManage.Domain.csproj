@@ -107,6 +107,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DbScript\CustomerRepository.xml" />
     <Content Include="MembershipManage.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MembershipManage.Context.cs</LastGenOutput>
@@ -122,4 +123,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /e /r /y $(ProjectDir)DbScript\*.xml $(SolutionDir)MemberShipManage\Configuration\Data</PostBuildEvent>
+  </PropertyGroup>
 </Project>

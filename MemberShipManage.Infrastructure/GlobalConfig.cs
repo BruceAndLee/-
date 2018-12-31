@@ -12,6 +12,9 @@ namespace MemberShipManage.Infrastructure
         #region webconfig
         public static readonly string MessageResourceFolder = ConfigurationManager.AppSettings["MessageResourceFolder"];
         public static readonly int DefaultPageSize = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultPageSize"]);
+        public static readonly string DbScriptXmlPath = ConfigurationManager.AppSettings["DbScriptXmlPath"];
+        public static readonly decimal DiscountRatio = Convert.ToDecimal(ConfigurationManager.AppSettings["DiscountRatio"]);
+        public static readonly decimal KickbackRatio = Convert.ToDecimal(ConfigurationManager.AppSettings["KickbackRatio"]);
         #endregion
 
         #region API

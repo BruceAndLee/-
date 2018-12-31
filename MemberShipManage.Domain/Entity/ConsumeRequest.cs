@@ -8,7 +8,7 @@ namespace MemberShipManage.Domain.Entity
 {
     public class ConsumeRequest
     {
-        public string UserNo { get; set; }
+        public int? CustomerID { get; set; }
 
         private decimal amount;
         public decimal Amount
@@ -24,5 +24,9 @@ namespace MemberShipManage.Domain.Entity
         }
 
         public string Detail { get; set; }
+        public string InUser { get; set; }
+        public decimal DiscountRatio { get; set; }
+        public decimal KickbackRatio { get; set; }
+        public string UserID { get; set; }
     }
 }

@@ -9,6 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Webdiyer.WebControls.Mvc;
+using MemberShipManage.Infrastructure;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace MemberShipManage.Repository.CustomerManage
 {
@@ -61,26 +64,50 @@ namespace MemberShipManage.Repository.CustomerManage
             return 0;
         }
 
-        public IPagedList<Customer> GetCustomerList(CustomerListRequest request)
+        public IPagedList<CustomerEntity> GetCustomerList(CustomerListRequest request)
         {
-            IQueryable<Customer> query = this.dbSet;
-            if (!string.IsNullOrEmpty(request.UserNo))
+            var sqlScript = DBScriptManager.GetScript(this.GetType(), "GetCustomerList");
+
+            var paramTotal = new SqlParameter("@TotalCount", SqlDbType.Int);
+            paramTotal.Direction = ParameterDirection.Output;
+
+            var paramUserNo = new SqlParameter("@UserNo", SqlDbType.VarChar, 25);
+            paramUserNo.Value = request.UserNo ?? string.Empty;
+
+            var paramName = new SqlParameter("@Name", SqlDbType.NVarChar, 20);
+            paramName.Value = request.Name ?? string.Empty;
+
+            var paramSex = new SqlParameter("@Sex", SqlDbType.Int);
+            if (!request.Sex.HasValue)
             {
-                query = query.Where(q => q.UserNo.Contains(request.UserNo));
+                paramSex.Value = DBNull.Value;
+            }
+            else
+            {
+                paramSex.Value = request.Sex;
             }
 
-            if (!string.IsNullOrEmpty(request.Name))
-            {
-                query = query.Where(q => q.Name.Contains(request.Name));
-            }
+            var paramPageIndex = new SqlParameter("@PageIndex", SqlDbType.Int);
+            paramPageIndex.Value = request.PageIndex;
 
-            if (request.Sex.HasValue)
-            {
-                query = query.Where(q => q.Sex == request.Sex);
-            }
+            var paramPageSize = new SqlParameter("@PageSize", SqlDbType.Int);
+            paramPageSize.Value = request.PageSize;
 
-            query = query.OrderByDescending(q => q.InDate);
-            return new PagedList<Customer>(query, request.PageIndex, request.PageSize);
+            var query = unitOfWork.Context.Database.SqlQuery<CustomerEntity>(sqlScript
+                , new SqlParameter[]
+                {
+                    paramUserNo,
+                    paramName,
+                    paramSex,
+                    paramPageIndex,
+                    paramPageSize,
+                    paramTotal
+                });
+
+            return new PagedList<CustomerEntity>(query.ToList(),
+                request.PageIndex,
+                request.PageSize,
+                Convert.ToInt32(paramTotal.Value));
         }
     }
 }

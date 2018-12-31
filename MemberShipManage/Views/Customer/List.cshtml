@@ -10,6 +10,7 @@
         <th>姓名</th>
         <th>性别</th>
         <th>余额</th>
+        <th>推荐人</th>
         <th>注册日期</th>
         <th>操作</th>
     </tr>
@@ -20,10 +21,11 @@
             <tr>
                 <td style="width:180px">@customer.UserNo</td>
                 <td style="width:120px">@customer.Name</td>
-                <td style="width:150px">@(customer.Sex == 1 ? "男" : "女")</td>
-                <td style="width:150px">
-                    @(customer.CustomerAmount != null && customer.CustomerAmount.Count > 0 ? customer.CustomerAmount.First().Amount : 0)
+                <td style="width:80px">@(customer.Sex == 1 ? "男" : "女")</td>
+                <td style="width:150px;color:darkblue">
+                    @(customer.Amount)
                 </td>
+                <td style="width:80px">@(customer.ParentCustomerName?? "N/A")</td>
                 <td style="width:120px">
                     @customer.InDate.GetValueOrDefault(DateTime.Now).ToString("yyyy-MM-dd HH:mm")
                 </td>

@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RatioConfigCollection>
+  <RatioConfig name="DiscountRatio" value="0.98"></RatioConfig>
+  <RatioConfig name="KickbackRatio" value="0.05"></RatioConfig>
+</RatioConfigCollection>

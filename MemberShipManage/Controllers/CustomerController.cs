@@ -111,8 +111,7 @@ namespace MemberShipManage.Controllers
         public JsonResult CustomerList(CustomerListRequest request)
         {
             var customers = customerService.GetCustomerList(request).ToList();
-            var customerList = Mapper.Map<List<CustomerEntity>>(customers);
-            return Json(customerList, JsonRequestBehavior.AllowGet);
+            return Json(customers, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -124,31 +123,28 @@ namespace MemberShipManage.Controllers
         [HttpPost]
         public JsonResult CreateConsume(ConsumeRequest request)
         {
-            if (string.IsNullOrEmpty(request.UserNo))
+            if (!request.CustomerID.HasValue)
             {
-                return JsonResult(new APIBaseResponse(false, "CM_002"));
+                return JsonResult(new APIBaseResponse(false, "CM_005"));
             }
 
-            var customer = customerService.GetCustomer(request.UserNo);
+            var customer = customerService.GetCustomer(request.CustomerID.Value);
             if (customer == null)
             {
                 return JsonResult(new APIBaseResponse(false, "CM_002"));
             }
 
             var customerAmount = customer.CustomerAmount.FirstOrDefault();
-            if (customerAmount == null || customerAmount.Amount < request.Amount)
+            if (customerAmount == null || customerAmount.Amount < request.Amount * GlobalConfig.DiscountRatio)
             {
                 return JsonResult(new APIBaseResponse(false, "CM_004"));
             }
 
-            customerAmount.Amount = customerAmount.Amount - request.Amount;
-            customerAmountService.UpdateCustomerAmount(customerAmount);
-            consumeRecordService.CreateConsumeRecord(new ConsumeRecord
+            string errorMessage = consumeRecordService.CreateCustomeConsume(request);
+            if (!string.IsNullOrEmpty(errorMessage))
             {
-                CustomerID = customer.ID,
-                Amount = request.Amount,
-                Detail = request.Detail
-            });
+                return Json(new APIBaseResponse(false, null, errorMessage));
+            }
 
             return SuccessJsonResult();
         }

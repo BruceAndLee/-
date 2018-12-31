@@ -7,7 +7,7 @@ namespace PersonalSite.Repository
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class, new()
     {
-        private IUnitOfWork unitOfWork;
+        protected IUnitOfWork unitOfWork;
         protected DbSet<TEntity> dbSet;
 
         public BaseRepository(IUnitOfWork unitOfWork)
