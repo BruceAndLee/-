@@ -66,7 +66,7 @@ namespace MemberShipManage.Repository.Consume
             var paramKickbackRatio = new SqlParameter("@KickbackRatio", SqlDbType.Decimal);
             paramKickbackRatio.Value = request.KickbackRatio;
 
-            unitOfWork.Context.Database.ExecuteSqlCommand(sqlScript,
+            ExecuteSqlCommand(sqlScript,
                 new SqlParameter[]
                 {
                     paramCustomerID,

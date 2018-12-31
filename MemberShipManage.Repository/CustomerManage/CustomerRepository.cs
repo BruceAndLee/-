@@ -1,17 +1,14 @@
 ﻿using MemberShipManage.Domain;
 using MemberShipManage.Domain.Entity;
+using MemberShipManage.Infrastructure;
 using MemberShipManage.Infrastructure.UnitOfWork;
 using MemberShipManage.Utility;
 using PersonalSite.Repository;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Webdiyer.WebControls.Mvc;
-using MemberShipManage.Infrastructure;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using Webdiyer.WebControls.Mvc;
 
 namespace MemberShipManage.Repository.CustomerManage
 {
@@ -93,7 +90,7 @@ namespace MemberShipManage.Repository.CustomerManage
             var paramPageSize = new SqlParameter("@PageSize", SqlDbType.Int);
             paramPageSize.Value = request.PageSize;
 
-            var query = unitOfWork.Context.Database.SqlQuery<CustomerEntity>(sqlScript
+            var query = ExecuteSqlQuery<CustomerEntity>(sqlScript
                 , new SqlParameter[]
                 {
                     paramUserNo,
