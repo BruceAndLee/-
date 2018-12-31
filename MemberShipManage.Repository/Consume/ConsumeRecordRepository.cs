@@ -55,7 +55,7 @@ namespace MemberShipManage.Repository.Consume
             paramAmount.Value = request.Amount;
 
             var paramDetail = new SqlParameter("@Detail", SqlDbType.NVarChar, 1000);
-            paramDetail.Value = request.Detail;
+            paramDetail.Value = request.Detail ?? string.Empty;
 
             var paramUserID = new SqlParameter("@UserID", SqlDbType.VarChar, 25);
             paramUserID.Value = request.UserID;

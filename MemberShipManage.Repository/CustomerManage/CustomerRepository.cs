@@ -85,7 +85,7 @@ namespace MemberShipManage.Repository.CustomerManage
             }
 
             var paramPageIndex = new SqlParameter("@PageIndex", SqlDbType.Int);
-            paramPageIndex.Value = request.PageIndex;
+            paramPageIndex.Value = request.PageIndex - 1;
 
             var paramPageSize = new SqlParameter("@PageSize", SqlDbType.Int);
             paramPageSize.Value = request.PageSize;

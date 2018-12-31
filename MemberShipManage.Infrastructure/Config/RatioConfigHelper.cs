@@ -27,7 +27,7 @@ namespace MemberShipManage.Infrastructure.Config
             }
         }
 
-        public static RatioConfig GetFTPConfig(string name)
+        public static RatioConfig GetRatioConfig(string name)
         {
             var _RatioConfigCollection = GetRatioConfigCollection();
             if (_RatioConfigCollection != null

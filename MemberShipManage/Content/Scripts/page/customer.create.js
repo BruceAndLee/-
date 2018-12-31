@@ -86,6 +86,9 @@
                 alert("注册成功！");
                 clearform();
             }
+            else {
+                alert(result.Msg);
+            }
         });
     });
 
@@ -111,7 +114,7 @@
         },
         change: function (event, ui) {
             if (!ui.item) {
-                $('#parentID').val('');
+                $('#parentID').val(null);
                 $('#parentCustomer').val('');
             }
         }
@@ -123,5 +126,7 @@
         $('#userRePwd').val('');
         $('#userSex').val('');
         $('#name').val('');
+        $('#parentID').val(null);
+        $('#parentCustomer').val('');
     }
 });

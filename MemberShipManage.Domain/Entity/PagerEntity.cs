@@ -13,7 +13,7 @@ namespace MemberShipManage.Domain.Entity
         {
             get
             {
-                return pageIndex + 1;
+                return pageIndex == 0 ? pageIndex + 1 : pageIndex;
             }
             set
             {

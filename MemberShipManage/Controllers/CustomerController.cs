@@ -3,6 +3,7 @@ using MemberShipManage.Domain;
 using MemberShipManage.Domain.Entity;
 using MemberShipManage.Infrastructure;
 using MemberShipManage.Infrastructure.Base;
+using MemberShipManage.Infrastructure.Config;
 using MemberShipManage.Infrastructure.Filter;
 using MemberShipManage.Infrastructure.RestAPI;
 using MemberShipManage.Models;
@@ -107,7 +108,6 @@ namespace MemberShipManage.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpGet]
-        [OutputCache(Duration = 10)]
         public JsonResult CustomerList(CustomerListRequest request)
         {
             var customers = customerService.GetCustomerList(request).ToList();
@@ -134,12 +134,16 @@ namespace MemberShipManage.Controllers
                 return JsonResult(new APIBaseResponse(false, "CM_002"));
             }
 
+            request.DiscountRatio = RatioConfigHelper.GetRatioConfig("DiscountRatio").value;
+            request.KickbackRatio = RatioConfigHelper.GetRatioConfig("KickbackRatio").value;
+
             var customerAmount = customer.CustomerAmount.FirstOrDefault();
-            if (customerAmount == null || customerAmount.Amount < request.Amount * GlobalConfig.DiscountRatio)
+            if (customerAmount == null || customerAmount.Amount < request.Amount * request.DiscountRatio)
             {
                 return JsonResult(new APIBaseResponse(false, "CM_004"));
             }
 
+           
             string errorMessage = consumeRecordService.CreateCustomeConsume(request);
             if (!string.IsNullOrEmpty(errorMessage))
             {
