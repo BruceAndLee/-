@@ -161,9 +161,10 @@
     <Content Include="Content\Bootstrap\validator\js\language\zh_TW.js" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\account.png" />
+    <Content Include="Content\Images\bg.jpg" />
     <Content Include="Content\Images\bg.png" />
     <Content Include="Content\Images\headback.jpg" />
-    <Content Include="Content\Images\house.png" />
+    <Content Include="Content\Images\hous.png" />
     <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\Images\member.png" />
     <Content Include="Content\Images\menu\cash.png" />
@@ -171,11 +172,11 @@
     <Content Include="Content\Images\menu\members.png" />
     <Content Include="Content\Images\menu\member.png" />
     <Content Include="Content\Images\menu\money.png" />
+    <Content Include="Content\Images\middle.png" />
     <Content Include="Content\Images\pwd.jpg" />
     <Content Include="Content\Images\title.png" />
     <Content Include="Content\Images\users.png" />
     <Content Include="Content\Images\validate.png" />
-    <Content Include="Content\Images\middle.png" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Scripts\autocomplete\jquery-ui.min.css" />
     <Content Include="Content\Scripts\autocomplete\jquery-ui.min.js" />
@@ -186,6 +187,7 @@
     <Content Include="Content\Scripts\page\login.js" />
     <Content Include="Content\Scripts\page\user.password.js" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Images\timg.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Scripts\bootstrap.js" />

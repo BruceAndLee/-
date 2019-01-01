@@ -7,7 +7,7 @@ DECLARE @ParentLevel INT
 DECLARE @ParentCustomerID INT
 DECLARE @Level INT = 50
 
-SET @Amount = @Amount * @DiscountRatio
+SET @Amount = ROUND(@Amount * @DiscountRatio,0)
 SELECT TOP(1)
 	@TempAmount = ISNULL(Amount,0.0)
 FROM MembershipManage.dbo.CustomerAmount A WITH(NOLOCK)
@@ -71,7 +71,7 @@ WHERE ID = @CustomerID AND Level <= @Level
 IF @ParentLevel > 0
 BEGIN
 	UPDATE TOP(1) MembershipManage.dbo.CustomerAmount
-	SET Amount = Amount + @Amount * (@KickbackRatio / POWER(2,@ParentLevel - 1)),
+	SET Amount = Amount + ROUND(@Amount * (@KickbackRatio / POWER(2,@ParentLevel - 1)),0),
 		LastEditUser = @UserID,
 		LastEditDate = GETDATE()
 	WHERE CustomerID = @ParentCustomerID	
