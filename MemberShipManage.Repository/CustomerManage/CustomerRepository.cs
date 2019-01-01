@@ -1,17 +1,14 @@
 ﻿using MemberShipManage.Domain;
 using MemberShipManage.Domain.Entity;
+using MemberShipManage.Infrastructure;
 using MemberShipManage.Infrastructure.UnitOfWork;
 using MemberShipManage.Utility;
 using PersonalSite.Repository;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Webdiyer.WebControls.Mvc;
-using MemberShipManage.Infrastructure;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using Webdiyer.WebControls.Mvc;
 
 namespace MemberShipManage.Repository.CustomerManage
 {
@@ -23,22 +20,22 @@ namespace MemberShipManage.Repository.CustomerManage
 
         }
 
-        public bool CheckCustomerExists(string userNo, string password)
+        public Customer GetCustomerInfo(string userNo, string password)
         {
-            var user = GetCustomer(userNo);
+            var customer = GetCustomer(userNo);
 
-            if (user == null)
+            if (customer == null)
             {
-                return false;
+                return null;
             }
 
-            var passwordDb = Cryptor.Decrypt(user.Password);
+            var passwordDb = Cryptor.Decrypt(customer.Password);
             if (password != passwordDb)
             {
-                return false;
+                return null;
             }
 
-            return true;
+            return customer;
         }
 
         public Customer GetCustomer(string userNo)
@@ -88,12 +85,12 @@ namespace MemberShipManage.Repository.CustomerManage
             }
 
             var paramPageIndex = new SqlParameter("@PageIndex", SqlDbType.Int);
-            paramPageIndex.Value = request.PageIndex;
+            paramPageIndex.Value = request.PageIndex - 1;
 
             var paramPageSize = new SqlParameter("@PageSize", SqlDbType.Int);
             paramPageSize.Value = request.PageSize;
 
-            var query = unitOfWork.Context.Database.SqlQuery<CustomerEntity>(sqlScript
+            var query = ExecuteSqlQuery<CustomerEntity>(sqlScript
                 , new SqlParameter[]
                 {
                     paramUserNo,

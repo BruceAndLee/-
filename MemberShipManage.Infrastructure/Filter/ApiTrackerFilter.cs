@@ -13,6 +13,7 @@ namespace MemberShipManage.Infrastructure.Filter
         private readonly string INDATE = "InDate";
         private readonly string LASTEDITDATE = "LastEditDate";
         private readonly string INUSER = "InUser";
+        private readonly string UserID = "UserID";
         private readonly string LASTEDITUSER = "LastEditUser";
         public override void OnActionExecuting(ActionExecutingContext actionContext)
         {
@@ -31,6 +32,7 @@ namespace MemberShipManage.Infrastructure.Filter
                 var currentUser = (actionContext.HttpContext.Session["User"] as Users);
                 if (currentUser != null)
                 {
+                    actionValue.SetObjectValue(UserID, currentUser.UserNo);
                     actionValue.SetObjectValue(INUSER, currentUser.UserNo);
                     actionValue.SetObjectValue(LASTEDITUSER, currentUser.UserNo);
                 }

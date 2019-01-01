@@ -1,9 +1,12 @@
-﻿using MemberShipManage.Domain;
+﻿using AutoMapper;
+using MemberShipManage.Domain;
 using MemberShipManage.Domain.Entity;
 using MemberShipManage.Service.Consume;
 using MemberShipManage.Service.CustomerManage;
 using System.Web.Http;
 using Webdiyer.WebControls.Mvc;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace MemberShipManage.WebAPI.Controllers
 {
@@ -30,22 +33,20 @@ namespace MemberShipManage.WebAPI.Controllers
         /// <param name="password"></param>
         /// <returns></returns>
         [Authorize]
-        [HttpGet]
-        public bool CheckCustomerExists(string userNo, string password)
+        [HttpGet()]
+        [Route]
+        public CustomerEntity GetCustomer(string userNo, string password)
         {
-            return customerService.CheckCustomerExists(userNo, password);
-        }
+            var customer = customerService.GetCustomerInfo(userNo, password);
+            if (customer == null)
+            {
+                return null;
+            }
 
-        /// <summary>
-        /// Get customer info
-        /// </summary>
-        /// <param name="userNo"></param>
-        /// <returns></returns>
-        [Authorize]
-        [HttpGet]
-        public Customer GetCustomer(string userNo)
-        {
-            return customerService.GetCustomer(userNo);
+            var amount = customer.CustomerAmount != null && customer.CustomerAmount.Count > 0 ? customer.CustomerAmount.First().Amount : 0;
+            var customerEntity = Mapper.Map<CustomerEntity>(customer);
+            customerEntity.Amount = amount;
+            return customerEntity;
         }
 
         /// <summary>
@@ -69,9 +70,12 @@ namespace MemberShipManage.WebAPI.Controllers
         [Authorize]
         [HttpGet]
         [Route("consume")]
-        public IPagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request)
+        public IPagedList<ConsumeRecordEntity> GetConsumeRecordList([FromUri]ConsumeRecordListRequest request)
         {
-            return consumeRecordService.GetConsumeRecordList(request);
+            var consumeRecords = consumeRecordService.GetConsumeRecordList(request);
+            var consumeRecordList = consumeRecords.ToList();
+            var convertConsumeRecordList = Mapper.Map<List<ConsumeRecordEntity>>(consumeRecordList);
+            return new PagedList<ConsumeRecordEntity>(convertConsumeRecordList, request.PageIndex, request.PageSize, consumeRecords.TotalItemCount);
         }
     }
 }

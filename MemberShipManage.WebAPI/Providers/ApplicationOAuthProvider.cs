@@ -22,9 +22,9 @@ namespace MemberShipManage.WebAPI.Providers
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             ICustomerService service = Singleton<IAppStartManager>.Instance.ContainerManager.Resolve<ICustomerService>();
-            var isUserExists = service.CheckCustomerExists(context.UserName, context.Password);
+            var customer = service.GetCustomerInfo(context.UserName, context.Password);
 
-            if (!isUserExists)
+            if (customer == null)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;

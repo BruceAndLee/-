@@ -55,7 +55,7 @@ namespace MemberShipManage.Repository.Consume
             paramAmount.Value = request.Amount;
 
             var paramDetail = new SqlParameter("@Detail", SqlDbType.NVarChar, 1000);
-            paramDetail.Value = request.Detail;
+            paramDetail.Value = request.Detail ?? string.Empty;
 
             var paramUserID = new SqlParameter("@UserID", SqlDbType.VarChar, 25);
             paramUserID.Value = request.UserID;
@@ -66,7 +66,7 @@ namespace MemberShipManage.Repository.Consume
             var paramKickbackRatio = new SqlParameter("@KickbackRatio", SqlDbType.Decimal);
             paramKickbackRatio.Value = request.KickbackRatio;
 
-            unitOfWork.Context.Database.ExecuteSqlCommand(sqlScript,
+            ExecuteSqlCommand(sqlScript,
                 new SqlParameter[]
                 {
                     paramCustomerID,

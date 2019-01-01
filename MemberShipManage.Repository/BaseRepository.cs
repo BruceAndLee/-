@@ -2,12 +2,16 @@
 using System.Data.Entity;
 using MemberShipManage.Infrastructure.Extension;
 using System;
+using System.Linq;
+using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 
 namespace PersonalSite.Repository
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class, new()
     {
-        protected IUnitOfWork unitOfWork;
+        private IUnitOfWork unitOfWork;
         protected DbSet<TEntity> dbSet;
 
         public BaseRepository(IUnitOfWork unitOfWork)
@@ -36,6 +40,17 @@ namespace PersonalSite.Repository
                 dbSet.Attach(entity);
             }
             dbSet.Remove(entity);
+        }
+
+        public List<T> ExecuteSqlQuery<T>(string sqlScript, SqlParameter[] sqlParams)
+        {
+            DbRawSqlQuery<T> result = unitOfWork.Context.Database.SqlQuery<T>(sqlScript, sqlParams);
+            return result != null ? result.ToList() : null;
+        }
+
+        public int ExecuteSqlCommand(string sqlScript, SqlParameter[] sqlParams)
+        {
+            return unitOfWork.Context.Database.ExecuteSqlCommand(sqlScript, sqlParams);
         }
     }
 }

@@ -28,12 +28,6 @@ namespace MemberShipManage.Service.Consume
             return consumeRecordRepository.GetConsumeRecordList(request);
         }
 
-        //public void CreateConsumeRecord(ConsumeRecord consumeRecord) 
-        //{
-        //    consumeRecordRepository.Insert(consumeRecord);
-        //    unitOfWork.Commit();
-        //}
-
         public string CreateCustomeConsume(ConsumeRequest request)
         {
             return consumeRecordRepository.CreateCustomeConsume(request);

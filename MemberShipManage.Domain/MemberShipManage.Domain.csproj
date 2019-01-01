@@ -60,6 +60,7 @@
     <Compile Include="CustomerAmount.cs">
       <DependentUpon>MembershipManage.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\ConsumeRecordEntity.cs" />
     <Compile Include="Entity\ConsumeRecordListRequest.cs" />
     <Compile Include="Entity\ConsumeRequest.cs" />
     <Compile Include="Entity\CustomerEntity.cs" />
@@ -107,6 +108,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DbScript\ConsumeRecordRepository.xml" />
     <Content Include="DbScript\CustomerRepository.xml" />
     <Content Include="MembershipManage.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

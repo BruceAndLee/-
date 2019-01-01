@@ -12,7 +12,7 @@ namespace MemberShipManage.Repository.CustomerManage
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
-        bool CheckCustomerExists(string userNo, string password);
+        Customer GetCustomerInfo(string userNo, string password);
         Customer GetCustomer(string userNo);
         Customer GetCustomer(int customerID);
         decimal GetCustomerBalance(string userNo);

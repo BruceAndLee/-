@@ -12,7 +12,7 @@ namespace MemberShipManage.Service.CustomerManage
 {
     public interface ICustomerService
     {
-        bool CheckCustomerExists(string userNo, string password);
+        Customer GetCustomerInfo(string userNo, string password);
         Customer GetCustomer(string userNo);
         Customer GetCustomer(int customerID);
         decimal GetCustomerBalance(string userNo);
