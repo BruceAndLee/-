@@ -24,7 +24,7 @@ namespace MemberShipManage.WebAPI.Providers
             ICustomerService service = Singleton<IAppStartManager>.Instance.ContainerManager.Resolve<ICustomerService>();
             var customer = service.GetCustomerInfo(context.UserName, context.Password);
 
-            if (customer != null)
+            if (customer == null)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
