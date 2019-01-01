@@ -25,9 +25,9 @@ namespace MemberShipManage.Service.CustomerManage
 
         #region Customer
 
-        public bool CheckCustomerExists(string userNo, string password)
+        public Customer GetCustomerInfo(string userNo, string password)
         {
-            return customerRepository.CheckCustomerExists(userNo, password);
+            return customerRepository.GetCustomerInfo(userNo, password);
         }
 
         public Customer GetCustomer(string userNo)

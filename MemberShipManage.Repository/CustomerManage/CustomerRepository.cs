@@ -20,22 +20,22 @@ namespace MemberShipManage.Repository.CustomerManage
 
         }
 
-        public bool CheckCustomerExists(string userNo, string password)
+        public Customer GetCustomerInfo(string userNo, string password)
         {
-            var user = GetCustomer(userNo);
+            var customer = GetCustomer(userNo);
 
-            if (user == null)
+            if (customer == null)
             {
-                return false;
+                return null;
             }
 
-            var passwordDb = Cryptor.Decrypt(user.Password);
+            var passwordDb = Cryptor.Decrypt(customer.Password);
             if (password != passwordDb)
             {
-                return false;
+                return null;
             }
 
-            return true;
+            return customer;
         }
 
         public Customer GetCustomer(string userNo)

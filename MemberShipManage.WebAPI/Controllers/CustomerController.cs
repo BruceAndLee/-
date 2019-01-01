@@ -34,24 +34,19 @@ namespace MemberShipManage.WebAPI.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpGet()]
-        [Route("exist")]
-        public bool CheckCustomerExists(string userNo, string password)
+        [Route]
+        public CustomerEntity GetCustomer(string userNo, string password)
         {
-            return customerService.CheckCustomerExists(userNo, password);
-        }
+            var customer = customerService.GetCustomerInfo(userNo, password);
+            if (customer == null)
+            {
+                return null;
+            }
 
-        /// <summary>
-        /// Get customer info
-        /// </summary>
-        /// <param name="userNo"></param>
-        /// <returns></returns>
-        //[Authorize]
-        [HttpGet]
-        [Route("{userno}")]
-        public CustomerEntity GetCustomer(string userNo)
-        {
-            var customer = customerService.GetCustomer(userNo);
-            return customer != null ? Mapper.Map<CustomerEntity>(customer) : null;
+            var amount = customer.CustomerAmount != null && customer.CustomerAmount.Count > 0 ? customer.CustomerAmount.First().Amount : 0;
+            var customerEntity = Mapper.Map<CustomerEntity>(customer);
+            customerEntity.Amount = amount;
+            return customerEntity;
         }
 
         /// <summary>
@@ -59,7 +54,7 @@ namespace MemberShipManage.WebAPI.Controllers
         /// </summary>
         /// <param name="userNo"></param>
         /// <returns></returns>
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("balance")]
         public decimal GetCustomerBalance(string userNo)
@@ -72,7 +67,7 @@ namespace MemberShipManage.WebAPI.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("consume")]
         public IPagedList<ConsumeRecordEntity> GetConsumeRecordList([FromUri]ConsumeRecordListRequest request)
