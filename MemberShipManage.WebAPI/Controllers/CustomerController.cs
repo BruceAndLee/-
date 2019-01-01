@@ -1,9 +1,12 @@
-﻿using MemberShipManage.Domain;
+﻿using AutoMapper;
+using MemberShipManage.Domain;
 using MemberShipManage.Domain.Entity;
 using MemberShipManage.Service.Consume;
 using MemberShipManage.Service.CustomerManage;
 using System.Web.Http;
 using Webdiyer.WebControls.Mvc;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace MemberShipManage.WebAPI.Controllers
 {
@@ -42,12 +45,13 @@ namespace MemberShipManage.WebAPI.Controllers
         /// </summary>
         /// <param name="userNo"></param>
         /// <returns></returns>
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         [Route("{userno}")]
-        public Customer GetCustomer(string userNo)
+        public CustomerEntity GetCustomer(string userNo)
         {
-            return customerService.GetCustomer(userNo);
+            var customer = customerService.GetCustomer(userNo);
+            return customer != null ? Mapper.Map<CustomerEntity>(customer) : null;
         }
 
         /// <summary>
@@ -55,7 +59,7 @@ namespace MemberShipManage.WebAPI.Controllers
         /// </summary>
         /// <param name="userNo"></param>
         /// <returns></returns>
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         [Route("balance")]
         public decimal GetCustomerBalance(string userNo)
@@ -68,12 +72,15 @@ namespace MemberShipManage.WebAPI.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         [Route("consume")]
-        public IPagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request)
+        public IPagedList<ConsumeRecordEntity> GetConsumeRecordList([FromUri]ConsumeRecordListRequest request)
         {
-            return consumeRecordService.GetConsumeRecordList(request);
+            var consumeRecords = consumeRecordService.GetConsumeRecordList(request);
+            var consumeRecordList = consumeRecords.ToList();
+            var convertConsumeRecordList = Mapper.Map<List<ConsumeRecordEntity>>(consumeRecordList);
+            return new PagedList<ConsumeRecordEntity>(convertConsumeRecordList, request.PageIndex, request.PageSize, consumeRecords.TotalItemCount);
         }
     }
 }
