@@ -4,17 +4,17 @@
         var password = $('#password').val();
         var validateCode = $('#validatecode').val();
         if (!userNo || !userNo.trim()) {
-            alert('用户名不能为空！');
+            messager.showInfo('用户名不能为空！');
             return;
         }
 
         if (!password || !userNo.trim()) {
-            alert('密码不能为空！');
+            messager.showInfo('密码不能为空！');
             return;
         }
 
         if (!validateCode || !validateCode.trim()) {
-            alert('验证码不能为空！');
+            messager.showInfo('验证码不能为空！');
             return;
         }
 
@@ -29,7 +29,7 @@
                     window.location.href = "/Home/Index";
                 }
                 else {
-                    alert(data.Msg);
+                    messager.showError(data.Msg);
                     refreshValidateCode();
                 }
             },
