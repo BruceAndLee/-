@@ -43,6 +43,7 @@
         }
     }).on('success.form.bv', function (e) {//点击提交之后
         e.preventDefault();
+        var $form = $(e.target);
         $.ajax({
             url: $form.attr('action'),
             type: 'put',
@@ -52,11 +53,11 @@
             },
             success: function (result) {
                 if (result.IsSuc) {
-                    alert("修改成功，请重新登录！");
+                    messager.showSuccess("修改成功，请重新登录！");
                     window.location.href = 'Home/Login';
                 }
                 else {
-                    alert(data.Msg);
+                    messager.showError(result.Msg);
                 }
             }
         });

@@ -83,11 +83,11 @@
         var $form = $(e.target);
         $.post($form.attr('action'), $form.serialize(), function (result) {
             if (result.IsSuc) {
-                alert("注册成功！");
+                messager.showSuccess("注册成功！");
                 clearform();
             }
             else {
-                alert(result.Msg);
+                messager.showError(result.Msg);
             }
         });
     });

@@ -2,18 +2,18 @@
     $('#btnBalance').click(function () {
         if (!$('#hfdCustomerId').val()
             || !$('#customerId').val()) {
-            alert('请选择用户名！');
+            messager.showInfo('请选择用户名！');
             return;
         }
 
         if (!$('#balanceAmount').val()) {
-            alert('消费金额不能为空！');
+            messager.showInfo('消费金额不能为空！');
             return;
         }
 
         var amount = parseFloat($('#balanceAmount').val()).toFixed(2);
         if (amount <= 0) {
-            alert('消费金额必须大于0！');
+            messager.showInfo('消费金额必须大于0！');
             return;
         }
 
@@ -24,15 +24,15 @@
         }, function (data) {
             if (data) {
                 if (data.IsSuc) {
-                    alert('结算成功，消费金额：' + amount + '元');
+                    messager.showSuccess('结算成功，消费金额：' + amount + '元');
                     clearForm();
                 }
                 else {
-                    alert(data.Msg);
+                    messager.showError(data.Msg);
                 }
             }
             else {
-                alert('结算失败，请检查网络！');
+                messager.showInfo('结算失败，请检查网络！');
             }
         });
     });

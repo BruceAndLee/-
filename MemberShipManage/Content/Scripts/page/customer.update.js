@@ -58,11 +58,11 @@
                 data: $form.serialize(),
                 success: function (result) {
                     if (result.IsSuc) {
-                        alert("修改成功！");
+                        messager.showSuccess("修改成功！");
                         $('#updateModal').modal('hide');
                     }
                     else {
-                        alert(data.Msg);
+                        messager.showError(data.Msg);
                     }
                 }
             });
