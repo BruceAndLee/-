@@ -54,7 +54,7 @@
             success: function (result) {
                 if (result.IsSuc) {
                     messager.showSuccess("修改成功，请重新登录！");
-                    window.location.href = 'Home/Login';
+                    window.location.href = '/Home/Login';
                 }
                 else {
                     messager.showError(result.Msg);

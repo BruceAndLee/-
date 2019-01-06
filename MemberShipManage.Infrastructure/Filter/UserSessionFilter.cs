@@ -43,7 +43,8 @@ namespace MemberShipManage.Infrastructure.Filter
                     && !actionName.Equals("Home") 
                     && !(actionName.Equals("Login")) 
                     && !actionName.Equals("LoginIn") 
-                    && !actionName.Equals("LoginOut"))
+                    && !actionName.Equals("LoginOut")
+                    && !actionName.Equals("UpdatePassword"))
                 {
                     object sessionUser = filterContext.HttpContext.Session["User"];
                     if (sessionUser == null)
