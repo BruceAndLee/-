@@ -16,7 +16,7 @@ namespace MemberShipManage.WebAPI.Providers
             string tokenValue = Guid.NewGuid().ToString("n");
 
             context.Ticket.Properties.IssuedUtc = DateTime.UtcNow;
-            context.Ticket.Properties.ExpiresUtc = DateTime.UtcNow.AddDays(60);
+            context.Ticket.Properties.ExpiresUtc = DateTime.UtcNow.AddDays(365);
 
             _refreshTokens[tokenValue] = context.SerializeTicket();
 

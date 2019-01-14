@@ -7,6 +7,7 @@ using System.Web.Http;
 using Webdiyer.WebControls.Mvc;
 using System.Linq;
 using System.Collections.Generic;
+using MemberShipManage.Service.Recharge;
 
 namespace MemberShipManage.WebAPI.Controllers
 {
@@ -18,12 +19,15 @@ namespace MemberShipManage.WebAPI.Controllers
     {
         ICustomerService customerService;
         IConsumeRecordService consumeRecordService;
+        IRechargeRecordService rechargeRecordService;
         public CustomerController(
             ICustomerService customerService
-            , IConsumeRecordService consumeRecordService)
+            , IConsumeRecordService consumeRecordService
+            , IRechargeRecordService rechargeRecordService)
         {
             this.customerService = customerService;
             this.consumeRecordService = consumeRecordService;
+            this.rechargeRecordService = rechargeRecordService;
         }
 
         /// <summary>
@@ -76,6 +80,22 @@ namespace MemberShipManage.WebAPI.Controllers
             var consumeRecordList = consumeRecords.ToList();
             var convertConsumeRecordList = Mapper.Map<List<ConsumeRecordEntity>>(consumeRecordList);
             return new PagedList<ConsumeRecordEntity>(convertConsumeRecordList, request.PageIndex, request.PageSize, consumeRecords.TotalItemCount);
+        }
+
+        /// <summary>
+        /// Get Customer recharge record
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+  
+        [HttpGet]
+        [Route("recharge")]
+        public IPagedList<RechargeRecordEntity> GetRechargeRecordList([FromUri]RechargeListRequest request)
+        {
+            var rechargeRecords = rechargeRecordService.GetRechargeRecordList(request);
+            var rechargeRecordList = rechargeRecords.ToList();
+            var convertRechargeRecordList = Mapper.Map<List<RechargeRecordEntity>>(rechargeRecordList);
+            return new PagedList<RechargeRecordEntity>(convertRechargeRecordList, request.PageIndex, request.PageSize, rechargeRecords.TotalItemCount);
         }
     }
 }
