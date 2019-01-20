@@ -12,15 +12,13 @@ namespace MemberShipManage.Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class CustomerAmount
+    public partial class CustomerRebate
     {
         public int ID { get; set; }
         public int CustomerID { get; set; }
         public decimal Amount { get; set; }
         public Nullable<System.DateTime> InDate { get; set; }
-        public Nullable<System.DateTime> LastEditDate { get; set; }
         public string InUser { get; set; }
-        public string LastEditUser { get; set; }
     
         public virtual Customer Customer { get; set; }
     }

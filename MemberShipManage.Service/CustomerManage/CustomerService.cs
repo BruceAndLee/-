@@ -101,6 +101,15 @@ namespace MemberShipManage.Service.CustomerManage
             return customerRepository.GetCustomerList(request);
         }
 
+        public void DeleteCustomer(int customerId)
+        {
+            var customer = customerRepository.GetCustomer(customerId);
+            if (customer != null)
+            {
+                customerRepository.Delete(customer);
+            }
+        }
+
         #endregion
     }
 }

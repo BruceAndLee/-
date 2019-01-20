@@ -25,13 +25,14 @@
                 <td style="width:150px;color:darkblue">
                     @(customer.Amount)
                 </td>
-                <td style="width:80px">@(customer.ParentCustomerName?? "N/A")</td>
+                <td style="width:80px">@(customer.ParentCustomerName ?? "N/A")</td>
                 <td style="width:120px">
                     @customer.InDate.GetValueOrDefault(DateTime.Now).ToString("yyyy-MM-dd HH:mm")
                 </td>
-                <td style="width:150px">
+                <td style="width:200px">
                     <button type="button" class="btn btn-success" onclick="showUpdateModal(@customer.ID,'@customer.UserNo','@customer.Name')">充值</button>&nbsp;
-                    <button type="button" class="btn btn-primary">编辑</button>
+                    <button type="button" class="btn btn-primary">编辑</button>&nbsp;
+                    <button type="button" class="btn btn-danger" onclick="deleteCustomer(@customer.ID)">删除</button>
                 </td>
             </tr>
         }

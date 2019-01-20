@@ -91,4 +91,17 @@
         $('#hfdCustomerId').val(customerId);
         $('#rechargeModal').modal('show');
     }
+
+    function deleteCustomer(customerId) {
+        if (confirm('您确定要删除吗？')) {
+            $.ajax({
+                url: '@Url.Action("DeleteCustomer", "Customer")',
+                type: 'delete',
+                success: function (data) {
+                    alert('删除成功！');
+                    $('#search').click();
+                }
+            });
+        }
+    }
 </script>

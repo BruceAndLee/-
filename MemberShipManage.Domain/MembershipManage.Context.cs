@@ -31,5 +31,6 @@ namespace MemberShipManage.Domain
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<CustomerAmount> CustomerAmount { get; set; }
         public virtual DbSet<RechargeRecord> RechargeRecord { get; set; }
+        public virtual DbSet<CustomerRebate> CustomerRebate { get; set; }
     }
 }

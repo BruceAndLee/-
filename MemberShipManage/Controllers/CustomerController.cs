@@ -143,13 +143,20 @@ namespace MemberShipManage.Controllers
                 return JsonResult(new APIBaseResponse(false, "CM_004"));
             }
 
-           
+
             string errorMessage = consumeRecordService.CreateCustomeConsume(request);
             if (!string.IsNullOrEmpty(errorMessage))
             {
                 return Json(new APIBaseResponse(false, null, errorMessage));
             }
 
+            return SuccessJsonResult();
+        }
+
+        [HttpDelete]
+        public JsonResult DeleteCustomer(int customerID)
+        {
+            customerService.DeleteCustomer(customerID);
             return SuccessJsonResult();
         }
     }
