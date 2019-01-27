@@ -10,5 +10,6 @@ namespace MemberShipManage.Domain.Entity
     {
         public string ConfigKey { get; set; }
         public string ConfigValue { get; set; }
+        public string Display { get; set; }
     }
 }

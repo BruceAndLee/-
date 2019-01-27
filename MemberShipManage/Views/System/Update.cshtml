@@ -1,0 +1,46 @@
+﻿<form id="systemupdate" action="@Url.Action("Update","System")" method="put" autocomplete="off">
+    <div class="modal fade" id="systemUpdateModal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:450px;">
+            <div class="modal-content" style="width:450px">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <img src="~/Content/images/account.png" style="width:30px" />&nbsp;系统配置修改
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group" style="height:35px">
+                            <div class="col-md-3"><span class="text-danger">*</span>配置名称：</div>
+                            <div class="col-md-9">
+                                <input id="display" name="display" type="text" class="form-control" maxlength="25" />
+                            </div>
+                        </div>
+                        <div class="form-group" style="height:35px">
+                            <div class="col-md-3"><span class="text-danger">*</span>代码：</div>
+                            <div class="col-md-9">
+                                <input id="configkey" name="configkey" type="text" class="form-control" maxlength="25" />
+                            </div>
+                        </div>
+                        <div class="form-group" style="height:35px">
+                            <div class="col-md-3"><span class="text-danger">*</span>值：</div>
+                            <div class="col-md-9">
+                                <input id="configvalue" name="configvalue" type="text" class="form-control" maxlength="50" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-default" data-dismiss="modal">
+                            关闭
+                        </button>*@
+                    <button type="submit" class="btn btn-primary">
+                        保存
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</form>

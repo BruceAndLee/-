@@ -29,6 +29,7 @@ namespace MemberShipManage.Service.System
             if (systemConfig != null)
             {
                 systemConfig.ConfigValue = request.ConfigValue;
+                systemConfig.Display = request.Display;
                 systemRepository.Update(systemConfig);
                 unitOfWork.Commit();
             }

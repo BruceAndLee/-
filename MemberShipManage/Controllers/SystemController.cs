@@ -28,7 +28,7 @@ namespace MemberShipManage.Controllers
         }
 
         [HttpPut]
-        public JsonResult UpdateSystemConfig(SystemConfigRequest request)
+        public JsonResult Update(SystemConfigRequest request)
         {
             systemService.UpdateSystemConfig(request);
             return SuccessJsonResult();

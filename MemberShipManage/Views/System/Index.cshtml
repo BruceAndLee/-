@@ -28,7 +28,10 @@
                             <td style="width:120px">@systemConfig.ConfigKey</td>
                             <td style="width:80px">@systemConfig.ConfigValue</td>
                             <td style="width:80px">
-                                <button type="button" class="btn btn-primary" onclick="showSystemConfigModal()">编辑</button>&nbsp;
+                                <button type="button" class="btn btn-primary"
+                                        onclick="showSystemConfigModal('@systemConfig.ConfigKey','@systemConfig.ConfigValue','@systemConfig.Display')">
+                                    编辑
+                                </button>&nbsp;
                             </td>
                         </tr>
                     }
@@ -37,3 +40,98 @@
         </div>
     </div>
 </div>
+@Html.Partial("~/Views/System/Update.cshtml")
+<link rel="stylesheet" href="~/Content/bootStrap/validator/css/bootstrapValidator.min.css" />
+<script type="text/javascript" src="~/Content/bootStrap/validator/js/bootstrapValidator.min.js"></script>
+<script type="text/javascript">
+    function showSystemConfigModal(configKey, configValue, display) {
+        $('#display').val(display);
+        $('#configkey').val(configKey);
+        $('#configvalue').val(configValue);
+        $('#systemUpdateModal').modal('show');
+    }
+
+    $(function () {
+        registerValidator();
+        $('#systemUpdateModal').on('hide.bs.modal',
+            function () {
+                $("#systemupdate").data('bootstrapValidator').destroy();
+                $('#systemupdate').data('bootstrapValidator', null);
+                registerValidator();
+
+                clearform();
+            });
+
+        function registerValidator() {
+            $('#systemupdate').bootstrapValidator({
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    display: {
+                        validators: {
+                            notEmpty: {
+                                message: '配置名称不能为空'
+                            },
+                            stringLength: {
+                                min: 1,
+                                max: 25,
+                                message: '配置名称必须在1到25之间'
+                            }
+                        }
+                    },
+                    configkey: {
+                        validators: {
+                            notEmpty: {
+                                message: '代码不能为空'
+                            },
+                            stringLength: {
+                                min: 1,
+                                max: 50,
+                                message: '代码长度必须在1到25之间'
+                            }
+                        }
+                    },
+                    configvalue: {
+                        validators: {
+                            notEmpty: {
+                                message: '值不能为空'
+                            },
+                            stringLength: {
+                                min: 1,
+                                max: 50,
+                                message: '值长度必须在1到50之间'
+                            }
+                        }
+                    }
+                }
+            }).on('success.form.bv', function (e) {//点击提交之后
+                e.preventDefault();
+                var $form = $(e.target);
+                $.ajax({
+                    url: $form.attr('action'),
+                    type: 'put',
+                    data: $form.serialize(),
+                    success: function (result) {
+                        if (result.IsSuc) {
+                            messager.showSuccess("修改成功！");
+                            $('#systemUpdateModal').modal('hide');
+                        }
+                        else {
+                            messager.showError(data.Msg);
+                        }
+                    }
+                });
+            });
+        }
+
+        function clearform() {
+            $('#display').val('');
+            $('#configkey').val('');
+            $('#configvalue').val('');
+        }
+    });
+</script>

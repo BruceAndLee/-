@@ -275,6 +275,7 @@
     <Content Include="Views\Users\Password.cshtml" />
     <Content Include="Views\Customer\Consume.cshtml" />
     <Content Include="Views\System\Index.cshtml" />
+    <Content Include="Views\System\Update.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
