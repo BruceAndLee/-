@@ -59,6 +59,8 @@
     <Compile Include="BaseRepository.cs" />
     <Compile Include="Recharge\IRechargeRecordRepository.cs" />
     <Compile Include="Recharge\RechargeRecordRepository.cs" />
+    <Compile Include="System\ISystemRepository.cs" />
+    <Compile Include="System\SystemRepository.cs" />
     <Compile Include="UserManage\IUserRepository.cs" />
     <Compile Include="UserManage\UserRepository.cs" />
   </ItemGroup>

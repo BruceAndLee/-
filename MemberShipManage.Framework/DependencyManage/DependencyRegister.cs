@@ -4,10 +4,12 @@ using MemberShipManage.Infrastructure.UnitOfWork;
 using MemberShipManage.Repository.Consume;
 using MemberShipManage.Repository.CustomerManage;
 using MemberShipManage.Repository.Recharge;
+using MemberShipManage.Repository.System;
 using MemberShipManage.Repository.UserManage;
 using MemberShipManage.Service.Consume;
 using MemberShipManage.Service.CustomerManage;
 using MemberShipManage.Service.Recharge;
+using MemberShipManage.Service.System;
 using MemberShipManage.Service.UserManage;
 using System.Configuration;
 
@@ -26,6 +28,7 @@ namespace MemberShipManage.Framework.DependencyManage
             builder.RegisterType<CustomerAmountRepository>().As<ICustomerAmountRepository>().InstancePerLifetimeScope();
             builder.RegisterType<RechargeRecordRepository>().As<IRechargeRecordRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ConsumeRecordRepository>().As<IConsumeRecordRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<SystemRepository>().As<ISystemRepository>().InstancePerLifetimeScope();
 
             #endregion
 
@@ -36,6 +39,7 @@ namespace MemberShipManage.Framework.DependencyManage
             builder.RegisterType<CustomerAmountService>().As<ICustomerAmountService>().InstancePerLifetimeScope();
             builder.RegisterType<RechargeRecordService>().As<IRechargeRecordService>().InstancePerLifetimeScope();
             builder.RegisterType<ConsumeRecordService>().As<IConsumeRecordService>().InstancePerLifetimeScope();
+            builder.RegisterType<SystemService>().As<ISystemService>().InstancePerLifetimeScope();
 
             #endregion
         }

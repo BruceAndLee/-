@@ -172,6 +172,7 @@
     <Content Include="Content\Images\menu\members.png" />
     <Content Include="Content\Images\menu\member.png" />
     <Content Include="Content\Images\menu\money.png" />
+    <Content Include="Content\Images\menu\ratio.png" />
     <Content Include="Content\Images\middle.png" />
     <Content Include="Content\Images\pwd.jpg" />
     <Content Include="Content\Images\title.png" />
@@ -231,6 +232,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RechargeController.cs" />
+    <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -272,6 +274,7 @@
     <Content Include="Views\ConsumeRecord\List.cshtml" />
     <Content Include="Views\Users\Password.cshtml" />
     <Content Include="Views\Customer\Consume.cshtml" />
+    <Content Include="Views\System\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
