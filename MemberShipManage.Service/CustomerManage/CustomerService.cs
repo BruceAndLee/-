@@ -106,7 +106,9 @@ namespace MemberShipManage.Service.CustomerManage
             var customer = customerRepository.GetCustomer(customerId);
             if (customer != null)
             {
-                customerRepository.Delete(customer);
+                customer.Status = false;
+                customerRepository.Update(customer);
+                unitOfWork.Commit();
             }
         }
 

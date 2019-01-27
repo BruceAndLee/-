@@ -112,6 +112,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DbScript\RechargeRecordRepository.xml" />
     <Content Include="DbScript\ConsumeRecordRepository.xml" />
     <Content Include="DbScript\CustomerRepository.xml" />
     <Content Include="MembershipManage.Context.tt">

@@ -13,5 +13,6 @@ namespace MemberShipManage.Repository.Recharge
     public interface IRechargeRecordRepository : IRepository<RechargeRecord>
     {
         IPagedList<RechargeRecord> GetRechargeRecordList(RechargeListRequest request);
+        string RecallRecharge(int rechargeRecordID);
     }
 }

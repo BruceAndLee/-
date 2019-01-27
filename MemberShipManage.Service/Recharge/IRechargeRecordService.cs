@@ -13,5 +13,6 @@ namespace MemberShipManage.Service.Recharge
     {
         void CreateRechargeRecord(RechargeRecord rechargeRecord);
         IPagedList<RechargeRecord> GetRechargeRecordList(RechargeListRequest request);
+        string RecallRecharge(int rechargeRecordID);
     }
 }

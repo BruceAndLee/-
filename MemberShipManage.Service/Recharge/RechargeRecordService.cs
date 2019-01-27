@@ -33,5 +33,10 @@ namespace MemberShipManage.Service.Recharge
             rechargeRecordRepository.Insert(rechargeRecord);
             unitOfWork.Commit();
         }
+
+        public string RecallRecharge(int rechargeRecordID)
+        {
+            return rechargeRecordRepository.RecallRecharge(rechargeRecordID);
+        }
     }
 }

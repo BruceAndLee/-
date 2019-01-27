@@ -15,4 +15,7 @@
   <Message ResourceID="CM_005">
     <![CDATA[请输入会员信息！]]>
   </Message>
+  <Message ResourceID="CM_006">
+    <![CDATA[会员余额不足，无法撤回！]]>
+  </Message>
 </MessageResources>

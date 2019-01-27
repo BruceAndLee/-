@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Scripts>
+  <Script Key="RecallRechargeRecord">
+    <![CDATA[
+DECLARE @CustomerAmount DECIMAL(18,2)
+DECLARE @RechargeAmount DECIMAL(18,2)
+DECLARE @CustomerID INT
+DECLARE @ErrorMessageCode VARCHAR(500)
+
+SELECT TOP(1)
+	@CustomerAmount = ISNULL(B.Amount,0),
+	@RechargeAmount = ISNULL(A.Amount,0),
+	@CustomerID = A.CustomerID
+FROM dbo.RechargeRecord A WITH(NOLOCK)
+LEFT JOIN dbo.CustomerAmount B WITH(NOLOCK)
+	ON A.CustomerID = B.CustomerID
+WHERE A.ID = @RechargeRecordID
+	AND A.Status = 1
+
+IF @@ROWCOUNT = 0
+BEGIN
+	SET @ErrorMessageCode = 'CM_002'
+END
+
+IF @CustomerAmount < @RechargeAmount
+BEGIN
+	SET @ErrorMessageCode = 'CM_006'
+END
+
+UPDATE TOP(1) dbo.CustomerAmount
+SET Amount = Amount - @RechargeAmount
+WHERE CustomerID = @CustomerID
+
+UPDATE TOP(1) dbo.RechargeRecord
+SET Status = 0
+WHERE ID = @RechargeRecordID
+    ]]>
+  </Script>
+</Scripts>

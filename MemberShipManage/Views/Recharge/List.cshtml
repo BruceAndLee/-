@@ -10,6 +10,7 @@
         <th>姓名</th>
         <th>充值金额</th>
         <th>充值日期</th>
+        <th>操作</th>
     </tr>
     @if (Model != null && Model.RechargeRecordList != null && Model.RechargeRecordList.Count() > 0)
     {
@@ -22,7 +23,7 @@
                 <td style="width:120px">
                     @rechargeRecord.InDate.GetValueOrDefault(DateTime.Now).ToString("yyyy-MM-dd HH:mm")
                 </td>
-                <td><button type="button" class="form-control" onclick="recallRecharge()">撤销</button></td>
+                <td style="width:80px"><button type="button" class="btn btn-warning" onclick="recallRecharge('@rechargeRecord.ID')">撤销</button></td>
             </tr>
         }
     }

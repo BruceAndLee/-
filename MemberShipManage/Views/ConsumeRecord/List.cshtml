@@ -11,6 +11,7 @@
         <th>消费金额</th>
         <th>消费明细</th>
         <th>消费日期</th>
+        <th>操作</th>
     </tr>
     @if (Model != null && Model.ConsumeRecordList != null && Model.ConsumeRecordList.Count() > 0)
     {
@@ -24,7 +25,7 @@
                 <td style="width:150px">
                     @consumeRecord.InDate.GetValueOrDefault(DateTime.Now).ToString("yyyy-MM-dd HH:mm")
                 </td>
-                <td><button type="button" class="form-control" onclick="recallConsume()">撤销</button></td>
+                <td style="width:80px"><button type="button" class="btn btn-warning" onclick="recallConsume()">撤销</button></td>
             </tr>
         }
     }

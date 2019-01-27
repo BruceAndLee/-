@@ -73,5 +73,17 @@ namespace MemberShipManage.Controllers
 
             return SuccessJsonResult();
         }
+
+        [HttpPut]
+        public JsonResult Recall(int id)
+        {
+            var errorCode  = rechargeRecordService.RecallRecharge(id);
+            if (!string.IsNullOrEmpty(errorCode))
+            {
+                return JsonResult(new APIBaseResponse(false, errorCode));
+            }
+
+            return SuccessJsonResult();
+        }
     }
 }

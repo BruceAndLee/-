@@ -19,6 +19,7 @@ namespace MemberShipManage.Domain
         public decimal Amount { get; set; }
         public Nullable<System.DateTime> InDate { get; set; }
         public string InUser { get; set; }
+        public bool Status { get; set; }
     
         public virtual Customer Customer { get; set; }
     }

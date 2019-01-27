@@ -3,6 +3,7 @@ using MemberShipManage.Domain;
 using MemberShipManage.Domain.Entity;
 using MemberShipManage.Infrastructure.Base;
 using MemberShipManage.Infrastructure.Filter;
+using MemberShipManage.Infrastructure.RestAPI;
 using MemberShipManage.Models;
 using MemberShipManage.Service.Consume;
 using System.Web.Mvc;
@@ -38,6 +39,18 @@ namespace MemberShipManage.Controllers
         public IPagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request)
         {
             return consumeRecordService.GetConsumeRecordList(request);
+        }
+
+        [HttpPut]
+        public JsonResult Recall(int id)
+        {
+            var errorCode = consumeRecordService.RecallConsume(id);
+            if (!string.IsNullOrEmpty(errorCode))
+            {
+                return JsonResult(new APIBaseResponse(false, errorCode));
+            }
+
+            return SuccessJsonResult();
         }
     }
 }

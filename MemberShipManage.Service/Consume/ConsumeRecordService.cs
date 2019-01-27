@@ -32,5 +32,10 @@ namespace MemberShipManage.Service.Consume
         {
             return consumeRecordRepository.CreateCustomeConsume(request);
         }
+
+        public string RecallConsume(int consumeRecordID)
+        {
+            return consumeRecordRepository.RecallConsume(consumeRecordID);
+        }
     }
 }

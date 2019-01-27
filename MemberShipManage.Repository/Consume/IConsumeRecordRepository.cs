@@ -14,5 +14,6 @@ namespace MemberShipManage.Repository.Consume
     {
         IPagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request);
         string CreateCustomeConsume(ConsumeRequest request);
+        string RecallConsume(int consumeRecordID);
     }
 }

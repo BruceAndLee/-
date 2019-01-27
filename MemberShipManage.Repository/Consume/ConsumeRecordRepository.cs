@@ -31,7 +31,7 @@ namespace MemberShipManage.Repository.Consume
         /// <returns></returns>
         public IPagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request)
         {
-            IQueryable<ConsumeRecord> query = dbSet;
+            IQueryable<ConsumeRecord> query = dbSet.Where(d => d.Status);
             query = query.WhereIf(request.CustomerID.HasValue, q => q.CustomerID == request.CustomerID);
             query = query.WhereIf(!string.IsNullOrEmpty(request.UserNo), q => q.Customer.UserNo.Contains(request.UserNo));
             query = query.WhereIf(!string.IsNullOrEmpty(request.Name), q => q.Customer.Name.Contains(request.Name));
@@ -77,6 +77,26 @@ namespace MemberShipManage.Repository.Consume
                     paramKickbackRatio,
                     paramErrorMsg
                 });
+
+            return Convert.ToString(paramErrorMsg.Value);
+        }
+
+        public string RecallConsume(int consumeRecordID)
+        {
+            var sqlScript = DBScriptManager.GetScript(this.GetType(), "RecallConsumeRecord");
+
+            var paramErrorMsg = new SqlParameter("@ErrorMessageCode", SqlDbType.NVarChar, 1000);
+            paramErrorMsg.Direction = ParameterDirection.Output;
+
+            var paramconsumeRecordID = new SqlParameter("@ConsumeRecordID", SqlDbType.Int);
+            paramconsumeRecordID.Value = consumeRecordID;
+
+            ExecuteSqlCommand(sqlScript,
+               new SqlParameter[]
+               {
+                    paramconsumeRecordID,
+                    paramErrorMsg
+               });
 
             return Convert.ToString(paramErrorMsg.Value);
         }
