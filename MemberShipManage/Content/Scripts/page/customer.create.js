@@ -97,7 +97,18 @@
         delay: 500,
         minLength: 0,
         source: function (request, response) {
-            $.get("/Customer/CustomerList", { "userNo": request.term }
+            var queryparam = null;
+            if (request.term) {
+                var patrn = /^[0-9]*$/;
+                if (patrn.test(request.term)) {
+                    queryparam = { "userNo": request.term };
+                }
+                else {
+                    queryparam = { "name": request.term };
+                }
+            }
+
+            $.get("/Customer/CustomerList", queryparam
                 , function (data) {
                     response($.map(data, function (item) { // 此处是将返回数据转换为 JSON对象
                         return {

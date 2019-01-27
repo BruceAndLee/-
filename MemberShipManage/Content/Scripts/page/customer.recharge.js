@@ -54,26 +54,3 @@
         });
     }
 });
-
-function recallRecharge(id) {
-    if (!confirm('您确定要撤销充值记录吗？')) {
-        return;
-    }
-
-    $.ajax({
-        url: '/Recharge/Recall',
-        type: 'PUT',
-        data: {
-            id: id
-        },
-        success: function (result) {
-            if (!result.IsSuc) {
-                messager.showError(result.Msg);
-            }
-            else {
-                messager.showSuccess('撤销成功！');
-                $('#search').click();
-            }
-        }
-    });
-}

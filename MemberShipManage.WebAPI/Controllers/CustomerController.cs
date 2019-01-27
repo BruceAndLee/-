@@ -42,7 +42,7 @@ namespace MemberShipManage.WebAPI.Controllers
         public CustomerEntity GetCustomer(string userNo, string password)
         {
             var customer = customerService.GetCustomerInfo(userNo, password);
-            if (customer == null)
+            if (customer == null || !customer.Status)
             {
                 return null;
             }
@@ -87,7 +87,7 @@ namespace MemberShipManage.WebAPI.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-  
+
         [HttpGet]
         [Route("recharge")]
         public IPagedList<RechargeRecordEntity> GetRechargeRecordList([FromUri]RechargeListRequest request)

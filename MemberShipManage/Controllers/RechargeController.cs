@@ -51,7 +51,7 @@ namespace MemberShipManage.Controllers
         public JsonResult Create(RechargeRecord rechargeRecord)
         {
             var customer = customerService.GetCustomer(rechargeRecord.CustomerID);
-            if (customer == null)
+            if (customer == null || !customer.Status)
             {
                 return JsonResult(new APIBaseResponse(false, "CM_002"));
             }
@@ -77,7 +77,7 @@ namespace MemberShipManage.Controllers
         [HttpPut]
         public JsonResult Recall(int id)
         {
-            var errorCode  = rechargeRecordService.RecallRecharge(id);
+            var errorCode = rechargeRecordService.RecallRecharge(id);
             if (!string.IsNullOrEmpty(errorCode))
             {
                 return JsonResult(new APIBaseResponse(false, errorCode));

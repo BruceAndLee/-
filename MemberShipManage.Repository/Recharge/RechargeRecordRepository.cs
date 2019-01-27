@@ -20,7 +20,7 @@ namespace MemberShipManage.Repository.Recharge
 
         public IPagedList<RechargeRecord> GetRechargeRecordList(RechargeListRequest request)
         {
-            IQueryable<RechargeRecord> query = this.dbSet.Where(d => d.Status);
+            IQueryable<RechargeRecord> query = this.dbSet.Where(d => d.Status && d.Customer.Status);
             query = query.WhereIf(request.CustomerID.HasValue, q => q.CustomerID == request.CustomerID);
             query = query.WhereIf(!string.IsNullOrEmpty(request.UserNo), q => q.Customer.UserNo.Contains(request.UserNo));
             query = query.WhereIf(!string.IsNullOrEmpty(request.Name), q => q.Customer.Name.Contains(request.Name));
@@ -34,7 +34,7 @@ namespace MemberShipManage.Repository.Recharge
         {
             var sqlScript = DBScriptManager.GetScript(this.GetType(), "RecallRechargeRecord");
 
-            var paramErrorMsg = new SqlParameter("@ErrorMessageCode", SqlDbType.NVarChar, 1000);
+            var paramErrorMsg = new SqlParameter("@ErrorMessageCode", SqlDbType.NVarChar, 500);
             paramErrorMsg.Direction = ParameterDirection.Output;
 
             var paramRechargeRecordID = new SqlParameter("@RechargeRecordID", SqlDbType.Int);

@@ -48,7 +48,18 @@
         delay: 500,
         minLength: 0,
         source: function (request, response) {
-            $.get("/Customer/CustomerList", { "userNo": request.term }
+            var queryparam = null;
+            if (request.term) {
+                var patrn = /^[0-9]*$/;
+                if (patrn.test(request.term)) {
+                    queryparam = { "userNo": request.term };
+                }
+                else {
+                    queryparam = { "name": request.term };
+                }
+            }
+            
+            $.get("/Customer/CustomerList", queryparam
                 , function (data) {
                     response($.map(data, function (item) { //此处是将返回数据转换为 JSON对象
                         return {
@@ -87,26 +98,3 @@
         $('#detail').val('');
     }
 });
-
-function recallConsume(id) {
-    if (!confirm('您确定要撤销消费记录吗？')) {
-        return;
-    }
-
-    $.ajax({
-        url: '/ConsumeRecord/Recall',
-        type: 'PUT',
-        data: {
-            id: id
-        },
-        success: function (result) {
-            if (!result.IsSuc) {
-                messager.showError(result.Msg);
-            }
-            else {
-                messager.showSuccess('撤销成功！');
-                $('#search').click();
-            }
-        }
-    });
-}

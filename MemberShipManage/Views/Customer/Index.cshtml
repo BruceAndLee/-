@@ -95,7 +95,7 @@
     function deleteCustomer(customerId) {
         if (confirm('您确定要删除吗？')) {
             $.ajax({
-                url: '@Url.Action("DeleteCustomer", "Customer")',
+                url: '@Url.Action("DeleteCustomer", "Customer")' + '?customerId='+customerId,
                 type: 'delete',
                 success: function (data) {
                     alert('删除成功！');

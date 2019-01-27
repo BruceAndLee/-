@@ -11,6 +11,7 @@ namespace MemberShipManage.Infrastructure.Extension
         public static void SetObjectValue<T>(this T tEntity, string propertyName, object value)
             where T : class, new()
         {
+            if (tEntity == null) return;
             var property = tEntity.GetType().GetProperty(propertyName);
             if (property != null
                 && property.CanWrite

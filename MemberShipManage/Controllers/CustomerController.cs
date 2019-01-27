@@ -129,7 +129,7 @@ namespace MemberShipManage.Controllers
             }
 
             var customer = customerService.GetCustomer(request.CustomerID.Value);
-            if (customer == null)
+            if (customer == null || !customer.Status)
             {
                 return JsonResult(new APIBaseResponse(false, "CM_002"));
             }

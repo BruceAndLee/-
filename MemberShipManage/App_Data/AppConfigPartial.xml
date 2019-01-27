@@ -1,6 +1,6 @@
 ﻿<appSettings>
   <add key="MessageResourceFolder" value="MessageResource"/>
-  <add key="DefaultPageSize" value="10"></add>
+  <add key="DefaultPageSize" value="15"></add>
   <add key="DbScriptXmlPath" value="Configuration/Data"></add>
 </appSettings>
 

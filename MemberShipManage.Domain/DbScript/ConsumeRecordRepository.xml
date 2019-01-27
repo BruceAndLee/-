@@ -119,7 +119,6 @@ END
 DECLARE @CustomerAmount DECIMAL(18,2)
 DECLARE @ConsumeAmount DECIMAL(18,2)
 DECLARE @CustomerID INT
-DECLARE @ErrorMessageCode VARCHAR(500)
 
 SELECT TOP(1)
 	@CustomerAmount = ISNULL(B.Amount,0),

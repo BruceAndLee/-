@@ -17,6 +17,7 @@ FROM MembershipManage.dbo.Customer A WITH(NOLOCK)
 WHERE (@UserNo = '' OR A.UserNo LIKE '%'+ @UserNo +'%')
 	AND (@Name = '' OR A.Name LIKE '%'+ @Name +'%')
 	AND (@Sex IS NULL OR A.Sex = @Sex)
+  AND Status = 1
 ORDER BY A.InDate DESC
 
 SELECT @TotalCount = @@ROWCOUNT
