@@ -173,6 +173,7 @@
     <Content Include="Content\Images\menu\member.png" />
     <Content Include="Content\Images\menu\money.png" />
     <Content Include="Content\Images\menu\ratio.png" />
+    <Content Include="Content\Images\menu\setting.png" />
     <Content Include="Content\Images\middle.png" />
     <Content Include="Content\Images\pwd.jpg" />
     <Content Include="Content\Images\title.png" />
