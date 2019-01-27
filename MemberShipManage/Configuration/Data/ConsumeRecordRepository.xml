@@ -5,7 +5,20 @@
 DECLARE @TempAmount DECIMAL(18,2)
 DECLARE @ParentLevel INT
 DECLARE @ParentCustomerID INT
-DECLARE @Level INT = 50
+DECLARE @Level INT = 2
+DECLARE @ParentLevel INT
+DECLARE @ParentCustomerID INT
+DECLARE @Status INT
+DECLARE @Index INT = 1
+DECLARE @TotalCount INT = 0
+
+DECLARE @ParentCustomerTable TABLE
+(
+	ID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	ParentLevel INT NOT NULL,
+	ParentCustomerID INT NOT NULL,
+	Status BIT NULL
+)
 
 SET @Amount = ROUND(@Amount * @DiscountRatio,0)
 SELECT TOP(1)
@@ -53,28 +66,51 @@ AS
     (
         SELECT ID 
         FROM MembershipManage.dbo.Customer 
-        WHERE ParentID = 0
+        WHERE ID = @CustomerID
     )
     UNION ALL
     SELECT b.ID,b.Name,b.ParentID,a.Level + 1 AS Level
     FROM MembershipManage.dbo.Customer b
     INNER JOIN cte_parent a
-		ON a.ID = b.ParentID
+		ON a.ParentID = b.ID
 )
-  
-SELECT TOP(1)
-    @ParentLevel = Level,
-    @ParentCustomerID = ParentID
-FROM cte_parent 
-WHERE ID = @CustomerID AND Level <= @Level
 
-IF @ParentLevel > 0
+INSERT INTO @ParentCustomerTable
+(
+	ParentLevel,
+	ParentCustomerID,
+	Status
+)
+SELECT TOP(2)
+    Level,
+    ParentID,
+	c.Status
+FROM cte_parent cte
+INNER JOIN dbo.Customer c
+	ON c.ID = cte.ParentID
+WHERE Level <= @Level AND Level > 0
+
+SET @TotalCount = @@ROWCOUNT
+
+WHILE @Index <= @TotalCount
 BEGIN
-	UPDATE TOP(1) MembershipManage.dbo.CustomerAmount
-	SET Amount = Amount + ROUND(@Amount * (@KickbackRatio / POWER(2,@ParentLevel - 1)),0),
-		LastEditUser = @UserID,
-		LastEditDate = GETDATE()
-	WHERE CustomerID = @ParentCustomerID	
+	SELECT TOP(1)
+		@ParentLevel = ParentLevel,
+		@ParentCustomerID = ParentCustomerID,
+		@Status = Status
+	FROM @ParentCustomerTable
+	WHERE ID = @Index
+
+	IF @Status = 1
+	BEGIN
+		UPDATE TOP(1) MembershipManage.dbo.CustomerAmount
+		SET Amount = Amount + ROUND(@Amount * (@KickbackRatio / POWER(2,@ParentLevel - 1)),0),
+			LastEditUser = @UserID,
+			LastEditDate = GETDATE()
+		WHERE CustomerID = @ParentCustomerID
+	END
+  
+	SET @Index = @Index + 1
 END
     ]]>
   </Script>

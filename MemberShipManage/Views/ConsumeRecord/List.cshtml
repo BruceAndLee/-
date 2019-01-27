@@ -24,6 +24,7 @@
                 <td style="width:150px">
                     @consumeRecord.InDate.GetValueOrDefault(DateTime.Now).ToString("yyyy-MM-dd HH:mm")
                 </td>
+                <td><button type="button" class="form-control" onclick="recallConsume()">撤销</button></td>
             </tr>
         }
     }

@@ -28,6 +28,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="20" />
           <Property Name="ParentID" Type="int" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <EntityType Name="CustomerAmount">
           <Key>
@@ -39,17 +40,6 @@
           <Property Name="InDate" Type="datetime" />
           <Property Name="LastEditDate" Type="datetime" />
           <Property Name="InUser" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="LastEditUser" Type="varchar" MaxLength="25" />
-        </EntityType>
-        <EntityType Name="CustomerRebate">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CustomerID" Type="int" Nullable="false" />
-          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="InDate" Type="datetime" />
-          <Property Name="InUser" Type="varchar" MaxLength="25" />
         </EntityType>
         <EntityType Name="LoginRecord">
           <Key>
@@ -82,7 +72,6 @@
           <EntitySet Name="ConsumeRecord" EntityType="Self.ConsumeRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerAmount" EntityType="Self.CustomerAmount" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CustomerRebate" EntityType="Self.CustomerRebate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginRecord" EntityType="Self.LoginRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RechargeRecord" EntityType="Self.RechargeRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -119,6 +108,7 @@
           <NavigationProperty Name="RechargeRecord" Relationship="MembershipManageModel.CustomerRechargeRecord" FromRole="Customer" ToRole="RechargeRecord" />
           <NavigationProperty Name="ConsumeRecord" Relationship="MembershipManageModel.CustomerConsumeRecord" FromRole="Customer" ToRole="ConsumeRecord" />
           <NavigationProperty Name="CustomerRebate" Relationship="MembershipManageModel.CustomerCustomerRebate" FromRole="Customer" ToRole="CustomerRebate" />
+          <Property Name="Status" Type="Boolean" />
         </EntityType>
         <EntityType Name="LoginRecord">
           <Key>
@@ -266,6 +256,7 @@
           <EntitySetMapping Name="Customer">
             <EntityTypeMapping TypeName="MembershipManageModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserNo" ColumnName="UserNo" />
@@ -299,7 +290,6 @@
           <EntitySetMapping Name="CustomerAmount">
             <EntityTypeMapping TypeName="MembershipManageModel.CustomerAmount">
               <MappingFragment StoreEntitySet="CustomerAmount">
-                <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
                 <ScalarProperty Name="InUser" ColumnName="InUser" />
                 <ScalarProperty Name="LastEditDate" ColumnName="LastEditDate" />
                 <ScalarProperty Name="InDate" ColumnName="InDate" />
@@ -312,17 +302,6 @@
           <EntitySetMapping Name="RechargeRecord">
             <EntityTypeMapping TypeName="MembershipManageModel.RechargeRecord">
               <MappingFragment StoreEntitySet="RechargeRecord">
-                <ScalarProperty Name="InUser" ColumnName="InUser" />
-                <ScalarProperty Name="InDate" ColumnName="InDate" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CustomerRebate">
-            <EntityTypeMapping TypeName="MembershipManageModel.CustomerRebate">
-              <MappingFragment StoreEntitySet="CustomerRebate">
                 <ScalarProperty Name="InUser" ColumnName="InUser" />
                 <ScalarProperty Name="InDate" ColumnName="InDate" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
