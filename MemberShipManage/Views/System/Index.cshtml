@@ -47,7 +47,7 @@
     function showSystemConfigModal(configKey, configValue, display) {
         $('#display').val(display);
         $('#configkey').val(configKey);
-        $('#configvalue').val(configValue);
+        $('#configvalue').val('');
         $('#systemUpdateModal').modal('show');
     }
 
@@ -58,7 +58,7 @@
                 $("#systemupdate").data('bootstrapValidator').destroy();
                 $('#systemupdate').data('bootstrapValidator', null);
                 registerValidator();
-                $('#search').click();
+                window.location.href = window.location.href;
                 clearform();
             });
 
