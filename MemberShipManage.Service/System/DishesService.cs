@@ -2,11 +2,6 @@
 using MemberShipManage.Domain.Entity;
 using MemberShipManage.Infrastructure.UnitOfWork;
 using MemberShipManage.Repository.System;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Webdiyer.WebControls.Mvc;
 
 namespace MemberShipManage.Service.System
@@ -28,15 +23,26 @@ namespace MemberShipManage.Service.System
             return dishesRepository.GetDishesList(request);
         }
 
-        public void UpdateDish(DishUpdateRequest request)
+        public void UpdateDish(Dishes dish)
         {
-            var dish = dishesRepository.GetDish(request.ID);
-            if (dish != null)
-            {
-                dish.Name = request.Name;
-                dishesRepository.Update(dish);
-                unitOfWork.Commit();
-            }
+            dishesRepository.Update(dish);
+            unitOfWork.Commit();
+        }
+
+        public void CreateDish(string dishName)
+        {
+            dishesRepository.Insert(new Dishes { Name = dishName });
+            unitOfWork.Commit();
+        }
+
+        public bool CheckDishNameExists(int? id, string dishName)
+        {
+            return dishesRepository.CheckDishNameExists(id, dishName);
+        }
+
+        public Dishes GetDish(int id)
+        {
+            return dishesRepository.GetDish(id);
         }
     }
 }

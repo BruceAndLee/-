@@ -9,5 +9,6 @@ namespace MemberShipManage.Repository.System
     {
         IPagedList<Dishes> GetDishesList(DishListRequest request);
         Dishes GetDish(int id);
+        bool CheckDishNameExists(int? id, string dishName);
     }
 }

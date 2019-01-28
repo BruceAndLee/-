@@ -30,5 +30,15 @@ namespace MemberShipManage.Repository.System
         {
             return this.dbSet.FirstOrDefault(d => d.ID == id);
         }
+
+        public bool CheckDishNameExists(int? id, string dishName)
+        {
+            if (id.HasValue && id.Value > 0)
+            {
+                return this.dbSet.Any(d => d.ID != id && d.Name == dishName);
+            }
+
+            return this.dbSet.Any(d => d.Name == dishName);
+        }
     }
 }

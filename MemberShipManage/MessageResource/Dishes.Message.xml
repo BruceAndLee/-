@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MessageResources>
+  <Message ResourceID="DISH_001">
+    <![CDATA[该菜品名称已存在！]]>
+  </Message>
+</MessageResources>

@@ -2,6 +2,7 @@
 using MemberShipManage.Domain.Entity;
 using MemberShipManage.Infrastructure.Base;
 using MemberShipManage.Infrastructure.Filter;
+using MemberShipManage.Infrastructure.RestAPI;
 using MemberShipManage.Models;
 using MemberShipManage.Service.System;
 using System;
@@ -59,9 +60,35 @@ namespace MemberShipManage.Controllers
         }
 
         [HttpPut]
-        public ActionResult UpdateDish(DishUpdateRequest request)
+        public JsonResult UpdateDish(DishUpdateRequest request)
         {
-            dishesService.UpdateDish(request);
+            var dish = dishesService.GetDish(request.ID);
+            if (dish == null)
+            {
+                return JsonResult(new APIBaseResponse { IsSuccess = false, ResponseCode = "COM_001" });
+            }
+
+            var isDishNameExist = dishesService.CheckDishNameExists(request.ID, request.Name);
+            if (isDishNameExist)
+            {
+                return JsonResult(new APIBaseResponse { IsSuccess = false, ResponseCode = "DISH_001" });
+            }
+
+            dish.Name = request.Name;
+            dishesService.UpdateDish(dish);
+            return SuccessJsonResult();
+        }
+
+        [HttpPost]
+        public JsonResult CreateDish(DishUpdateRequest request)
+        {
+            var isDishNameExist = dishesService.CheckDishNameExists(null, request.Name);
+            if (isDishNameExist)
+            {
+                return JsonResult(new APIBaseResponse { IsSuccess = false, ResponseCode = "DISH_001" });
+            }
+
+            dishesService.CreateDish(request.Name);
             return SuccessJsonResult();
         }
     }

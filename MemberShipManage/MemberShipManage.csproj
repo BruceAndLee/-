@@ -220,6 +220,7 @@
     <Content Include="favicon.ico" />
     <Content Include="MessageResource\Customers.Message.xml" />
     <Content Include="MessageResource\Common.Message.xml" />
+    <Content Include="MessageResource\Dishes.Message.xml" />
     <Content Include="MessageResource\Users.Message.xml" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
