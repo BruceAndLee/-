@@ -2,6 +2,7 @@
 using MemberShipManage.Domain.Entity;
 using MemberShipManage.Infrastructure.Base;
 using MemberShipManage.Infrastructure.Filter;
+using MemberShipManage.Models;
 using MemberShipManage.Service.System;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,13 @@ namespace MemberShipManage.Controllers
     public class SystemController : BaseController
     {
         ISystemService systemService;
-        public SystemController(ISystemService systemService)
+        IDishesService dishesService;
+        public SystemController(
+            ISystemService systemService,
+            IDishesService dishesService)
         {
             this.systemService = systemService;
+            this.dishesService = dishesService;
         }
 
         [HttpGet]
@@ -31,6 +36,32 @@ namespace MemberShipManage.Controllers
         public JsonResult Update(SystemConfigRequest request)
         {
             systemService.UpdateSystemConfig(request);
+            return SuccessJsonResult();
+        }
+
+        /// <summary>
+        /// 菜品维护
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult DishIndex()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult DishList(DishListRequest request)
+        {
+            var dishesList = dishesService.GetDishesList(request);
+            var viewModel = new DishesListModel { Name = request.Name };
+            viewModel.DishesList = dishesList;
+            return View(viewModel);
+        }
+
+        [HttpPut]
+        public ActionResult UpdateDish(DishUpdateRequest request)
+        {
+            dishesService.UpdateDish(request);
             return SuccessJsonResult();
         }
     }

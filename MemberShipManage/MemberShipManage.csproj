@@ -173,6 +173,7 @@
     <Content Include="Content\Images\menu\member.png" />
     <Content Include="Content\Images\menu\money.png" />
     <Content Include="Content\Images\menu\ratio.png" />
+    <Content Include="Content\Images\menu\Salad.png" />
     <Content Include="Content\Images\menu\setting.png" />
     <Content Include="Content\Images\middle.png" />
     <Content Include="Content\Images\pwd.jpg" />
@@ -244,6 +245,7 @@
     <Compile Include="Models\AutoMapperManager.cs" />
     <Compile Include="Models\ConsumeRecordListModel.cs" />
     <Compile Include="Models\CustomerListModel.cs" />
+    <Compile Include="Models\DishesListModel.cs" />
     <Compile Include="Models\RechargeListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -277,6 +279,9 @@
     <Content Include="Views\Customer\Consume.cshtml" />
     <Content Include="Views\System\Index.cshtml" />
     <Content Include="Views\System\Update.cshtml" />
+    <Content Include="Views\System\DishIndex.cshtml" />
+    <Content Include="Views\System\DishUpdate.cshtml" />
+    <Content Include="Views\System\DishList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

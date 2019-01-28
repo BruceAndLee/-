@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Webdiyer.WebControls.Mvc;
+<div id="customer" class="margin-t10">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <label>菜品管理</label>
+            </h3>
+        </div>
+        <div class="panel-content padding-5">
+            <div class="row">
+                <label class="col-md-1">菜名：</label>
+                <div class="col-md-3">
+                    <input type="text" id="dishname" class="form-control" maxlength="25" />
+                </div>
+                <div class="col-md-1">
+                    <button id="search" type="button" class="btn btn-primary">查询</button>
+                </div>
+                <div class="col-md-7 text-right">
+                    <button id="search" type="button" class="btn btn-success" onclick="showDishModal(null,null)">新增菜品</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="customerlist" class="margin-t10">
+                        @{Html.RenderAction("DishList", "System");}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="~/Content/bootStrap/validator/css/bootstrapValidator.min.css" />
+<script type="text/javascript" src="~/Content/bootStrap/validator/js/bootstrapValidator.min.js"></script>
+<script type="text/javascript">
+    function showDishModal(id, name) {
+        $('#name').val(display);
+        $('#hfdID').val(id);
+        $('#dishUpdateModal').modal('show');
+    }
+
+    $(function () {
+        $('#search').click(function () {
+            var name = $('#dishname').val();
+
+            var request = {
+                name: name && name.trim() ? name.trim() : null
+            };
+
+            $.get("@Url.Action("DishList")", request
+                , function (data) {
+                    $("#dishlist").html(data);
+            });
+        });
+
+        registerValidator();
+        $('#dishUpdateModal').on('hide.bs.modal',
+            function () {
+                $("#dishupdate").data('bootstrapValidator').destroy();
+                $('#dishupdate').data('bootstrapValidator', null);
+                registerValidator();
+
+                clearform();
+            });
+
+        function registerValidator() {
+            $('#dishupdate').bootstrapValidator({
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    display: {
+                        validators: {
+                            notEmpty: {
+                                message: '菜品名称不能为空'
+                            },
+                            stringLength: {
+                                min: 1,
+                                max: 25,
+                                message: '菜品名称必须在1到25之间'
+                            }
+                        }
+                    }
+                }
+            }).on('success.form.bv', function (e) {//点击提交之后
+                e.preventDefault();
+                var $form = $(e.target);
+                $.ajax({
+                    url: $form.attr('action'),
+                    type: 'put',
+                    data: $form.serialize(),
+                    success: function (result) {
+                        if (result.IsSuc) {
+                            messager.showSuccess("修改成功！");
+                            $('#dishUpdateModal').modal('hide');
+                        }
+                        else {
+                            messager.showError(data.Msg);
+                        }
+                    }
+                });
+            });
+        }
+
+        function clearform() {
+            $('#name').val('');
+            $('#hfdID').val('');
+        }
+    });
+</script>

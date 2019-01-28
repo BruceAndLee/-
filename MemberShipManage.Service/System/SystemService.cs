@@ -2,6 +2,7 @@
 using MemberShipManage.Domain.Entity;
 using MemberShipManage.Infrastructure.UnitOfWork;
 using MemberShipManage.Repository.System;
+using MemberShipManage.Utility;
 using System.Collections.Generic;
 
 namespace MemberShipManage.Service.System
@@ -28,7 +29,7 @@ namespace MemberShipManage.Service.System
             var systemConfig = systemRepository.GetSystemConfig(request.ConfigKey);
             if (systemConfig != null)
             {
-                systemConfig.ConfigValue = request.ConfigValue;
+                systemConfig.ConfigValue = Cryptor.Encrypt(request.ConfigValue);
                 systemConfig.Display = request.Display;
                 systemRepository.Update(systemConfig);
                 unitOfWork.Commit();

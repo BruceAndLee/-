@@ -63,11 +63,16 @@
     <Compile Include="CustomerRebate.cs">
       <DependentUpon>MembershipManage.tt</DependentUpon>
     </Compile>
+    <Compile Include="Dishes.cs">
+      <DependentUpon>MembershipManage.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\ConsumeRecordEntity.cs" />
     <Compile Include="Entity\ConsumeRecordListRequest.cs" />
     <Compile Include="Entity\ConsumeRequest.cs" />
     <Compile Include="Entity\CustomerEntity.cs" />
     <Compile Include="Entity\CustomerListRequest.cs" />
+    <Compile Include="Entity\DishListRequest.cs" />
+    <Compile Include="Entity\DishUpdateRequest.cs" />
     <Compile Include="Entity\PagerEntity.cs" />
     <Compile Include="Entity\RechargeListRequest.cs" />
     <Compile Include="Entity\RechargeRecordEntity.cs" />
