@@ -12,6 +12,7 @@ namespace MemberShipManage.Domain.Entity
         public string UserNo { get; set; }
         public string Name { get; set; }
         public decimal? Amount { get; set; }
+        public decimal? RebateAmount { get; set; }
         public int? Sex { get; set; }
         public string ParentCustomerName { get; set; }
         public int? ParentCustomerID { get; set; }

@@ -37,16 +37,23 @@ SELECT A.ID
   ,B.Name
   ,ISNULL(C.Amount,0) AS Amount
   ,B.ParentID AS ParentCustomerID
+  ,R.Amount AS RebateAmount
   ,D.Name AS ParentCustomerName
   ,B.InDate
   ,B.InUser
 FROM CTE A
-INNER JOIN [MembershipManage].[dbo].[Customer] B WITH(NOLOCK)
+INNER JOIN MembershipManage.dbo.Customer B WITH(NOLOCK)
 	ON A.ID = B.ID
-LEFT JOIN [MembershipManage].[dbo].CustomerAmount C WITH(NOLOCK)
+LEFT JOIN MembershipManage.dbo.CustomerAmount C WITH(NOLOCK)
 	ON A.ID = C.CustomerID
-LEFT JOIN [MembershipManage].[dbo].[Customer] D WITH(NOLOCK)
+LEFT JOIN MembershipManage.dbo.Customer D WITH(NOLOCK)
 	ON D.ID = B.ParentID
+LEFT JOIN
+(
+	SELECT SUM(Amount) AS Amount,CustomerID
+	FROM MembershipManage.dbo.CustomerRebate
+	GROUP BY CustomerID
+) R ON R.CustomerID = A.ID
     ]]>
   </Script>
 </Scripts>
