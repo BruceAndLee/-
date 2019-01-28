@@ -25,7 +25,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div id="customerlist" class="margin-t10">
+                    <div id="disheslist" class="margin-t10">
                         @{Html.RenderAction("DishList", "System");}
                     </div>
                 </div>
@@ -38,12 +38,13 @@
 <script type="text/javascript" src="~/Content/bootStrap/validator/js/bootstrapValidator.min.js"></script>
 <script type="text/javascript">
     function showDishModal(id, name) {
-        $('#dishname').val(name);
+        $('#name').val(name);
         $('#hfdID').val(id);
         $('#dishUpdateModal').modal('show');
     }
 
     $(function () {
+        @{ Ajax.LoadMvcPagerScript(); }
         $('#search').click(function () {
             var name = $('#dishname').val();
 
@@ -63,7 +64,7 @@
                 $("#dishupdate").data('bootstrapValidator').destroy();
                 $('#dishupdate').data('bootstrapValidator', null);
                 registerValidator();
-
+                $('#search').click();
                 clearform();
             });
 
@@ -94,15 +95,15 @@
                 var $form = $(e.target);
                 $.ajax({
                     url: $('#hfdID').val()? $form.attr('action'):'@Url.Action("CreateDish","System")',
-                    type: 'put',
+                    type: $('#hfdID').val() ? 'put':'post',
                     data: $form.serialize(),
                     success: function (result) {
                         if (result.IsSuc) {
-                            messager.showSuccess("修改成功！");
+                            messager.showSuccess("保存成功！");
                             $('#dishUpdateModal').modal('hide');
                         }
                         else {
-                            messager.showError(data.Msg);
+                            messager.showError(result.Msg);
                         }
                     }
                 });

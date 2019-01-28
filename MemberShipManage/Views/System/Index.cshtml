@@ -58,7 +58,7 @@
                 $("#systemupdate").data('bootstrapValidator').destroy();
                 $('#systemupdate').data('bootstrapValidator', null);
                 registerValidator();
-
+                $('#search').click();
                 clearform();
             });
 
@@ -121,7 +121,7 @@
                             $('#systemUpdateModal').modal('hide');
                         }
                         else {
-                            messager.showError(data.Msg);
+                            messager.showError(result.Msg);
                         }
                     }
                 });

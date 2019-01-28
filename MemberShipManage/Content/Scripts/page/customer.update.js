@@ -5,8 +5,8 @@
             $("#customerupdate").data('bootstrapValidator').destroy();
             $('#customerupdate').data('bootstrapValidator', null);
             registerValidator();
-
             clearform();
+            $('#search').click();
         });
 
     function registerValidator() {
@@ -62,7 +62,7 @@
                         $('#updateModal').modal('hide');
                     }
                     else {
-                        messager.showError(data.Msg);
+                        messager.showError(result.Msg);
                     }
                 }
             });
