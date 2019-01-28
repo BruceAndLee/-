@@ -3,11 +3,9 @@
   <Script Key="CreateCustomeConsume">
     <![CDATA[
 DECLARE @TempAmount DECIMAL(18,2)
-DECLARE @ParentLevel INT
 DECLARE @ParentCustomerID INT
 DECLARE @Level INT = 2
 DECLARE @ParentLevel INT
-DECLARE @ParentCustomerID INT
 DECLARE @Status INT
 DECLARE @CalcAmount DECIMAL(18,2)
 DECLARE @Index INT = 1
@@ -83,9 +81,9 @@ INSERT INTO @ParentCustomerTable
 	Status
 )
 SELECT TOP(2)
-    Level,
-    ParentID,
-	c.Status
+    cte.Level,
+    cte.ParentID,
+	  c.Status
 FROM cte_parent cte
 INNER JOIN dbo.Customer c
 	ON c.ID = cte.ParentID

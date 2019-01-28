@@ -58,7 +58,7 @@
                     queryparam = { "name": request.term };
                 }
             }
-            
+
             $.get("/Customer/CustomerList", queryparam
                 , function (data) {
                     response($.map(data, function (item) { //此处是将返回数据转换为 JSON对象
@@ -82,6 +82,35 @@
             if (!ui.item) {
                 clearForm();
             }
+        }
+    });
+
+    $("#dishinput").autocomplete({
+        autoFocus: true,
+        delay: 1000,
+        minLength: 0,
+        source: function (request, response) {
+            $.get("/System/Dishes", { "name": request.term }
+                , function (data) {
+                    response($.map(data, function (item) { //此处是将返回数据转换为 JSON对象
+                        return {
+                            label: item.Name,
+                            value: item.ID
+                        };
+                    }));
+                });
+        },
+        select: function (event, ui) {
+            if ($('#detail').val()) {
+                $('#detail').val($('#detail').val() + ',' + ui.item.label);
+            }
+            else {
+                $('#detail').val(ui.item.label);
+            }
+            return false;
+        },
+        change: function (event, ui) {
+
         }
     });
 

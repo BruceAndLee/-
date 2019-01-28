@@ -59,6 +59,13 @@ namespace MemberShipManage.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
+        public JsonResult Dishes(DishListRequest request)
+        {
+            var disheses = dishesService.GetDishesList(request);
+            return Json(disheses.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPut]
         public JsonResult UpdateDish(DishUpdateRequest request)
         {
@@ -89,6 +96,13 @@ namespace MemberShipManage.Controllers
             }
 
             dishesService.CreateDish(request.Name);
+            return SuccessJsonResult();
+        }
+
+        [HttpDelete]
+        public JsonResult DeleteDish(int id)
+        {
+            dishesService.DeleteDish(id);
             return SuccessJsonResult();
         }
     }

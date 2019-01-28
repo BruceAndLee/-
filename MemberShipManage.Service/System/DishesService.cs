@@ -44,5 +44,15 @@ namespace MemberShipManage.Service.System
         {
             return dishesRepository.GetDish(id);
         }
+
+        public void DeleteDish(int id)
+        {
+            var dish = GetDish(id);
+            if (dish != null)
+            {
+                dishesRepository.Delete(dish);
+                unitOfWork.Commit();
+            }
+        }
     }
 }

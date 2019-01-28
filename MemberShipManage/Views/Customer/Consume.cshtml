@@ -16,7 +16,7 @@
                 <div class="col-md-1">
                     <label>用户名：</label>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <input id="customerId" type="text" class="form-control" maxlength="10" placeholder="输入会员手机号快速检索" />
                     <input type="hidden" id="hfdCustomerId" />
                 </div>
@@ -25,7 +25,7 @@
                 <div class="col-md-1">
                     <label>姓名：</label>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <input id="customerName" type="text" class="form-control" readonly />
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="col-md-1">
                     <label>余额：</label>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <input id="amount" type="text" class="form-control" readonly style="color:red" />
                 </div>
             </div>
@@ -41,7 +41,7 @@
                 <div class="col-md-1">
                     <label>消费金额：</label>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <input id="balanceAmount" type="number" class="form-control" min="0.01" step="0.01" style="color:blue" />
                 </div>
             </div>
@@ -49,12 +49,17 @@
                 <div class="col-md-1">
                     <label>消费明细：</label>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <textarea id="detail" rows="4" style="resize:none" class="form-control"></textarea>
                 </div>
             </div>
             <div class="row margin-t10">
-                <div class="col-md-offset-1 col-md-6">
+                <div class="col-md-offset-1 col-md-7">
+                    <input type="text" id="dishinput" placeholder="输入菜品名称快速检索" class="form-control" />
+                </div>
+            </div>
+            <div class="row margin-t10">
+                <div class="col-md-offset-1 col-md-7">
                     <button id="btnBalance" type="button" class="btn btn-primary">结算</button>
                     <button id="btnCancel" type="button" class="btn btn-warning">取消</button>
                 </div>

@@ -98,7 +98,7 @@
                 url: '@Url.Action("DeleteCustomer", "Customer")' + '?customerId='+customerId,
                 type: 'delete',
                 success: function (data) {
-                    alert('删除成功！');
+                    messager.showSuccess("删除成功！");
                     $('#search').click();
                 }
             });
