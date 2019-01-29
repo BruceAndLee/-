@@ -12,14 +12,20 @@ namespace MemberShipManage.Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class Dishes
+    public partial class Category
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Category()
+        {
+            this.Dishes = new HashSet<Dishes>();
+        }
+    
         public int ID { get; set; }
         public string Name { get; set; }
         public Nullable<System.DateTime> InDate { get; set; }
         public string InUser { get; set; }
-        public Nullable<int> CategoryID { get; set; }
     
-        public virtual Category Category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Dishes> Dishes { get; set; }
     }
 }

@@ -168,6 +168,7 @@
     <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\Images\member.png" />
     <Content Include="Content\Images\menu\cash.png" />
+    <Content Include="Content\Images\menu\categories.png" />
     <Content Include="Content\Images\menu\consume.png" />
     <Content Include="Content\Images\menu\members.png" />
     <Content Include="Content\Images\menu\member.png" />
@@ -218,6 +219,7 @@
     <Content Include="Content\Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Content\Scripts\modernizr-2.8.3.js" />
     <Content Include="favicon.ico" />
+    <Content Include="MessageResource\Category.Message.xml" />
     <Content Include="MessageResource\Customers.Message.xml" />
     <Content Include="MessageResource\Common.Message.xml" />
     <Content Include="MessageResource\Dishes.Message.xml" />
@@ -283,6 +285,8 @@
     <Content Include="Views\System\DishIndex.cshtml" />
     <Content Include="Views\System\DishUpdate.cshtml" />
     <Content Include="Views\System\DishList.cshtml" />
+    <Content Include="Views\System\CategoryIndex.cshtml" />
+    <Content Include="Views\System\CategoryUpdate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

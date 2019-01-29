@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MessageResources>
+  <Message ResourceID="Cate_001">
+    <![CDATA[该类别名称已存在！]]>
+  </Message>
+</MessageResources>
+

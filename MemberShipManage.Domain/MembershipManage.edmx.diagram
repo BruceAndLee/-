@@ -16,8 +16,10 @@
         <AssociationConnector Association="MembershipManageModel.CustomerConsumeRecord" />
         <EntityTypeShape EntityType="MembershipManageModel.CustomerRebate" Width="1.5" PointX="0.75" PointY="6.75" />
         <AssociationConnector Association="MembershipManageModel.CustomerRebateCustomer" />
-        <EntityTypeShape EntityType="MembershipManageModel.SystemConfig" Width="1.5" PointX="6.375" PointY="6.75" />
+        <EntityTypeShape EntityType="MembershipManageModel.SystemConfig" Width="1.5" PointX="8.375" PointY="6.625" />
         <EntityTypeShape EntityType="MembershipManageModel.Dishes" Width="1.5" PointX="3.375" PointY="7.75" />
+        <EntityTypeShape EntityType="MembershipManageModel.Category" Width="1.5" PointX="5.875" PointY="7.875" />
+        <AssociationConnector Association="MembershipManageModel.DishesCategory" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

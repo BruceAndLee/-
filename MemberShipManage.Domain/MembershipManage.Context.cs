@@ -34,5 +34,6 @@ namespace MemberShipManage.Domain
         public virtual DbSet<CustomerRebate> CustomerRebate { get; set; }
         public virtual DbSet<SystemConfig> SystemConfig { get; set; }
         public virtual DbSet<Dishes> Dishes { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
     }
 }

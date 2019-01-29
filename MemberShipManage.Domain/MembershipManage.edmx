@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MembershipManageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="InDate" Type="datetime" />
+          <Property Name="InUser" Type="varchar" MaxLength="25" />
+        </EntityType>
         <EntityType Name="ConsumeRecord">
           <Key>
             <PropertyRef Name="ID" />
@@ -61,6 +70,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="InDate" Type="datetime" />
           <Property Name="InUser" Type="varchar" MaxLength="25" />
+          <Property Name="CategoryID" Type="int" />
         </EntityType>
         <EntityType Name="LoginRecord">
           <Key>
@@ -102,6 +112,7 @@
           <Property Name="InUser" Type="varchar" MaxLength="25" />
         </EntityType>
         <EntityContainer Name="MembershipManageModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConsumeRecord" EntityType="Self.ConsumeRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerAmount" EntityType="Self.CustomerAmount" Schema="dbo" store:Type="Tables" />
@@ -190,6 +201,11 @@
           </AssociationSet>
           <EntitySet Name="SystemConfig" EntityType="MembershipManageModel.SystemConfig" />
           <EntitySet Name="Dishes" EntityType="MembershipManageModel.Dishes" />
+          <EntitySet Name="Category" EntityType="MembershipManageModel.Category" />
+          <AssociationSet Name="DishesCategory" Association="MembershipManageModel.DishesCategory">
+            <End Role="Dishes" EntitySet="Dishes" />
+            <End Role="Category" EntitySet="Category" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CustomerAmount">
           <Key>
@@ -294,7 +310,31 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="InDate" Type="DateTime" Precision="3" />
           <Property Name="InUser" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryID" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="MembershipManageModel.DishesCategory" FromRole="Dishes" ToRole="Category" />
         </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="InDate" Type="DateTime" Precision="3" />
+          <Property Name="InUser" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Dishes" Relationship="MembershipManageModel.DishesCategory" FromRole="Category" ToRole="Dishes" />
+        </EntityType>
+        <Association Name="DishesCategory">
+          <End Type="MembershipManageModel.Dishes" Role="Dishes" Multiplicity="*" />
+          <End Type="MembershipManageModel.Category" Role="Category" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Dishes">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -399,6 +439,17 @@
           <EntitySetMapping Name="Dishes">
             <EntityTypeMapping TypeName="MembershipManageModel.Dishes">
               <MappingFragment StoreEntitySet="Dishes">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="InUser" ColumnName="InUser" />
+                <ScalarProperty Name="InDate" ColumnName="InDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="MembershipManageModel.Category">
+              <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="InUser" ColumnName="InUser" />
                 <ScalarProperty Name="InDate" ColumnName="InDate" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
