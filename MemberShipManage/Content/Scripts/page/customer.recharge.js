@@ -9,7 +9,6 @@
             $('#recharge_userNo').val('');
             $('#recharge_userName').val('');
             $('#amount').val('');
-            $('#search').click();
         });
 
     function registerRechargeValidator() {
@@ -44,6 +43,7 @@
                 $.post($form.attr('action'), $form.serialize(), function (result) {
                     if (result.IsSuc) {
                         messager.showSuccess("充值成功！");
+                        $('#search').click();
                         $('#rechargeModal').modal('hide');
                     }
                     else {

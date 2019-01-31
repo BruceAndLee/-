@@ -30,6 +30,7 @@ namespace MemberShipManage.Framework.DependencyManage
             builder.RegisterType<ConsumeRecordRepository>().As<IConsumeRecordRepository>().InstancePerLifetimeScope();
             builder.RegisterType<SystemRepository>().As<ISystemRepository>().InstancePerLifetimeScope();
             builder.RegisterType<DishesRepository>().As<IDishesRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<CategoryRepository>().As<ICategoryRepository>().InstancePerLifetimeScope();
 
             #endregion
 
@@ -42,6 +43,7 @@ namespace MemberShipManage.Framework.DependencyManage
             builder.RegisterType<ConsumeRecordService>().As<IConsumeRecordService>().InstancePerLifetimeScope();
             builder.RegisterType<SystemService>().As<ISystemService>().InstancePerLifetimeScope();
             builder.RegisterType<DishesService>().As<IDishesService>().InstancePerLifetimeScope();
+            builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
 
             #endregion
         }

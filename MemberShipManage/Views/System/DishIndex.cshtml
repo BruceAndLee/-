@@ -20,7 +20,7 @@
                     <button id="search" type="button" class="btn btn-primary">查询</button>
                 </div>
                 <div class="col-md-7 text-right">
-                    <button id="search" type="button" class="btn btn-success" onclick="showDishModal(null,null)">新增菜品</button>
+                    <button id="search" type="button" class="btn btn-success" onclick="showDishModal(null,null,null)">新增菜品</button>
                 </div>
             </div>
             <div class="row">
@@ -37,8 +37,9 @@
 <link rel="stylesheet" href="~/Content/bootStrap/validator/css/bootstrapValidator.min.css" />
 <script type="text/javascript" src="~/Content/bootStrap/validator/js/bootstrapValidator.min.js"></script>
 <script type="text/javascript">
-    function showDishModal(id, name) {
+    function showDishModal(id,category, name) {
         $('#name').val(name);
+        $('#category').val(category);
         $('#hfdID').val(id);
         $('#dishUpdateModal').modal('show');
     }
@@ -58,6 +59,7 @@
 
     $(function () {
         @{ Ajax.LoadMvcPagerScript(); }
+        initCategory();
         $('#search').click(function () {
             var name = $('#dishname').val();
 
@@ -77,7 +79,6 @@
                 $("#dishupdate").data('bootstrapValidator').destroy();
                 $('#dishupdate').data('bootstrapValidator', null);
                 registerValidator();
-                $('#search').click();
                 clearform();
             });
 
@@ -101,6 +102,13 @@
                                 message: '菜品名称必须在1到25之间'
                             }
                         }
+                    },
+                    categoryID: {
+                        validators: {
+                            notEmpty: {
+                                message: '请选择类别'
+                            }
+                        }
                     }
                 }
             }).on('success.form.bv', function (e) {//点击提交之后
@@ -113,6 +121,7 @@
                     success: function (result) {
                         if (result.IsSuc) {
                             messager.showSuccess("保存成功！");
+                            $('#search').click();
                             $('#dishUpdateModal').modal('hide');
                         }
                         else {
@@ -126,6 +135,19 @@
         function clearform() {
             $('#name').val('');
             $('#hfdID').val('');
+            $('#category').val('');
+        }
+
+        function initCategory() {
+            $('#category').append('<option value=\'\'>---请选择---</option>');
+            $.get('@Url.Action("CategoryList", "System")',
+                function (result) {
+                    if (result && result.length > 0) {
+                        for (let category of result) {
+                            $('#category').append('<option value=' + category.Id + '>' + category.Name + '</option>');
+                        }
+                    }
+            });
         }
     });
 </script>

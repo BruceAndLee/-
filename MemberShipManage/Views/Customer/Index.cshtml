@@ -52,7 +52,6 @@
 <script type="text/javascript">
     jQuery(document).ready(function () {
         @{ Ajax.LoadMvcPagerScript(); }
-        registerEvent();
         $('#search').click(function () {
             var userNo = $('#userno').val();
             var name = $('#name').val();
@@ -64,28 +63,21 @@
                 sex: sex
             };
 
-            $.get("@Url.Action("List")", request
+            $.get("@Url.Action("List","Customer")", request
                 , function (data) {
                     $("#customerlist").html(data);
-                    registerEvent();
             });
         });
-
-        function registerEvent() {
-            $("#cutomerlist").on('click', '.btn-primary', function () {
-                var currentRow = $(this).closest("tr");
-                var userNo = currentRow.find("td:eq(0)").text();
-                var name = currentRow.find("td:eq(1)").text();
-                var sex = currentRow.find("td:eq(2)").text() == '男' ? '1' : '0';
-                $('#userNo').val(userNo);
-                $('#userName').val(name);
-                $('#userSex').val(sex);
-                $('#updateModal').modal('show');
-            });
-        }
     });
 
-    function showUpdateModal(customerId,userNo,userName) {
+    function showUpdateModal(customerId,userNo, name, sex) {
+        $('#userNo').val(userNo);
+        $('#userName').val(name);
+        $('#userSex').val(sex);
+        $('#updateModal').modal('show');
+    }
+
+    function showRechargeModal(customerId,userNo,userName) {
         $('#recharge_userNo').val(userNo);
         $('#recharge_userName').val(userName);
         $('#hfdCustomerId').val(customerId);
@@ -99,7 +91,7 @@
                 type: 'delete',
                 success: function (data) {
                     messager.showSuccess("删除成功！");
-                    $('#search').click();
+                    window.location.href = window.location.href;
                 }
             });
         }

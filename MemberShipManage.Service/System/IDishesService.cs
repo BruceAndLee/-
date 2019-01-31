@@ -8,8 +8,8 @@ namespace MemberShipManage.Service.System
     public interface IDishesService
     {
         IPagedList<Dishes> GetDishesList(DishListRequest request);
-        void UpdateDish(Dishes request);
-        void CreateDish(string dishName);
+        void UpdateDish(Dishes dish);
+        void CreateDish(Dishes dish);
         bool CheckDishNameExists(int? id, string dishName);
         Dishes GetDish(int id);
         void DeleteDish(int id);

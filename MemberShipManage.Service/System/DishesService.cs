@@ -29,9 +29,9 @@ namespace MemberShipManage.Service.System
             unitOfWork.Commit();
         }
 
-        public void CreateDish(string dishName)
+        public void CreateDish(Dishes dish)
         {
-            dishesRepository.Insert(new Dishes { Name = dishName });
+            dishesRepository.Insert(dish);
             unitOfWork.Commit();
         }
 

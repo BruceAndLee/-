@@ -3,5 +3,8 @@
   <Message ResourceID="Cate_001">
     <![CDATA[该类别名称已存在！]]>
   </Message>
+  <Message ResourceID="Cate_002">
+    <![CDATA[该类别下存在菜品，不能删除！]]>
+  </Message>
 </MessageResources>
 

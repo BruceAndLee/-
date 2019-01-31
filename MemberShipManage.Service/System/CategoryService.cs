@@ -59,5 +59,22 @@ namespace MemberShipManage.Service.System
 
             return BuildAPISucResponse();
         }
+
+        public APIBaseResponse RemoveCategory(int categoryID)
+        {
+            var category = categoryRepository.GetCategory(categoryID);
+            if (category != null)
+            {
+                if (category.Dishes != null && category.Dishes.Count() > 0)
+                {
+                    return BuildAPIErrorResponse("Cate_002");
+                }
+
+                this.categoryRepository.Delete(category);
+                unitOfWork.Commit();
+            }
+
+            return BuildAPISucResponse();
+        }
     }
 }

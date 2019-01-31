@@ -7,6 +7,7 @@
 <table id="dishlist" class="table table-striped table-bordered table-condensed">
     <tr style="background-color:#eee;height:35px;">
         <th>菜品名称</th>
+        <th>类别</th>
         <th>录入日期</th>
         <th>操作</th>
     </tr>
@@ -16,11 +17,12 @@
         {
             <tr>
                 <td>@(dishes.Name)</td>
+                <td>@(dishes.Category != null ? dishes.Category.Name : string.Empty)</td>
                 <td style="width:150px">
                     @dishes.InDate.GetValueOrDefault(DateTime.Now).ToString("yyyy-MM-dd HH:mm")
                 </td>
                 <td style="width:150px">
-                    <button type="button" class="btn btn-primary" onclick="showDishModal(@dishes.ID,'@dishes.Name')">编辑</button>&nbsp;
+                    <button type="button" class="btn btn-primary" onclick="showDishModal(@dishes.ID,'@dishes.CategoryID','@dishes.Name')">编辑</button>&nbsp;
                     <button type="button" class="btn btn-danger" onclick="deleteDish(@dishes.ID)">删除</button>
                 </td>
             </tr>

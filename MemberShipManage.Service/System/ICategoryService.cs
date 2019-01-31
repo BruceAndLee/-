@@ -10,5 +10,6 @@ namespace MemberShipManage.Service.System
         List<Category> GetCategoryList();
         APIBaseResponse CreateCategory(string name);
         APIBaseResponse UpdateCategory(CategoryUpdateRequest request);
+        APIBaseResponse RemoveCategory(int categoryID);
     }
 }

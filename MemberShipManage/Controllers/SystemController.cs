@@ -18,12 +18,15 @@ namespace MemberShipManage.Controllers
     {
         ISystemService systemService;
         IDishesService dishesService;
+        ICategoryService categoryService;
         public SystemController(
             ISystemService systemService,
-            IDishesService dishesService)
+            IDishesService dishesService,
+            ICategoryService categoryService)
         {
             this.systemService = systemService;
             this.dishesService = dishesService;
+            this.categoryService = categoryService;
         }
 
         [HttpGet]
@@ -39,6 +42,8 @@ namespace MemberShipManage.Controllers
             systemService.UpdateSystemConfig(request);
             return SuccessJsonResult();
         }
+
+        #region 菜品维护
 
         /// <summary>
         /// 菜品维护
@@ -82,6 +87,7 @@ namespace MemberShipManage.Controllers
             }
 
             dish.Name = request.Name;
+            dish.CategoryID = request.CategoryID;
             dishesService.UpdateDish(dish);
             return SuccessJsonResult();
         }
@@ -95,7 +101,13 @@ namespace MemberShipManage.Controllers
                 return JsonResult(new APIBaseResponse { IsSuccess = false, ResponseCode = "DISH_001" });
             }
 
-            dishesService.CreateDish(request.Name);
+            var dish = new Dishes
+            {
+                CategoryID = request.CategoryID,
+                Name = request.Name
+            };
+
+            dishesService.CreateDish(dish);
             return SuccessJsonResult();
         }
 
@@ -104,6 +116,45 @@ namespace MemberShipManage.Controllers
         {
             dishesService.DeleteDish(id);
             return SuccessJsonResult();
+        }
+
+        #endregion
+
+        [HttpGet]
+        public ViewResult CategoryIndex()
+        {
+            var categoryList = this.categoryService.GetCategoryList();
+            return View(categoryList);
+        }
+
+        [HttpGet]
+        public JsonResult CategoryList()
+        {
+            var categoryList = this.categoryService.GetCategoryList();
+            var categories = categoryList.Select(c => new
+            {
+                Id = c.ID,
+                Name = c.Name
+            });
+            return Json(categories, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult CreateCategory(string categoryName)
+        {
+            return JsonResult(categoryService.CreateCategory(categoryName));
+        }
+
+        [HttpPut]
+        public JsonResult UpdateCategory(CategoryUpdateRequest request)
+        {
+            return JsonResult(categoryService.UpdateCategory(request));
+        }
+
+        [HttpDelete]
+        public JsonResult RemoveCategory(int categoryID)
+        {
+            return JsonResult(categoryService.RemoveCategory(categoryID));
         }
     }
 }
