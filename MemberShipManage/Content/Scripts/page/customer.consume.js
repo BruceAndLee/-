@@ -114,8 +114,12 @@
         }
     });
 
-    $('#btnCance').click(function () {
+    $('#btnCancel').click(function () {
         clearForm();
+    });
+
+    $('#detail').dblclick(function () {
+        $('#dishesModal').modal('show');
     });
 
     function clearForm() {

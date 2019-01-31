@@ -68,7 +68,21 @@ namespace MemberShipManage.Controllers
         public JsonResult Dishes(DishListRequest request)
         {
             var disheses = dishesService.GetDishesList(request);
-            return Json(disheses.ToList(), JsonRequestBehavior.AllowGet);
+            return Json(disheses.Select(d => new { d.ID, d.Name }), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult DishesGroup(DishListRequest request)
+        {
+            var disheses = dishesService.GetDishesList(request);
+            var dishesGroup = disheses.GroupBy(d => d.CategoryID);
+            var dishes = dishesGroup.Select(g => new
+            {
+                CategoryID = g.Key,
+                CategoryName = g.FirstOrDefault() != null ? g.FirstOrDefault().Category.Name : string.Empty,
+                DishList = g.Select(r => new { r.ID, r.Name }).ToList()
+            });
+            return Json(dishes, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPut]
