@@ -54,6 +54,8 @@
     <Compile Include="CustomerManage\ICustomerService.cs" />
     <Compile Include="Recharge\IRechargeRecordService.cs" />
     <Compile Include="Recharge\RechargeRecordService.cs" />
+    <Compile Include="Statistics\StatisticsService.cs" />
+    <Compile Include="Statistics\IStatisticsService.cs" />
     <Compile Include="System\CategoryService.cs" />
     <Compile Include="System\DishesService.cs" />
     <Compile Include="System\ICategoryService.cs" />

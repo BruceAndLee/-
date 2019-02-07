@@ -59,6 +59,8 @@
     <Compile Include="BaseRepository.cs" />
     <Compile Include="Recharge\IRechargeRecordRepository.cs" />
     <Compile Include="Recharge\RechargeRecordRepository.cs" />
+    <Compile Include="Statistics\IStatisticsRepository.cs" />
+    <Compile Include="Statistics\StatisticsRepository.cs" />
     <Compile Include="System\CategoryRepository.cs" />
     <Compile Include="System\DishesRepository.cs" />
     <Compile Include="System\ICategoryRepository.cs" />

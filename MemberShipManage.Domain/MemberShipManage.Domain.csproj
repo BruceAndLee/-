@@ -75,6 +75,7 @@
     <Compile Include="Entity\ConsumeRequest.cs" />
     <Compile Include="Entity\CustomerEntity.cs" />
     <Compile Include="Entity\CustomerListRequest.cs" />
+    <Compile Include="Entity\DailyReportEntity.cs" />
     <Compile Include="Entity\DishListRequest.cs" />
     <Compile Include="Entity\DishUpdateRequest.cs" />
     <Compile Include="Entity\PagerEntity.cs" />
@@ -107,6 +108,9 @@
     <Compile Include="SystemConfig.cs">
       <DependentUpon>MembershipManage.tt</DependentUpon>
     </Compile>
+    <Compile Include="UP_GetDailyReport_Result.cs">
+      <DependentUpon>MembershipManage.tt</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>MembershipManage.tt</DependentUpon>
     </Compile>
@@ -128,6 +132,7 @@
     <Content Include="DbScript\RechargeRecordRepository.xml" />
     <Content Include="DbScript\ConsumeRecordRepository.xml" />
     <Content Include="DbScript\CustomerRepository.xml" />
+    <Content Include="DbScript\StatisticsRepository.xml" />
     <Content Include="MembershipManage.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MembershipManage.Context.cs</LastGenOutput>

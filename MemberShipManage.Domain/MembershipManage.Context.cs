@@ -12,6 +12,8 @@ namespace MemberShipManage.Domain
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class MembershipManageEntities : DbContext
     {
@@ -35,5 +37,14 @@ namespace MemberShipManage.Domain
         public virtual DbSet<SystemConfig> SystemConfig { get; set; }
         public virtual DbSet<Dishes> Dishes { get; set; }
         public virtual DbSet<Category> Category { get; set; }
+    
+        public virtual ObjectResult<UP_GetDailyReport_Result> UP_GetDailyReport(Nullable<System.DateTime> statisticDate)
+        {
+            var statisticDateParameter = statisticDate.HasValue ?
+                new ObjectParameter("StatisticDate", statisticDate) :
+                new ObjectParameter("StatisticDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UP_GetDailyReport_Result>("UP_GetDailyReport", statisticDateParameter);
+        }
     }
 }

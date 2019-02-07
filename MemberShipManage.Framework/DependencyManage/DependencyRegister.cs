@@ -4,11 +4,13 @@ using MemberShipManage.Infrastructure.UnitOfWork;
 using MemberShipManage.Repository.Consume;
 using MemberShipManage.Repository.CustomerManage;
 using MemberShipManage.Repository.Recharge;
+using MemberShipManage.Repository.Statistics;
 using MemberShipManage.Repository.System;
 using MemberShipManage.Repository.UserManage;
 using MemberShipManage.Service.Consume;
 using MemberShipManage.Service.CustomerManage;
 using MemberShipManage.Service.Recharge;
+using MemberShipManage.Service.Statistics;
 using MemberShipManage.Service.System;
 using MemberShipManage.Service.UserManage;
 using System.Configuration;
@@ -31,6 +33,7 @@ namespace MemberShipManage.Framework.DependencyManage
             builder.RegisterType<SystemRepository>().As<ISystemRepository>().InstancePerLifetimeScope();
             builder.RegisterType<DishesRepository>().As<IDishesRepository>().InstancePerLifetimeScope();
             builder.RegisterType<CategoryRepository>().As<ICategoryRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<StatisticsRepository>().As<IStatisticsRepository>().InstancePerLifetimeScope();
 
             #endregion
 
@@ -44,6 +47,7 @@ namespace MemberShipManage.Framework.DependencyManage
             builder.RegisterType<SystemService>().As<ISystemService>().InstancePerLifetimeScope();
             builder.RegisterType<DishesService>().As<IDishesService>().InstancePerLifetimeScope();
             builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
+            builder.RegisterType<StatisticsService>().As<IStatisticsService>().InstancePerLifetimeScope();
 
             #endregion
         }

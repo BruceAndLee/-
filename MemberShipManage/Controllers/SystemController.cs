@@ -61,7 +61,7 @@ namespace MemberShipManage.Controllers
             var dishesList = dishesService.GetDishesList(request);
             var viewModel = new DishesListModel { Name = request.Name };
             viewModel.DishesList = dishesList;
-            return View(viewModel);
+            return PartialView(viewModel);
         }
 
         [HttpGet]

@@ -67,6 +67,7 @@
                 name: name && name.trim() ? name.trim() : null
             };
 
+            var locationUrl = window.location.search;
             $.get("@Url.Action("DishList")", request
                 , function (data) {
                     $("#disheslist").html(data);

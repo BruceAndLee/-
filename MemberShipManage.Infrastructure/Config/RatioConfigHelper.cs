@@ -15,7 +15,7 @@ namespace MemberShipManage.Infrastructure.Config
             {
                 if (_RatioConfigCollection == null)
                 {
-                    _RatioConfigCollection = XmlSerialization.Deserialize<RatioConfigCollection>(path);
+                    _RatioConfigCollection = XmlSerialization.DeserializeByFile<RatioConfigCollection>(path);
                 }
 
                 return _RatioConfigCollection;

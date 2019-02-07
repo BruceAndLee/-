@@ -237,6 +237,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RechargeController.cs" />
+    <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -288,6 +289,7 @@
     <Content Include="Views\System\CategoryIndex.cshtml" />
     <Content Include="Views\System\CategoryUpdate.cshtml" />
     <Content Include="Views\Customer\DishesList.cshtml" />
+    <Content Include="Views\Statistics\DailyReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
