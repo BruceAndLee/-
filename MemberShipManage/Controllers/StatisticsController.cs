@@ -35,7 +35,15 @@ namespace MemberShipManage.Controllers
             var sysConfig = systemService.GetSystemConfigs();
             var discountRatioConfig = sysConfig.Find(s => s.ConfigKey == SystemConfigTypes.MemberDiscountRatio.ToString());
             var discount = Convert.ToDecimal(Cryptor.Decrypt(discountRatioConfig.ConfigValue));
-            dailyReport.TotalDiscount = Math.Round(Math.Round(dailyReport.TotalSales / discount, 0) * (1 - discount), 0);
+
+            dailyReport.TotalDiscount = 0;
+            if (dailyReport.SalesList != null && dailyReport.SalesList.Count > 0)
+            {
+                foreach (var report in dailyReport.SalesList)
+                {
+                    dailyReport.TotalDiscount += Math.Floor(Math.Floor(report.Amount / discount) * (1 - discount));
+                }
+            }
             return View(dailyReport);
         }
     }
