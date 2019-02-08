@@ -176,6 +176,7 @@
     <Content Include="Content\Images\menu\ratio.png" />
     <Content Include="Content\Images\menu\Salad.png" />
     <Content Include="Content\Images\menu\setting.png" />
+    <Content Include="Content\Images\menu\statistics.png" />
     <Content Include="Content\Images\middle.png" />
     <Content Include="Content\Images\pwd.jpg" />
     <Content Include="Content\Images\title.png" />

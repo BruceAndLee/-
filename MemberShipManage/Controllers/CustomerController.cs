@@ -9,6 +9,8 @@ using MemberShipManage.Infrastructure.RestAPI;
 using MemberShipManage.Models;
 using MemberShipManage.Service.Consume;
 using MemberShipManage.Service.CustomerManage;
+using MemberShipManage.Service.System;
+using MemberShipManage.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,14 +26,17 @@ namespace MemberShipManage.Controllers
         ICustomerService customerService;
         ICustomerAmountService customerAmountService;
         IConsumeRecordService consumeRecordService;
+        ISystemService systemService;
         public CustomerController(
             ICustomerService customerService
             , ICustomerAmountService customerAmountService
-            , IConsumeRecordService consumeRecordService)
+            , IConsumeRecordService consumeRecordService
+            , ISystemService systemService)
         {
             this.customerService = customerService;
             this.customerAmountService = customerAmountService;
             this.consumeRecordService = consumeRecordService;
+            this.systemService = systemService;
         }
 
         [HttpGet]
@@ -134,8 +139,19 @@ namespace MemberShipManage.Controllers
                 return JsonResult(new APIBaseResponse(false, "CM_002"));
             }
 
-            request.DiscountRatio = RatioConfigHelper.GetRatioConfig("DiscountRatio").value;
-            request.KickbackRatio = RatioConfigHelper.GetRatioConfig("KickbackRatio").value;
+            var systemConfigs = systemService.GetSystemConfigs();
+            if (systemConfigs == null || !systemConfigs.Any())
+            {
+                request.DiscountRatio = RatioConfigHelper.GetRatioConfig("DiscountRatio").value;
+                request.KickbackRatio = RatioConfigHelper.GetRatioConfig("KickbackRatio").value;
+            }
+            else
+            {
+                var sysConfig = systemConfigs.Find(s => s.ConfigKey == SystemConfigTypes.MemberDiscountRatio.ToString());
+                request.DiscountRatio = Convert.ToDecimal(Cryptor.Decrypt(sysConfig.ConfigValue));
+                sysConfig = systemConfigs.Find(s => s.ConfigKey == SystemConfigTypes.ReturnRebateRatio.ToString());
+                request.KickbackRatio = Convert.ToDecimal(Cryptor.Decrypt(sysConfig.ConfigValue));
+            }
 
             var customerAmount = customer.CustomerAmount.FirstOrDefault();
             if (customerAmount == null || customerAmount.Amount < request.Amount * request.DiscountRatio)

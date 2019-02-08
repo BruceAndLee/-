@@ -20,11 +20,11 @@ namespace MemberShipManage.Infrastructure.Serialization
             return deSerializeObj as T;
         }
 
-        public static T Deserialize<T>(string xml) where T : class, new()
+        public static T Deserialize<T>(string xml, string root) where T : class, new()
         {
             using (StringReader streamReader = new StringReader(xml))
             {
-                XmlSerializer xmldes = new XmlSerializer(typeof(T));
+                XmlSerializer xmldes = new XmlSerializer(typeof(T), new XmlRootAttribute(root));
                 return (T)xmldes.Deserialize(streamReader);
             }
         }

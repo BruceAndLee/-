@@ -1,6 +1,6 @@
 ﻿<div class="modal fade" id="dishesModal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static" aria-labelledby="rechargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:600px;">
-        <div class="modal-content" style="width:600px;max-height:500px">
+    <div class="modal-dialog">
+        <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     &times;
@@ -10,14 +10,11 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <div id="dishList">
+                <div id="dishList" style="overflow:scroll;height:400px">
 
                 </div>
             </div>
             <div class="modal-footer">
-                @*<button type="button" class="btn btn-default" data-dismiss="modal">
-                        关闭
-                    </button>*@
                 <button type="button" onclick="setSelectDish()" class="btn btn-primary">
                     确定
                 </button>
@@ -27,29 +24,31 @@
 </div>
 <script type="text/javascript">
     jQuery(document).ready(function () {
-        $.get('@Url.Action("DishesGroup", "System")', function (result) {
-            if (!result || result.length == 0) return;
+        $.get('@Url.Action("DishesGroup", "System")', { pageSize: 5000 },
+            function (result) {
+                if (!result || result.length == 0) return;
 
-            let index = 0;
-            for (let category of result) {
-                $('#dishList').append('<div class=\'row\'>');
-                $('#dishList').append('<label class=\'col-md-12\'' + 'style=\'color:blue;font-size:16px;margin-top:'+(index>0? '20':'0')+'px\'>' + category.CategoryName + '</label>');
-                $('#dishList').append('</div>');
-
-                if (category.DishList && category.DishList.length > 0) {
+                let index = 0;
+                for (let category of result) {
                     $('#dishList').append('<div class=\'row\'>');
-                    for (let dish of category.DishList) {
-                        $('#dishList').append('<div class=\'col-md-4\'><input id=\'dish_'
-                            + dish.ID + '\' type=\'checkbox\' value=\''
-                            + dish.ID + '\'/><label for=\'dish_'
-                            + dish.ID + '\'>'
-                            + dish.Name + '</div>');
-                    }
+                    $('#dishList').append('<label class=\'col-md-12\'' + 'style=\'color:blue;font-size:16px;margin-top:'+(index>0? '20':'0')+'px\'>' + category.CategoryName + '</label>');
                     $('#dishList').append('</div>');
-                }
 
-                index +=1;
-            }
+                    if (category.DishList && category.DishList.length > 0) {
+                        $('#dishList').append('<div class=\'row\'>');
+                        for (let dish of category.DishList) {
+                            $('#dishList').append('<div class=\'col-md-4\'><input id=\'dish_'
+                                + dish.ID + '\' type=\'checkbox\' value=\''
+                                + dish.ID + '\'/><label for=\'dish_'
+                                + dish.ID + '\'>'
+                                + dish.Name + '</div>');
+                        }
+
+                        $('#dishList').append('</div>');
+                    }
+
+                    index +=1;
+                }
         });
     });
 
