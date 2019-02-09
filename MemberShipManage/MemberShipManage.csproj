@@ -180,7 +180,7 @@
     <Content Include="Content\Images\middle.png" />
     <Content Include="Content\Images\pwd.jpg" />
     <Content Include="Content\Images\title.png" />
-    <Content Include="Content\Images\users.png" />
+    <Content Include="Content\Images\users.jpg" />
     <Content Include="Content\Images\validate.png" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Scripts\autocomplete\jquery-ui.min.css" />

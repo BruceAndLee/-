@@ -45,9 +45,9 @@
                             for (int i = 0; i < Model.SalesList.Count; i++)
                             {
                                 <tr>
-                                    <td><span class="row-cell-2" style="color:darkred">@Model.SalesList[i].UserInfo</span></td>
-                                    <td><span class="row-cell-2" style="color:darkblue">@Model.SalesList[i].Amount</span></td>
-                                    <td><span class="row-cell-2" style="color:darkgreen">@Model.SalesList[i].InDate.GetValueOrDefault(DateTime.MinValue).ToString("yyyy-MM-dd HH:mm")</span></td>
+                                    <td><span class="row-cell-2" style="color:blue">@Model.SalesList[i].UserInfo</span></td>
+                                    <td><span class="row-cell-2" style="color:red">@Model.SalesList[i].Amount</span></td>
+                                    <td><span class="row-cell-2" style="color:green">@Model.SalesList[i].InDate.GetValueOrDefault(DateTime.MinValue).ToString("yyyy-MM-dd HH:mm")</span></td>
                                 </tr>
                             }
                         }
@@ -61,18 +61,18 @@
                             </tr>
                         </thead>
                         <tr style="background-color:#eee;height:35px;">
-                            <th>消费者</th>
-                            <th>消费金额</th>
-                            <th>消费时间</th>
+                            <th>获利者</th>
+                            <th>获利金额</th>
+                            <th>获利时间</th>
                         </tr>
                         @if (Model.RebateList != null && Model.RebateList.Count > 0)
                         {
                             for (int i = 0; i < Model.RebateList.Count; i++)
                             {
                                 <tr>
-                                    <td><span class="row-cell-2" style="color:darkred">@Model.SalesList[i].UserInfo</span></td>
-                                    <td><span class="row-cell-2" style="color:darkblue">@Model.SalesList[i].Amount</span></td>
-                                    <td><span class="row-cell-2" style="color:darkgreen">@Model.SalesList[i].InDate.GetValueOrDefault(DateTime.MinValue).ToString("yyyy-MM-dd HH:mm")</span></td>
+                                    <td><span class="row-cell-2" style="color:blue">@Model.RebateList[i].UserInfo</span></td>
+                                    <td><span class="row-cell-2" style="color:red">@Model.RebateList[i].Amount</span></td>
+                                    <td><span class="row-cell-2" style="color:green">@Model.RebateList[i].InDate.GetValueOrDefault(DateTime.MinValue).ToString("yyyy-MM-dd HH:mm")</span></td>
                                 </tr>
                             }
                         }
@@ -97,6 +97,6 @@
         font-size: 16px;
         font-weight: bold;
         color: yellow;
-        background-color:darkcyan;
+        background-color:steelblue;
     }
 </style>

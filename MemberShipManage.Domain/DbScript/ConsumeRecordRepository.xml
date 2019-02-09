@@ -82,12 +82,12 @@ INSERT INTO @ParentCustomerTable
 )
 SELECT TOP(2)
     cte.Level,
-    cte.ParentID,
+    cte.ID,
 	  c.Status
 FROM cte_parent cte
 INNER JOIN dbo.Customer c
-	ON c.ID = cte.ParentID
-WHERE Level <= @Level AND Level > 0
+	ON c.ID = cte.ID
+WHERE cte.Level <= @Level AND cte.Level > 0
 
 SET @TotalCount = @@ROWCOUNT
 

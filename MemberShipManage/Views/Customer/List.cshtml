@@ -23,10 +23,10 @@
                 <td style="width:180px">@customer.UserNo</td>
                 <td style="width:120px">@customer.Name</td>
                 <td style="width:80px">@(customer.Sex == 1 ? "男" : "女")</td>
-                <td style="width:150px;color:darkblue">
+                <td style="width:150px;color:blue">
                     @(customer.Amount)
                 </td>
-                <td style="width:80px">@(customer.RebateAmount.GetValueOrDefault(0))</td>
+                <td style="width:80px;color:green">@(customer.RebateAmount.GetValueOrDefault(0))</td>
                 <td style="width:80px">@(customer.ParentCustomerName ?? "N/A")</td>
                 <td style="width:150px">
                     @customer.InDate.GetValueOrDefault(DateTime.Now).ToString("yyyy-MM-dd HH:mm")
