@@ -4,6 +4,7 @@ using MemberShipManage.Infrastructure.RestAPI;
 using MemberShipManage.Infrastructure.UnitOfWork;
 using MemberShipManage.Repository.CustomerManage;
 using MemberShipManage.Utility;
+using System.Collections.Generic;
 using Webdiyer.WebControls.Mvc;
 
 namespace MemberShipManage.Service.CustomerManage
@@ -110,6 +111,11 @@ namespace MemberShipManage.Service.CustomerManage
                 customerRepository.Update(customer);
                 unitOfWork.Commit();
             }
+        }
+
+        public List<CustomerRebateEntity> GetCustomerRebateList(int customerID)
+        {
+            return customerRepository.GetCustomerRebateList(customerID);
         }
 
         #endregion

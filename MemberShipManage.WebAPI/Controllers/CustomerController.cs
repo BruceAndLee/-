@@ -87,7 +87,7 @@ namespace MemberShipManage.WebAPI.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-
+        [Authorize]
         [HttpGet]
         [Route("recharge")]
         public IPagedList<RechargeRecordEntity> GetRechargeRecordList([FromUri]RechargeListRequest request)
@@ -96,6 +96,19 @@ namespace MemberShipManage.WebAPI.Controllers
             var rechargeRecordList = rechargeRecords.ToList();
             var convertRechargeRecordList = Mapper.Map<List<RechargeRecordEntity>>(rechargeRecordList);
             return new PagedList<RechargeRecordEntity>(convertRechargeRecordList, request.PageIndex, request.PageSize, rechargeRecords.TotalItemCount);
+        }
+
+        /// <summary>
+        /// Get Customer Rebate
+        /// </summary>
+        /// <param name="customerID"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        [Route("rebate")]
+        public List<CustomerRebateEntity> GetCustomerRebateList(int customerID)
+        {
+            return customerService.GetCustomerRebateList(customerID);
         }
     }
 }

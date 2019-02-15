@@ -5,6 +5,7 @@ using MemberShipManage.Infrastructure.UnitOfWork;
 using MemberShipManage.Utility;
 using PersonalSite.Repository;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -105,6 +106,14 @@ namespace MemberShipManage.Repository.CustomerManage
                 request.PageIndex,
                 request.PageSize,
                 Convert.ToInt32(paramTotal.Value));
+        }
+
+        public List<CustomerRebateEntity> GetCustomerRebateList(int customerID)
+        {
+            var sqlScript = DBScriptManager.GetScript(this.GetType(), "GetCustomerRebateList");
+            var paramCustomerNo = new SqlParameter("@CustomerID", SqlDbType.Int);
+            paramCustomerNo.Value = customerID;
+            return ExecuteSqlQuery<CustomerRebateEntity>(sqlScript, new SqlParameter[] { paramCustomerNo });
         }
     }
 }

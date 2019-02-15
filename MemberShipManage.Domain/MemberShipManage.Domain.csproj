@@ -75,6 +75,7 @@
     <Compile Include="Entity\ConsumeRequest.cs" />
     <Compile Include="Entity\CustomerEntity.cs" />
     <Compile Include="Entity\CustomerListRequest.cs" />
+    <Compile Include="Entity\CustomerRebateEntity.cs" />
     <Compile Include="Entity\DailyReportEntity.cs" />
     <Compile Include="Entity\DishListRequest.cs" />
     <Compile Include="Entity\DishUpdateRequest.cs" />
