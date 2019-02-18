@@ -58,33 +58,17 @@ LEFT JOIN
   </Script>
   <Script Key="GetCustomerRebateList">
     <![CDATA[
-;WITH cte_parent(ID,Name,UserNo,ParentID,Level)
-AS
-(
-    SELECT ID,Name,UserNo,ParentID,0 AS Level
-    FROM MembershipManage.dbo.Customer WITH(NOLOCK)
-    WHERE ID IN
-    (
-        SELECT ID 
-        FROM MembershipManage.dbo.Customer 
-        WHERE ID = @CustomerID
-    )
-    UNION ALL
-    SELECT b.ID,b.Name,b.UserNo,b.ParentID,a.Level + 1 AS Level
-    FROM MembershipManage.dbo.Customer b
-    INNER JOIN cte_parent a
-		ON a.ID = b.ParentID
-)
-
 SELECT
-	A.UserNo,
-	A.Name,
-	SUM(ISNULL(B.Amount,0))
-FROM cte_parent A WITH(NOLOCK)
-LEFT JOIN MembershipManage.dbo.CustomerRebate B WITH(NOLOCK)
-	ON A.ID = B.CustomerID
-WHERE A.Level > 0
-GROUP BY A.UserNo,A.Name
+	C.UserNo,
+	C.Name,
+	SUM(ISNULL(A.Amount,0))
+FROM MembershipManage.dbo.CustomerRebate A WITH(NOLOCK)
+INNER JOIN MembershipManage.dbo.ConsumeRecord B WITH(NOLOCK)
+	ON A.ConsumeID = B.ID
+INNER JOIN MembershipManage.dbo.Customer C WITH(NOLOCK)
+	ON C.ID = B.CustomerID
+WHERE A.ConsumeID = @CustomerID
+GROUP BY C.UserNo,C.Name
     ]]>
   </Script>
 </Scripts>

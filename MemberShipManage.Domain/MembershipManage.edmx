@@ -61,6 +61,7 @@
           <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="InDate" Type="datetime" />
           <Property Name="InUser" Type="varchar" MaxLength="25" />
+          <Property Name="ConsumeID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Dishes">
           <Key>
@@ -284,6 +285,7 @@
           <Property Name="InDate" Type="DateTime" Precision="3" />
           <Property Name="InUser" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Customer" Relationship="MembershipManageModel.CustomerRebateCustomer" FromRole="CustomerRebate" ToRole="Customer" />
+          <Property Name="ConsumeID" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="CustomerRebateCustomer">
           <End Type="MembershipManageModel.CustomerRebate" Role="CustomerRebate" Multiplicity="*" />
@@ -428,6 +430,7 @@
           <EntitySetMapping Name="CustomerRebate">
             <EntityTypeMapping TypeName="MembershipManageModel.CustomerRebate">
               <MappingFragment StoreEntitySet="CustomerRebate">
+                <ScalarProperty Name="ConsumeID" ColumnName="ConsumeID" />
                 <ScalarProperty Name="InUser" ColumnName="InUser" />
                 <ScalarProperty Name="InDate" ColumnName="InDate" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />

@@ -10,6 +10,7 @@ DECLARE @Status INT
 DECLARE @CalcAmount DECIMAL(18,2)
 DECLARE @Index INT = 1
 DECLARE @TotalCount INT = 0
+DECLARE @ConsumeID INT
 
 DECLARE @ParentCustomerTable TABLE
 (
@@ -55,6 +56,8 @@ VALUES
 	GETDATE(),
 	@UserID
 )
+
+SELECT @ConsumeID = SCOPE_IDENTITY()
 
 ;WITH cte_parent(ID,Name,ParentID,Level)
 AS
@@ -113,11 +116,19 @@ BEGIN
 		INSERT INTO MembershipManage.dbo.CustomerRebate
 		(
 			CustomerID,
+			ConsumeID,
 			Amount,
 			InDate,
 			InUser
 		)
-		VALUES(@ParentCustomerID,@CalcAmount,GETDATE(),@UserID)
+		VALUES
+		(
+			@ParentCustomerID,
+			@ConsumeID,
+			@CalcAmount,
+			GETDATE(),
+			@UserID
+		)
 	END
   
 	SET @Index = @Index + 1
@@ -152,6 +163,10 @@ WHERE CustomerID = @CustomerID
 UPDATE TOP(1) dbo.ConsumeRecord
 SET Status = 0
 WHERE ID = @ConsumeRecordID
+
+DELETE TOP(100) 
+FROM dbo.CustomerRebate
+WHERE ConsumeID = @ConsumeRecordID
     ]]>
   </Script>
 </Scripts>
