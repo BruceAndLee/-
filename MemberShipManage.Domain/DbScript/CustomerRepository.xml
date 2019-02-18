@@ -67,7 +67,7 @@ INNER JOIN MembershipManage.dbo.ConsumeRecord B WITH(NOLOCK)
 	ON A.ConsumeID = B.ID
 INNER JOIN MembershipManage.dbo.Customer C WITH(NOLOCK)
 	ON C.ID = B.CustomerID
-WHERE A.ConsumeID = @CustomerID
+WHERE A.CustomerID = @CustomerID
 GROUP BY C.UserNo,C.Name
     ]]>
   </Script>

@@ -132,7 +132,9 @@
   <ItemGroup>
     <Content Include="DbScript\RechargeRecordRepository.xml" />
     <Content Include="DbScript\ConsumeRecordRepository.xml" />
-    <Content Include="DbScript\CustomerRepository.xml" />
+    <Content Include="DbScript\CustomerRepository.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DbScript\StatisticsRepository.xml" />
     <Content Include="MembershipManage.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
