@@ -61,13 +61,13 @@ LEFT JOIN
 SELECT
 	C.UserNo,
 	C.Name,
-	SUM(ISNULL(A.Amount,0))
+	Amount = SUM(ISNULL(A.Amount,0))
 FROM MembershipManage.dbo.CustomerRebate A WITH(NOLOCK)
 INNER JOIN MembershipManage.dbo.ConsumeRecord B WITH(NOLOCK)
 	ON A.ConsumeID = B.ID
 INNER JOIN MembershipManage.dbo.Customer C WITH(NOLOCK)
 	ON C.ID = B.CustomerID
-WHERE A.ConsumeID = @CustomerID
+WHERE A.CustomerID = @CustomerID
 GROUP BY C.UserNo,C.Name
     ]]>
   </Script>
