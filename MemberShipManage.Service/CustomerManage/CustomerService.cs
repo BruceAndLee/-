@@ -58,6 +58,7 @@ namespace MemberShipManage.Service.CustomerManage
             }
 
             customer.Password = Cryptor.Encrypt(customer.Password);
+            customer.Status = true;
             customerRepository.Insert(customer);
             unitOfWork.Commit();
             return response;
