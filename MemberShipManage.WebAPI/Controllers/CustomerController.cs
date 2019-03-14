@@ -54,6 +54,24 @@ namespace MemberShipManage.WebAPI.Controllers
         }
 
         /// <summary>
+        /// Get Customer List
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet()]
+        [Route("list")]
+        public CustomerListResponse GetCustomerList([FromUri]CustomerListRequest request)
+        {
+            var customers = customerService.GetCustomerList(request);
+            return new CustomerListResponse
+            {
+                TotalCount = customers.TotalItemCount,
+                CustomerList = customers.ToList()
+            };
+        }
+
+        /// <summary>
         /// Get customer banlance
         /// </summary>
         /// <param name="userNo"></param>
