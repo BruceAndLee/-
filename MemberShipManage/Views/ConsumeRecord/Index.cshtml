@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="row" style="margin-top:5px">
-                <label class="col-md-1">开始：</label>
+                <label class="col-md-1"><input type="checkbox" id="chkDate" />开始：</label>
                 <div class="col-md-3">
                     <div class="input-group date form_datetime">
                         <input class="form-control" size="16" type="text" id="startDate" readonly>
@@ -62,12 +62,17 @@
             var name = $('#name').val();
             var startDate = $('#startDate').val();
             var endDate = $('#endDate').val();
+            var isDateChecked = $('#chkDate').prop('checked');
+
+            if (endDate) {
+                endDate = endDate + ' 23:59:59';
+            }
 
             var request = {
                 userNo: userNo && userNo.trim() ? userNo.trim() : null,
                 name: name && name.trim() ? name.trim() : null,
-                startDate: startDate,
-                endDate: endDate
+                startDate: isDateChecked ? startDate : null,
+                endDate: isDateChecked ? endDate+' 23:59:59' : null
             };
 
             $.get("@Url.Action("List")", request

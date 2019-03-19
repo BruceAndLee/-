@@ -68,6 +68,7 @@ namespace MemberShipManage.Controllers
                 InUser = rechargeRecord.InUser
             };
 
+            rechargeRecord.Status = true;
             customerAmountService.CreateCustomerAmount(customerAmount);
             rechargeRecordService.CreateRechargeRecord(rechargeRecord);
 

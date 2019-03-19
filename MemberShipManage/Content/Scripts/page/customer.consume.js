@@ -1,5 +1,5 @@
 ﻿$(function () {
-    $('#btnBalance').click(function () {
+    $('#btnCalculate').click(function () {
         if (!$('#hfdCustomerId').val()
             || !$('#customerId').val()) {
             messager.showInfo('请选择用户名！');
@@ -17,10 +17,16 @@
             return;
         }
 
+        var detail = $('#detail').val();
+        if (!detail || !detail.trim()) {
+            messager.showInfo('消费明细不能为空！');
+            return;
+        }
+
         $.post('/Customer/CreateConsume', {
             CustomerID: $('#hfdCustomerId').val(),
             Amount: amount,
-            Detail: $('#detail').val()
+            Detail: detail.trim()
         }, function (data) {
             if (data) {
                 if (data.IsSuc) {
@@ -107,10 +113,13 @@
             else {
                 $('#detail').val(ui.item.label);
             }
+            $('#dishinput').val('');
             return false;
         },
         change: function (event, ui) {
-
+            if (!ui.item) {
+                $('#dishinput').val('');
+            }
         }
     });
 
@@ -129,5 +138,6 @@
         $('#amount').val(null);
         $('#balanceAmount').val(null);
         $('#detail').val('');
+        $('#dishinput').val('');
     }
 });

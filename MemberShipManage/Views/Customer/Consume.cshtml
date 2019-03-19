@@ -17,7 +17,7 @@
                     <label>用户名：</label>
                 </div>
                 <div class="col-md-7">
-                    <input id="customerId" type="text" class="form-control" maxlength="10" placeholder="请输入会员手机号或姓名查找" />
+                    <input id="customerId" type="text" class="form-control" maxlength="11" autocomplete="off" placeholder="请输入会员手机号或姓名查找" />
                     <input type="hidden" id="hfdCustomerId" />
                 </div>
             </div>
@@ -39,7 +39,7 @@
             </div>
             <div class="row margin-t10">
                 <div class="col-md-1">
-                    <label>消费金额：</label>
+                    <label><span class="text-danger">*</span>消费金额：</label>
                 </div>
                 <div class="col-md-7">
                     <input id="balanceAmount" type="number" class="form-control" min="0.01" step="0.01" style="color:blue" />
@@ -47,7 +47,7 @@
             </div>
             <div class="row margin-t10">
                 <div class="col-md-1">
-                    <label>消费明细：</label>
+                    <label><span class="text-danger">*</span>消费明细：</label>
                 </div>
                 <div class="col-md-7">
                     <textarea id="detail" rows="4" style="resize:none" placeholder="双击可选择消费项目" class="form-control"></textarea>
@@ -60,7 +60,7 @@
             </div>
             <div class="row margin-t10">
                 <div class="col-md-offset-1 col-md-7">
-                    <button id="btnBalance" type="button" class="btn btn-primary">结算</button>
+                    <button id="btnCalculate" type="button" class="btn btn-primary">结算</button>
                     <button id="btnCancel" type="button" class="btn btn-warning">取消</button>
                 </div>
             </div>
