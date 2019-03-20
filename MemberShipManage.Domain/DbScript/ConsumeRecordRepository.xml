@@ -157,12 +157,22 @@ BEGIN
 END
 
 UPDATE TOP(1) dbo.CustomerAmount
-SET Amount = Amount + @ConsumeAmount
+SET Amount = Amount + @ConsumeAmount,
+    LastEditDate = GETDATE()
 WHERE CustomerID = @CustomerID
 
 UPDATE TOP(1) dbo.ConsumeRecord
 SET Status = 0
 WHERE ID = @ConsumeRecordID
+
+UPDATE TOP(1) A
+SET A.Amount = A.Amount - B.Amount,
+    A.LastEditDate = GETDATE()
+FROM dbo.CustomerAmount A
+INNER JOIN dbo.CustomerRebate B
+  ON A.CustomerID = B.CustomerID
+WHERE B.ConsumeID = ConsumeRecordID
+  AND A.Amount > B.Amount
 
 DELETE TOP(100) 
 FROM dbo.CustomerRebate
