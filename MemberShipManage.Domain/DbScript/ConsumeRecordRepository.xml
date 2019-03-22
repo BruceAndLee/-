@@ -171,7 +171,7 @@ SET A.Amount = A.Amount - B.Amount,
 FROM dbo.CustomerAmount A
 INNER JOIN dbo.CustomerRebate B
   ON A.CustomerID = B.CustomerID
-WHERE B.ConsumeID = ConsumeRecordID
+WHERE B.ConsumeID = @ConsumeRecordID
   AND A.Amount > B.Amount
 
 DELETE TOP(100) 

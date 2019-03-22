@@ -1,14 +1,10 @@
-﻿using MemberShipManage.Domain.Entity;
-using MemberShipManage.Infrastructure;
+﻿using MemberShipManage.Infrastructure;
 using MemberShipManage.Infrastructure.Base;
 using MemberShipManage.Infrastructure.Filter;
 using MemberShipManage.Service.Statistics;
 using MemberShipManage.Service.System;
 using MemberShipManage.Utility;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MemberShipManage.Controllers
@@ -41,7 +37,7 @@ namespace MemberShipManage.Controllers
             {
                 foreach (var report in dailyReport.SalesList)
                 {
-                    dailyReport.TotalDiscount += Math.Floor(Math.Floor(report.Amount / discount) * (1 - discount));
+                    dailyReport.TotalDiscount += Math.Round(Math.Floor(report.Amount / discount) * (1 - discount));
                 }
             }
             return View(dailyReport);
