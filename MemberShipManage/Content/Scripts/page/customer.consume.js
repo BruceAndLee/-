@@ -30,7 +30,7 @@
         }, function (data) {
             if (data) {
                 if (data.IsSuc) {
-                    messager.showSuccess('结算成功，消费金额：' + amount + '元');
+                    messager.showSuccess('结算成功！');
                     clearForm();
                 }
                 else {
