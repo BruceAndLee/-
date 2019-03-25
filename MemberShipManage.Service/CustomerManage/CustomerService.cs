@@ -75,8 +75,8 @@ namespace MemberShipManage.Service.CustomerManage
                 return response;
             }
 
-            customerDb = customerRepository.GetCustomer(customer.UserNo);
-            if (customerDb != null && customerDb.ID != customer.ID)
+            var customerDbByUserNo = customerRepository.GetCustomer(customer.UserNo);
+            if (customerDbByUserNo != null && customerDbByUserNo.ID != customer.ID)
             {
                 response.IsSuccess = false;
                 response.ResponseCode = "CM_001";
