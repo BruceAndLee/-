@@ -67,11 +67,19 @@ namespace MemberShipManage.Service.CustomerManage
         public APIBaseResponse UpdateCustomer(Customer customer)
         {
             var response = new APIBaseResponse { IsSuccess = true };
-            var customerDb = customerRepository.GetCustomer(customer.UserNo);
+            var customerDb = customerRepository.GetCustomer(customer.ID);
             if (customerDb == null)
             {
                 response.IsSuccess = false;
                 response.ResponseCode = "COM_001";
+                return response;
+            }
+
+            customerDb = customerRepository.GetCustomer(customer.UserNo);
+            if (customerDb != null && customerDb.ID != customer.ID)
+            {
+                response.IsSuccess = false;
+                response.ResponseCode = "CM_001";
                 return response;
             }
 

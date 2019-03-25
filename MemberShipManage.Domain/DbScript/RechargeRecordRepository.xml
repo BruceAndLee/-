@@ -19,11 +19,13 @@ WHERE A.ID = @RechargeRecordID
 IF @@ROWCOUNT = 0
 BEGIN
 	SET @ErrorMessageCode = 'CM_002'
+  RETURN
 END
 
 IF @CustomerAmount < @RechargeAmount
 BEGIN
 	SET @ErrorMessageCode = 'CM_006'
+  RETURN
 END
 
 UPDATE TOP(1) dbo.CustomerAmount
