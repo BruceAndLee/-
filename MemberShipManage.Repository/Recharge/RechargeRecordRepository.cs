@@ -18,7 +18,7 @@ namespace MemberShipManage.Repository.Recharge
             : base(dbcontext)
         { }
 
-        public IPagedList<RechargeRecord> GetRechargeRecordList(RechargeListRequest request)
+        public PagedList<RechargeRecord> GetRechargeRecordList(RechargeListRequest request)
         {
             IQueryable<RechargeRecord> query = this.dbSet.Where(d => d.Status && d.Customer.Status);
             query = query.WhereIf(request.CustomerID.HasValue, q => q.CustomerID == request.CustomerID);

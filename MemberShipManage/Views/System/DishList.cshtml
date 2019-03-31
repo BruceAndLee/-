@@ -29,23 +29,67 @@
         }
     }
 </table>
-@{
-    var parameters = new Dictionary<string, object>();
-    parameters.Add("CategoryID", Model.CategoryID);
-    parameters.Add("Name", Model.Name);
-}
-
-@Ajax.Pager(Model.DishesList, new PagerOptions
+@if (Model.DishesList != null && Model.DishesList.Count > 0)
 {
-    PageIndexParameterName = "pageIndex",
-    ContainerTagName = "ul",
-    PrevPageText = "上页",
-    NextPageText = "下页",
-    FirstPageText = "首页",
-    LastPageText = "尾页",
-    CssClass = "pagination",
-    RouteValues = new RouteValueDictionary(parameters),
-    CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
-    DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
-    PagerItemTemplate = "<li>{0}</li>"
-}, new MvcAjaxOptions { UpdateTargetId = "disheslist" })
+    <div class="card bg-info text-white" style="height:30px;line-height:30px">
+        <div class="card-body">
+            共有 <span style="color: blue" id="ft">@Model.DishesList.TotalItemCount</span> 条记录 当前是第 <span style="color: blue">@(Model.DishesList.CurrentPageIndex)</span>
+            页 共 <span style="color: blue">@Model.DishesList.TotalPageCount</span> 页&nbsp;&nbsp;&nbsp;&nbsp;
+            @if (Model.DishesList.CurrentPageIndex > 1)
+            {
+                @Ajax.ActionLink("首页", "DishList",
+                          new {
+                                PageIndex=0,
+                                PageSize= Model.DishesList.PageSize,
+                                Model.Name,
+                                Model.CategoryID
+                          },
+                          new AjaxOptions() { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "disheslist" }, new { style = "color:blue" })
+                @Ajax.ActionLink("上一页", "DishList",
+                          new
+                          {
+                              PageIndex = Model.DishesList.CurrentPageIndex-1,
+                              PageSize = Model.DishesList.PageSize,
+                              Model.Name,
+                              Model.CategoryID
+                          },
+                          new AjaxOptions() { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "disheslist" }, new { style = "margin-left:5px;color:blue" })
+            }
+            else
+            {
+                <text>首页&nbsp;</text>
+                <text>上一页&nbsp;</text>
+            }
+            @if (Model.DishesList.CurrentPageIndex < Model.DishesList.TotalPageCount)
+            {
+                @Ajax.ActionLink("下一页", "DishList",
+                          new
+                          {
+                              PageIndex = Model.DishesList.CurrentPageIndex + 1,
+                              PageSize = Model.DishesList.PageSize,
+                              Model.Name,
+                              Model.CategoryID
+                          },
+                          new AjaxOptions() { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "disheslist" }, new { style = "margin-left:5px;color:blue" })
+                @Ajax.ActionLink("末页", "DishList",
+                           new
+                           {
+                               PageIndex = Model.DishesList.TotalPageCount,
+                               PageSize = Model.DishesList.PageSize,
+                               Model.Name,
+                               Model.CategoryID
+                           },
+                          new AjaxOptions() { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "disheslist" }, new { style = "margin-left:5px;color:blue" })
+            }
+            else
+            {
+                <text>下一页&nbsp;</text>
+                <text>末页&nbsp;</text>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <p class="text-center text-danger">没有符合条件的记录</p>
+}

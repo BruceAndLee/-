@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using Webdiyer.WebControls.Mvc;
+<script type="text/javascript" src="~/Content/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <div id="customer" class="margin-t10">
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -62,7 +63,6 @@
     }
 
     $(function () {
-        @{ Ajax.LoadMvcPagerScript(); }
         initCategory();
         $('#search').click(function () {
             var name = $('#dishname').val();

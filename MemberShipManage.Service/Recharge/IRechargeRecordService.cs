@@ -12,7 +12,7 @@ namespace MemberShipManage.Service.Recharge
     public interface IRechargeRecordService
     {
         void CreateRechargeRecord(RechargeRecord rechargeRecord);
-        IPagedList<RechargeRecord> GetRechargeRecordList(RechargeListRequest request);
+        PagedList<RechargeRecord> GetRechargeRecordList(RechargeListRequest request);
         string RecallRecharge(int rechargeRecordID);
     }
 }

@@ -11,6 +11,6 @@ namespace MemberShipManage.Models
     {
         public string Name { get; set; }
         public int? CategoryID { get; set; }
-        public IPagedList<Dishes> DishesList { get; set; }
+        public PagedList<Dishes> DishesList { get; set; }
     }
 }

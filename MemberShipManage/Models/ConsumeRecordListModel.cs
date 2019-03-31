@@ -15,6 +15,6 @@ namespace MemberShipManage.Models
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
-        public IPagedList<ConsumeRecord> ConsumeRecordList { get; set; }
+        public PagedList<ConsumeRecord> ConsumeRecordList { get; set; }
     }
 }

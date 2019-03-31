@@ -7,7 +7,7 @@ namespace MemberShipManage.Service.System
 
     public interface IDishesService
     {
-        IPagedList<Dishes> GetDishesList(DishListRequest request);
+        PagedList<Dishes> GetDishesList(DishListRequest request);
         void UpdateDish(Dishes dish);
         void CreateDish(Dishes dish);
         bool CheckDishNameExists(int? id, string dishName);

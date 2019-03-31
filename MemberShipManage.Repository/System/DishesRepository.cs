@@ -18,7 +18,7 @@ namespace MemberShipManage.Repository.System
            : base(dbcontext)
         { }
 
-        public IPagedList<Dishes> GetDishesList(DishListRequest request)
+        public PagedList<Dishes> GetDishesList(DishListRequest request)
         {
             IQueryable<Dishes> query = this.dbSet;
             query = query.WhereIf(!string.IsNullOrEmpty(request.Name), d => d.Name.Contains(request.Name));

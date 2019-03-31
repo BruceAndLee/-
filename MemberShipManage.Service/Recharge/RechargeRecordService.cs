@@ -23,7 +23,7 @@ namespace MemberShipManage.Service.Recharge
             this.unitOfWork = unitOfWork;
         }
 
-        public IPagedList<RechargeRecord> GetRechargeRecordList(RechargeListRequest request)
+        public PagedList<RechargeRecord> GetRechargeRecordList(RechargeListRequest request)
         {
             return rechargeRecordRepository.GetRechargeRecordList(request);
         }

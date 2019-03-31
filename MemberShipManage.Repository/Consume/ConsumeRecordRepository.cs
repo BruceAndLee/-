@@ -29,7 +29,7 @@ namespace MemberShipManage.Repository.Consume
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public IPagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request)
+        public PagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request)
         {
             IQueryable<ConsumeRecord> query = dbSet.Where(d => d.Status && d.Customer.Status);
             query = query.WhereIf(request.CustomerID.HasValue, q => q.CustomerID == request.CustomerID);

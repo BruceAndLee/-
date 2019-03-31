@@ -12,7 +12,7 @@ namespace MemberShipManage.Repository.Consume
 {
     public interface IConsumeRecordRepository : IRepository<ConsumeRecord>
     {
-        IPagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request);
+        PagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request);
         string CreateCustomeConsume(ConsumeRequest request);
         string RecallConsume(int consumeRecordID);
     }

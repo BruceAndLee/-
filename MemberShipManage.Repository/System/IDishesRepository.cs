@@ -7,7 +7,7 @@ namespace MemberShipManage.Repository.System
 {
     public interface IDishesRepository : IRepository<Dishes>
     {
-        IPagedList<Dishes> GetDishesList(DishListRequest request);
+        PagedList<Dishes> GetDishesList(DishListRequest request);
         Dishes GetDish(int id);
         bool CheckDishNameExists(int? id, string dishName);
     }

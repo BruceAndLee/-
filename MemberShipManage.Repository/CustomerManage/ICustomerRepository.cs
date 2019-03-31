@@ -16,7 +16,7 @@ namespace MemberShipManage.Repository.CustomerManage
         Customer GetCustomer(string userNo);
         Customer GetCustomer(int customerID);
         decimal GetCustomerBalance(string userNo);
-        IPagedList<CustomerEntity> GetCustomerList(CustomerListRequest request);
+        PagedList<CustomerEntity> GetCustomerList(CustomerListRequest request);
         List<CustomerRebateEntity> GetCustomerRebateList(int customerID);
     }
 }

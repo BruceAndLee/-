@@ -6,7 +6,7 @@ namespace MemberShipManage.Service.Consume
 {
     public interface IConsumeRecordService
     {
-        IPagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request);
+        PagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request);
         string CreateCustomeConsume(ConsumeRequest request);
         string RecallConsume(int consumeRecordID);
     }

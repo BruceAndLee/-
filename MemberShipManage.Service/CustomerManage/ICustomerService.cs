@@ -19,7 +19,7 @@ namespace MemberShipManage.Service.CustomerManage
         APIBaseResponse CreateCustomer(Customer customer);
         APIBaseResponse UpdateCustomer(Customer customer);
         APIBaseResponse UpdateCustomerPassword(string userNo, string password);
-        IPagedList<CustomerEntity> GetCustomerList(CustomerListRequest request);
+        PagedList<CustomerEntity> GetCustomerList(CustomerListRequest request);
         void DeleteCustomer(int customerId);
         List<CustomerRebateEntity> GetCustomerRebateList(int customerID);
     }

@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using Webdiyer.WebControls.Mvc;
+<script type="text/javascript" src="~/Content/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <div id="recharge" class="margin-t10">
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -60,7 +61,6 @@
 <script type="text/javascript" src="~/Content/Bootstrap/datepicker/bootstrap-datetimepicker.zh-CN.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function () {
-         @{ Ajax.LoadMvcPagerScript(); }
         $('#search').click(function () {
             var userNo = $('#userno').val();
             var name = $('#name').val();

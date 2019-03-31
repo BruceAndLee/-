@@ -18,7 +18,7 @@ namespace MemberShipManage.Service.System
             this.dishesRepository = dishesRepository;
         }
 
-        public IPagedList<Dishes> GetDishesList(DishListRequest request)
+        public PagedList<Dishes> GetDishesList(DishListRequest request)
         {
             return dishesRepository.GetDishesList(request);
         }

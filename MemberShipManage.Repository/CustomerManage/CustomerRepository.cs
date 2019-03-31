@@ -62,7 +62,7 @@ namespace MemberShipManage.Repository.CustomerManage
             return 0;
         }
 
-        public IPagedList<CustomerEntity> GetCustomerList(CustomerListRequest request)
+        public PagedList<CustomerEntity> GetCustomerList(CustomerListRequest request)
         {
             var sqlScript = DBScriptManager.GetScript(this.GetType(), "GetCustomerList");
 

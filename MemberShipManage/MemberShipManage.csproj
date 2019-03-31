@@ -185,6 +185,7 @@
     <Content Include="Content\Login.css" />
     <Content Include="Content\Scripts\autocomplete\jquery-ui.min.css" />
     <Content Include="Content\Scripts\autocomplete\jquery-ui.min.js" />
+    <Content Include="Content\Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Content\Scripts\messager\css\messenger-spinner.css" />
     <Content Include="Content\Scripts\messager\css\messenger-theme-flat.css" />
     <Content Include="Content\Scripts\messager\css\messenger.css" />

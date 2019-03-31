@@ -13,6 +13,6 @@ namespace MemberShipManage.Models
         public string UserNo { get; set; }
         public string Name { get; set; }
         public int? Sex { get; set; }
-        public IPagedList<CustomerEntity> CustomerList { get; set; }
+        public PagedList<CustomerEntity> CustomerList { get; set; }
     }
 }

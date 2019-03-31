@@ -23,7 +23,7 @@ namespace MemberShipManage.Service.Consume
             this.unitOfWork = unitOfWork;
         }
 
-        public IPagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request)
+        public PagedList<ConsumeRecord> GetConsumeRecordList(ConsumeRecordListRequest request)
         {
             return consumeRecordRepository.GetConsumeRecordList(request);
         }
