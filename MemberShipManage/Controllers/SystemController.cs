@@ -52,6 +52,9 @@ namespace MemberShipManage.Controllers
         [HttpGet]
         public ActionResult DishIndex()
         {
+            var categoryList = categoryService.GetCategoryList();
+            categoryList.Insert(0, new Category { ID = 0, Name = "---请选择---" });
+            ViewBag.CategoryList = new SelectList(categoryList, "ID", "Name", 0);
             return View();
         }
 
@@ -59,7 +62,7 @@ namespace MemberShipManage.Controllers
         public ActionResult DishList(DishListRequest request)
         {
             var dishesList = dishesService.GetDishesList(request);
-            var viewModel = new DishesListModel { Name = request.Name };
+            var viewModel = new DishesListModel { Name = request.Name, CategoryID = request.CategoryID };
             viewModel.DishesList = dishesList;
             return PartialView(viewModel);
         }

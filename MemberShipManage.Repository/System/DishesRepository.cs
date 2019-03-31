@@ -22,6 +22,7 @@ namespace MemberShipManage.Repository.System
         {
             IQueryable<Dishes> query = this.dbSet;
             query = query.WhereIf(!string.IsNullOrEmpty(request.Name), d => d.Name.Contains(request.Name));
+            query = query.WhereIf(request.CategoryID.GetValueOrDefault(0) > 0, d => d.CategoryID == request.CategoryID);
             query = query.OrderByDescending(q => q.InDate);
             return new PagedList<Dishes>(query, request.PageIndex, request.PageSize);
         }

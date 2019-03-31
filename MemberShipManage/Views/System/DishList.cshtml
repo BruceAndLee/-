@@ -29,6 +29,12 @@
         }
     }
 </table>
+@{
+    var parameters = new Dictionary<string, object>();
+    parameters.Add("CategoryID", Model.CategoryID);
+    parameters.Add("Name", Model.Name);
+}
+
 @Ajax.Pager(Model.DishesList, new PagerOptions
 {
     PageIndexParameterName = "pageIndex",
@@ -38,6 +44,7 @@
     FirstPageText = "首页",
     LastPageText = "尾页",
     CssClass = "pagination",
+    RouteValues = new RouteValueDictionary(parameters),
     CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
     DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
     PagerItemTemplate = "<li>{0}</li>"

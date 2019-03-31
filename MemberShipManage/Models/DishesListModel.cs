@@ -10,6 +10,7 @@ namespace MemberShipManage.Models
     public class DishesListModel
     {
         public string Name { get; set; }
+        public int? CategoryID { get; set; }
         public IPagedList<Dishes> DishesList { get; set; }
     }
 }
