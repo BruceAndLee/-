@@ -37,7 +37,7 @@ namespace MemberShipManage.Controllers
             {
                 foreach (var report in dailyReport.SalesList)
                 {
-                    dailyReport.TotalDiscount += Math.Round(Math.Floor(report.Amount / discount) * (1 - discount), 2);
+                    dailyReport.TotalDiscount += Math.Round(Math.Floor(report.Amount / discount) * (1 - discount));
                 }
             }
             return View(dailyReport);
