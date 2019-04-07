@@ -4,6 +4,7 @@ using MemberShipManage.Infrastructure.RestAPI;
 using MemberShipManage.Infrastructure.UnitOfWork;
 using MemberShipManage.Repository.CustomerManage;
 using MemberShipManage.Utility;
+using System;
 using System.Collections.Generic;
 using Webdiyer.WebControls.Mvc;
 
@@ -64,6 +65,7 @@ namespace MemberShipManage.Service.CustomerManage
                 customerDb.Name = customer.Name;
                 customerDb.ParentID = customer.ParentID;
                 customerDb.Sex = customer.Sex;
+                customerDb.InDate = DateTime.Now;
                 customerRepository.Update(customerDb);
                 unitOfWork.Commit();
 
