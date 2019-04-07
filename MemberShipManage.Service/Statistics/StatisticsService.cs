@@ -26,6 +26,7 @@ namespace MemberShipManage.Service.Statistics
                 {
                     TotalRebate = result.TotalRebate,
                     TotalSales = result.TotalSales,
+                    TotalRecharge = result.TotalRecharge,
                     RebateList = result.RebateList != null ? XmlSerialization.Deserialize<List<AmountEntity>>(result.RebateList, "RebateList") : null,
                     SalesList = result.SalesList != null ? XmlSerialization.Deserialize<List<AmountEntity>>(result.SalesList, "SalesList") : null
                 };

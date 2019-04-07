@@ -9,6 +9,7 @@ namespace MemberShipManage.Domain.Entity
 {
     public class DailyReportEntity
     {
+        public decimal TotalRecharge { get; set; }
         public decimal TotalSales { get; set; }
         public decimal TotalRebate { get; set; }
         public decimal TotalDiscount { get; set; }

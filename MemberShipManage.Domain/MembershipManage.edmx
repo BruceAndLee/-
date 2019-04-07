@@ -348,6 +348,7 @@
           <Property Type="Decimal" Name="TotalRebate" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="SalesList" Nullable="true" MaxLength="Max" />
           <Property Type="String" Name="RebateList" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="TotalRecharge" Nullable="false" Precision="18" Scale="2" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -479,6 +480,7 @@
                 <ScalarProperty Name="TotalRebate" ColumnName="TotalRebate" />
                 <ScalarProperty Name="SalesList" ColumnName="SalesList" />
                 <ScalarProperty Name="RebateList" ColumnName="RebateList" />
+                <ScalarProperty Name="TotalRecharge" ColumnName="TotalRecharge" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

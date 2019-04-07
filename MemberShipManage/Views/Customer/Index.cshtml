@@ -46,10 +46,19 @@
 </div>
 @Html.Partial("~/Views/Customer/Update.cshtml")
 @Html.Partial("~/Views/Customer/Recharge.cshtml")
+<style type="text/css">
+    .ui-autocomplete {
+        position: absolute;
+        cursor: default;
+        z-index: 1500 !important;
+    } 
+</style>
 <link rel="stylesheet" href="~/Content/bootStrap/validator/css/bootstrapValidator.min.css" />
+<link rel="stylesheet" href="~/Content/Scripts/autocomplete/jquery-ui.min.css" />
 <script type="text/javascript" src="~/Content/bootStrap/validator/js/bootstrapValidator.min.js"></script>
 <script type="text/javascript" src="~/Content/Scripts/page/customer.update.js"></script>
 <script type="text/javascript" src="~/Content/Scripts/page/customer.recharge.js"></script>
+<script type="text/javascript" src="~/Content/Scripts/autocomplete/jquery-ui.min.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function () {
         $('#search').click(function () {
@@ -70,10 +79,12 @@
         });
     });
 
-    function showUpdateModal(customerId,userNo, name, sex) {
+    function showUpdateModal(customerId, userNo, name, sex, parentID, parentName) {
         $('#userNo').val(userNo);
         $('#userName').val(name);
         $('#userSex').val(sex);
+        $('#parentID').val(parentID);
+        $('#parentCustomer').val(parentName);
         $('#hfd_UpdateCustomerID').val(customerId);
         $('#updateModal').modal('show');
     }

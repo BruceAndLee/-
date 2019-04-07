@@ -52,8 +52,21 @@ namespace MemberShipManage.Service.CustomerManage
             var customerDb = customerRepository.GetCustomer(customer.UserNo);
             if (customerDb != null)
             {
-                response.IsSuccess = false;
-                response.ResponseCode = "CM_001";
+                if (customerDb.Status)
+                {
+                    response.IsSuccess = false;
+                    response.ResponseCode = "CM_001";
+                    return response;
+                }
+
+                customerDb.Password = Cryptor.Encrypt(customer.Password);
+                customerDb.Status = true;
+                customerDb.Name = customer.Name;
+                customerDb.ParentID = customer.ParentID;
+                customerDb.Sex = customer.Sex;
+                customerRepository.Update(customerDb);
+                unitOfWork.Commit();
+
                 return response;
             }
 
@@ -86,6 +99,7 @@ namespace MemberShipManage.Service.CustomerManage
             customerDb.Name = customer.Name;
             customerDb.Sex = customer.Sex;
             customerDb.UserNo = customer.UserNo;
+            customerDb.ParentID = customer.ParentID;
             customerRepository.Update(customerDb);
             unitOfWork.Commit();
             return response;

@@ -17,5 +17,6 @@ namespace MemberShipManage.Domain
         public decimal TotalRebate { get; set; }
         public string SalesList { get; set; }
         public string RebateList { get; set; }
+        public decimal TotalRecharge { get; set; }
     }
 }

@@ -126,7 +126,17 @@ namespace MemberShipManage.WebAPI.Controllers
         [Route("rebate")]
         public List<CustomerRebateEntity> GetCustomerRebateList(int customerID)
         {
-            return customerService.GetCustomerRebateList(customerID);
+            var customerRebateList = customerService.GetCustomerRebateList(customerID);
+            if (customerRebateList != null && customerRebateList.Count > 0)
+            {
+                customerRebateList.ForEach(c =>
+                {
+                    c.Name = c.Name.Insert(1, "**").Substring(0, 3);
+                    c.UserNo = c.UserNo.Insert(3, "********").Substring(0, 11);
+                });
+            }
+
+            return customerRebateList;
         }
     }
 }

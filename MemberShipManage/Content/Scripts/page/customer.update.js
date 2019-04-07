@@ -69,6 +69,48 @@
         });
     }
 
+    $("#parentCustomer").autocomplete({
+        autoFocus: true,
+        delay: 500,
+        minLength: 0,
+        classes: {
+            "z-index": "30 !important"
+        },
+        source: function (request, response) {
+            var queryparam = null;
+            if (request.term) {
+                var patrn = /^[0-9]*$/;
+                if (patrn.test(request.term)) {
+                    queryparam = { "userNo": request.term };
+                }
+                else {
+                    queryparam = { "name": request.term };
+                }
+            }
+
+            $.get("/Customer/CustomerList", queryparam
+                , function (data) {
+                    response($.map(data, function (item) { // 此处是将返回数据转换为 JSON对象
+                        return {
+                            label: item.UserNo + ' (' + item.Name + ')',
+                            value: item.ID
+                        };
+                    }));
+                });
+        },
+        select: function (event, ui) {
+            $('#parentID').val(ui.item.value);
+            $('#parentCustomer').val(ui.item.label);
+            return false;
+        },
+        change: function (event, ui) {
+            if (!ui.item) {
+                $('#parentID').val(null);
+                $('#parentCustomer').val('');
+            }
+        }
+    });
+
     function clearform() {
         $('#userNo').val('');
         $('#userPwd').val('');
